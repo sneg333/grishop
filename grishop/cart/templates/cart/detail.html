@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block content %}
+    <h1>Ваша корзина</h1>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th class="tabl_card">Изображение</th>
+            <th class="tabl_card">Продукт</th>
+            <th class="tabl_card">Количество</th>
+            <th class="tabl_card">Удалить</th>
+            <th class="tabl_card">цена за товар</th>
+            <th class="tabl_card">Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+                                {% if product.image %}
+                                    {{ product.image.url }}
+                                {% else %}
+                                    {% static 'img/no_image.png' %}
+                                {% endif %}">
+                        </a>
+                    </td>
+                    <td class="tabl_card">{{ product.name }}</td>
+                    <td class="tabl_card">{{ item.quantity }}</td>
+                    <td class="tabl_card"><a href="{% url 'cart:cart_remove' product.id%}">Удалить</a></td>
+                    <td class="num">${{ item.price }}</td>
+                    <td class="num">${{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td class="vsego">Всего</td>
+            <td colspan="4"></td>
+            <td class="num">${{ cart.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url 'shop:product_list' %}"> <div><button type="button" class="btn btn-info">Продолжить покупки </button></div></a> <br>
+        <a href="{% url 'orders:order_create' %}" class="button">перейти к оформлению заказа</a>
+    </p>
+
+{% endblock %}
