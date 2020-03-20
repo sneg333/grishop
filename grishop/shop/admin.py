@@ -1,11 +1,17 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, Pod_Category
 # Модель категории
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name', )}
 
 admin.site.register(Category, CategoryAdmin)
+# Модель подкаталога
+class Pod_CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name_podcategory', 'slug']
+    prepopulated_fields = {'slug': ('name_podcategory', )}
+
+admin.site.register(Pod_Category, Pod_CategoryAdmin)
 
 # Модель товара
 class ProductAdmin(admin.ModelAdmin):
