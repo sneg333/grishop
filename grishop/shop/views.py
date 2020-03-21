@@ -6,8 +6,9 @@ from cart.forms import CartAddProductForm
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
-    recomend_tovar = Product.objects.filter(recomend=True)
+    recomend_categories = Category.objects.filter(recomend=True)
+    products = Product.objects.filter(available=True, recomend=True)
+    recomend_tovar = Product.objects.filter(available=True, recomend=True)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
@@ -15,7 +16,8 @@ def product_list(request, category_slug=None):
         'category': category,
         'categories': categories,
         'products': products,
-        'recomend_tovar': recomend_tovar
+        'recomend_tovar': recomend_tovar,
+        'recomend_categories': recomend_categories
     })
 # Страница товара
 def product_detail(request, id, slug):

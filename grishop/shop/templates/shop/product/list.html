@@ -120,6 +120,23 @@
                 </div><!-- Header Bottom End -->
 {% endblock %}
 
+<!-- Product Tab List -->
+{% block recomend_categories %}
+
+        <ul class="nav product-tab-list">
+<!--                                <li><a class="active" data-toggle="tab" href="#tab-one">ВСЕ</a></li>-->
+            <li><a href="/{{ base.url }}">ВСЕ</a></li>
+            {% for catig in recomend_categories %}
+                <li>
+
+                    <a href="{{ catig.get_absolute_url }}">{{ catig.name }}</a>
+                </li>
+            {% endfor %}
+
+        </ul>
+
+{% endblock %}
+
                     <!-- Product Tab Content Start -->
 {% block product %}
                     <div class="col-xl-9 col-lg-8 col-12 order-3 mb-30">
@@ -130,16 +147,16 @@
                                 <div class="product-slider-wrap product-slider-arrow-two">
                                     <!-- Product Slider Start -->
                                     <div class="product-slider product-slider-3">
-                                      {% for recomend_tovar in recomend_tovar %}
+                                      {% for product in products %}
                                         <div class="col pb-20 pt-10">
                                             <!-- Product Start -->
                                             <div class="ee-product">
                                                 <!-- Image -->
                                                 <div class="image">
 
-                                                    <a href="{{ recomend_tovar.get_absolute_url }}" class="img">
-                                                       {% if recomend_tovar.image %}
-                                                           <img src=" {{ recomend_tovar.image.url }}" alt="Product Image">
+                                                    <a href="{{ product.get_absolute_url }}" class="img">
+                                                       {% if product.image %}
+                                                           <img src=" {{ product.image.url }}" alt="Product Image">
                                                        {%else %}
                                                            <p></p>
                                                        {% endif %}
@@ -157,12 +174,12 @@
                                                     <!-- Category & Title -->
                                                     <div class="category-title">
 
-                                                        <a href="#" class="cat">{{ recomend_tovar.category }}</a>
-                                                        <h5 class="title"><a href="{{ product.get_absolute_url }}">{{ recomend_tovar.name }}</a></h5>
+                                                        <a href="#" class="cat">{{ product.category }}</a>
+                                                        <h5 class="title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
                                                     </div>
                                                     <!-- Price & Ratting -->
                                                     <div class="price-ratting">
-                                                        <h5 class="price">{{ recomend_tovar.price }} руб.</h5>
+                                                        <h5 class="price">{{ product.price }} руб.</h5>
                                                         <div class="ratting">
 
                                                         </div>
@@ -447,17 +464,22 @@
     <h3>Категории просто</h3>
     <ul>
       <li {% if not category %} class="selected" {% endif %}>
-        <a href="{% url 'shop:product_list' %}">Категории</a>
+        <a href="{% url 'shop:product_list' %}"> + Категории + </a>
       </li>
       {% for cat in categories %}
         <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
-          <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+          <a href="{{ cat.get_absolute_url }}">{{ cat.name }}99</a>
         </li>
       {% endfor %}
     </ul>
   </div>
   <div id="main" class="product_list col-sm-9">
-    <h1>{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
+    <h1>{% if category %}
+            {{ category.name }}44
+        {% else %}
+            Товары
+        {% endif %}
+    </h1>
     <div class="items row">
       {% for product in products %}
         <div class="item col-sm-4">

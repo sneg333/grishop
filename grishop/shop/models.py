@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
+    recomend = models.BooleanField(default=False, verbose_name="Рекомендуемые")
+
 
     class Meta:
         ordering = ['name']
@@ -36,6 +38,12 @@ class Pod_Category(models.Model):
 
 # Модель продукта
 class Product(models.Model):
+    STATUS_CHOICES_MENU = (
+        ('smartf', 'Smartf'),
+        ('naushn', 'Naushn'),
+        ('noutbyk', 'Noutbyk'),
+    )
+
     category = models.ForeignKey(Category, related_name='products', verbose_name="Категория")
     pod_category = models.ForeignKey(Pod_Category, related_name='podcategory', verbose_name="Подкатегория")
     name = models.CharField(max_length=200, db_index=True, verbose_name="Название")
@@ -46,6 +54,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(verbose_name="На складе")
     available = models.BooleanField(default=True, verbose_name="Доступен")
     recomend = models.BooleanField(default=False, verbose_name="Рекомендуемые")
+    glav = models.CharField(max_length=7, verbose_name='на главной', choices=STATUS_CHOICES_MENU, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
