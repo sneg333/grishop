@@ -116,25 +116,20 @@
                             </li>
                         </ul>
                     </nav>
-
                 </div><!-- Header Bottom End -->
 {% endblock %}
 
 <!-- Product Tab List -->
 {% block recomend_categories %}
-
         <ul class="nav product-tab-list">
 <!--                                <li><a class="active" data-toggle="tab" href="#tab-one">ВСЕ</a></li>-->
             <li><a href="/{{ base.url }}">ВСЕ</a></li>
             {% for catig in recomend_categories %}
                 <li>
-
                     <a href="{{ catig.get_absolute_url }}">{{ catig.name }}</a>
                 </li>
             {% endfor %}
-
         </ul>
-
 {% endblock %}
 
                     <!-- Product Tab Content Start -->
@@ -224,7 +219,7 @@
                                         <!-- Category & Title -->
                                         <div class="category-title">
                                             <a href="#" class="cat">{{ hit_prodajs.category }}</a>
-                                            <h5 class="title"><a href="single-product.html">{{ hit_prodajs.name }}</a></h5>
+                                            <h5 class="title"><a href="{{ hit_prodajs.get_absolute_url }}">{{ hit_prodajs.name }}</a></h5>
                                         </div>
                                         <!-- Price & Ratting -->
                                         <div class="price-ratting">
@@ -238,8 +233,6 @@
     {% endfor %}
 {% endblock %}
 <!-- hit_prodaj AND -->
-
-
 
 <!-- new_tovar START -->
 {% block new_product %}
@@ -258,9 +251,6 @@
                                                 <p></p>
                                             {% endif %}
                                         </a>
-
-
-
                                         <div class="wishlist-compare">
                                             <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
                                             <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
@@ -272,7 +262,7 @@
                                         <!-- Category & Title -->
                                         <div class="category-title">
                                             <a href="#" class="cat">{{ new_tovars.category }}</a>
-                                            <h5 class="title"><a href="single-product.html">{{ new_tovars.name }}</a></h5>
+                                            <h5 class="title"><a href="{{ new_tovars.get_absolute_url }}">{{ new_tovars.name }}</a></h5>
                                         </div>
                                         <!-- Price & Ratting -->
                                         <div class="price-ratting">
