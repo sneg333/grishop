@@ -49,6 +49,7 @@ class Product(models.Model):
     available = models.BooleanField(default=True, verbose_name="Доступен")
     recomend = models.BooleanField(default=False, verbose_name="Рекомендуемые")
     hit_prodaj = models.BooleanField(default=False, verbose_name="Хит продаж")
+    new_tovar = models.BooleanField(default=False, verbose_name="Новый новар")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

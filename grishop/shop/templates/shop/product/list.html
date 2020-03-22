@@ -239,6 +239,54 @@
 {% endblock %}
 <!-- hit_prodaj AND -->
 
+
+
+<!-- new_tovar START -->
+{% block new_product %}
+{% for new_tovars in new_tovar %}
+                            <div class="col-xl-4 col-md-6 col-12 pb-30 pt-10">
+                                <!-- Product Start -->
+                                <div class="ee-product">
+                                    <!-- Image -->
+                                    <div class="image">
+                                        <span class="label new">new</span>
+
+                                        <a href="{{ new_tovars.get_absolute_url }}" class="img">
+                                            {% if new_tovars.image %}
+                                                <img src=" {{ new_tovars.image.url }}" alt="Product Image">
+                                            {%else %}
+                                                <p></p>
+                                            {% endif %}
+                                        </a>
+
+
+
+                                        <div class="wishlist-compare">
+                                            <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
+                                            <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
+                                        </div>
+                                        <a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>В КОРЗИНУ</span></a>
+                                    </div>
+                                    <!-- Content -->
+                                    <div class="content">
+                                        <!-- Category & Title -->
+                                        <div class="category-title">
+                                            <a href="#" class="cat">{{ new_tovars.category }}</a>
+                                            <h5 class="title"><a href="single-product.html">{{ new_tovars.name }}</a></h5>
+                                        </div>
+                                        <!-- Price & Ratting -->
+                                        <div class="price-ratting">
+                                            <h5 class="price"><span class="old">$285</span>{{ new_tovars.price }} руб.</h5>
+                                            <div class="ratting">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- Product End -->
+                            </div>
+{% endfor %}
+{% endblock %}
+<!-- new_tovar AND -->
+
 {% block content %}
   <div id="sidebar" class="col-sm-3">
     <h3>Категории просто</h3>
