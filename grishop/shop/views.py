@@ -9,6 +9,7 @@ def product_list(request, category_slug=None):
     recomend_categories = Category.objects.filter(recomend=True)
     products = Product.objects.filter(available=True, recomend=True)
     recomend_tovar = Product.objects.filter(available=True, recomend=True)
+    hit_prodaj = Product.objects.filter(available=True, hit_prodaj=True)
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
@@ -17,7 +18,8 @@ def product_list(request, category_slug=None):
         'categories': categories,
         'products': products,
         'recomend_tovar': recomend_tovar,
-        'recomend_categories': recomend_categories
+        'recomend_categories': recomend_categories,
+        'hit_prodaj': hit_prodaj
     })
 # Страница товара
 def product_detail(request, id, slug):

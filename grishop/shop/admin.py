@@ -15,7 +15,7 @@ admin.site.register(Pod_Category, Pod_CategoryAdmin)
 
 # Модель товара
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'price', 'stock', 'available', 'created', 'updated', 'recomend']
+    list_display = ['name', 'slug', 'price', 'stock', 'available', 'created', 'updated', 'recomend', 'hit_prodaj']
     list_filter = ['available', 'created', 'updated']
     list_editable = ['price', 'stock', 'available']
     prepopulated_fields = {'slug': ('name', )}
