@@ -151,7 +151,7 @@
 
                                                     <a href="{{ product.get_absolute_url }}" class="img">
                                                        {% if product.image %}
-                                                           <img src=" {{ product.image.url }}" alt="Product Image">
+                                                           <img src="{{ product.image.url }}" alt="Product Image">
                                                        {%else %}
                                                            <p></p>
                                                        {% endif %}

@@ -36,6 +36,18 @@ class Pod_Category(models.Model):
     def get_absolute_url(self):
         return reverse('shop:product_list_by_podcategory', args=[self.slug])
 
+class Gallery(models.Model):
+    title_gallery = models.CharField(max_length=400, verbose_name='название фото')
+    photo_gallery = models.ImageField(upload_to='gallery', verbose_name='фото', blank=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Фотогаллерея'
+        verbose_name_plural = 'Фотогаллерея'
+
+    def __str__(self):
+        return "%s, %s" % (self.title_gallery, self.is_active)
+
 # Модель продукта
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', verbose_name="Категория")
@@ -50,6 +62,7 @@ class Product(models.Model):
     recomend = models.BooleanField(default=False, verbose_name="Рекомендуемые")
     hit_prodaj = models.BooleanField(default=False, verbose_name="Хит продаж")
     new_tovar = models.BooleanField(default=False, verbose_name="Новый новар")
+    product_gallery = models.ManyToManyField(Gallery, blank=True, verbose_name='фото товара')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

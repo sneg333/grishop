@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Pod_Category
+from .models import Category, Product, Pod_Category, Gallery
 # Модель категории
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'recomend', 'id']
@@ -12,6 +12,12 @@ class Pod_CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name_podcategory', )}
 
 admin.site.register(Pod_Category, Pod_CategoryAdmin)
+
+# Модель галлереи
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ['title_gallery', 'is_active']
+
+admin.site.register(Gallery, GalleryAdmin)
 
 # Модель товара
 class ProductAdmin(admin.ModelAdmin):

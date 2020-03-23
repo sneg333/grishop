@@ -3,27 +3,230 @@
 {% block title %}
     {% if category %}{{ category.title }}{% else %}Products{% endif %}
 {% endblock %}
+
 {% block content %}
-<div class="product-detail">
-  <div class="col-sm-4">
-    <img src="{% if product.image %}
-      {{ product.image.url }}{% else %}{% static " img/no-image.jpg"%}
-    {% endif %}" class="img-responsive">
-  </div>
-  <div class="col-sm-8">
-    <h1>{{ product.name }}</h1>
-    <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
-    <p class="price">
-      {{ product.price }} руб.
-    </p>
-    <form action="{% url 'cart:cart_add' product.id %}" method="post">
-    {{ cart_product_form }}
-    {% csrf_token %}
-    <input type="submit" value="Add to cart">
-    </form>
-    <span>
-        {{ product.description | linebreaks}}
-      </span>
-  </div>
-</div>
+            <div class="col-xl-9 col-lg-8 col-12 order-1 order-lg-2 mb-60">
+                <div class="row mb-40">
+                    <div class="col-lg-6 col-12 mb-50">
+                        <!-- Image -->
+                        <div class="single-product-image">
+                            <div class="tab-content">
+                                <div id="single-image-1" class="tab-pane fade show active big-image-slider">
+                                    {% for photo in product.product_gallery.filter %}
+                                    <div class="big-image">
+                                        <img src="{{ photo.photo_gallery.url }}" alt="Big Image">
+                                        <a href="{{ photo.photo_gallery.url }}" class="big-image-popup">
+                                            <i class="fa fa-search-plus"></i>
+                                        </a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+<!--маленькие фото под большим старт-->
+                            <div class="thumb-image-slider nav">
+                                {% for photo in product.product_gallery.filter %}
+                                  <p class="thumb-image active" data-toggle="tab" href="{{ photo.photo_gallery.url }}">
+                                      <img src="{{ photo.photo_gallery.url }}" alt="Thumbnail Image">
+                                  </p>
+                                {% endfor %}
+                            </div>
+<!--маленькие фото под большим конец-->
+
+                    </div>
+                    <div class="col-lg-6 col-12 mb-50">
+                        <!-- Content -->
+                        <div class="single-product-content p-0">
+
+                            <!-- Category & Title -->
+                            <div class="head-content">
+                                <div class="category-title">
+                                    <a href="#" class="cat">Smartphone</a>
+                                    <h5 class="title">{{ product.name }}</h5>
+                                </div>
+
+                                <h5 class="price">{{ product.price }} руб.</h5>
+                            </div>
+
+                            <div class="single-product-description">
+
+                                <div class="ratting">
+                                </div>
+
+                                <div class="desc">
+                                    <p>{{ product.description | linebreaks}} </p>
+                                </div>
+
+                                <span class="availability">Availability: <span>In Stock</span></span>
+
+                                <div class="quantity-colors">
+                                  <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                    <div class="quantity">
+                                        <h5>Количество</h5>
+                                      <div>
+                                        {{ cart_product_form }}
+                                        {% csrf_token %}
+
+                                      </div>
+                                             <div class="actions">
+                                                <a href="#" class="add-to-cart">
+                                                    <i class="ti-shopping-cart">
+
+                                            {% csrf_token %}
+                                                    </i>
+                                                  <input type="submit" value="Add to cart">
+                                                  <span>В КОРЗИНУ</span>
+
+                                                </a>
+                                              </div>
+                                    </div>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-12 mb-90">
+
+                        <ul class="single-product-tab-list nav">
+                            <li><a href="#product-description" class="active" data-toggle="tab" >Описание</a></li>
+                            <li><a href="#product-specifications" data-toggle="tab" >Технические характеристики</a></li>
+                            <li><a href="#product-reviews" data-toggle="tab" >Отзывы</a></li>
+                        </ul>
+
+                        <div class="single-product-tab-content tab-content">
+                            <div class="tab-pane fade show active" id="product-description">
+
+                                <div class="row">
+                                    <div class="single-product-description-content col-lg-8 col-12">
+                                        <h4>Introducing Flex 3310</h4>
+                                        <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora in</p>
+                                        <h4>Stylish Design</h4>
+                                        <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p>
+                                        <h4>Digital Camera, FM Radio & many more...</h4>
+                                        <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p>
+                                    </div>
+                                    <div class="single-product-description-image col-lg-4 col-12">
+                                        <img src="/static/images/single-product/description.png" alt="description">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="product-specifications">
+                                <div class="single-product-specification">
+                                    <ul>
+                                        <li>Full HD Camcorder</li>
+                                        <li>Dual Video Recording</li>
+                                        <li>X type battery operation</li>
+                                        <li>Full HD Camcorder</li>
+                                        <li>Dual Video Recording</li>
+                                        <li>X type battery operation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="product-reviews">
+
+                                <div class="product-ratting-wrap">
+                                    <div class="pro-avg-ratting">
+                                        <h4>4.5 <span>(Overall)</span></h4>
+                                        <span>Based on 9 Comments</span>
+                                    </div>
+
+                                    <div class="rattings-wrapper">
+
+                                        <div class="sin-rattings">
+                                            <div class="ratting-author">
+                                                <h3>MD.ZENAUL ISLAM</h3>
+                                                <div class="ratting-star">
+
+                                                </div>
+                                            </div>
+                                            <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="ratting-form-wrapper fix">
+                                        <h3>Add your Comments</h3>
+                                        <form action="#">
+                                            <div class="ratting-form row">
+                                                <div class="col-12 mb-15">
+                                                </div>
+                                                <div class="col-md-6 col-12 mb-15">
+                                                    <label for="name">Name:</label>
+                                                    <input id="name" placeholder="Name" type="text">
+                                                </div>
+                                                <div class="col-md-6 col-12 mb-15">
+                                                    <label for="email">Email:</label>
+                                                    <input id="email" placeholder="Email" type="text">
+                                                </div>
+                                                <div class="col-12 mb-15">
+                                                    <label for="your-review">Your Review:</label>
+                                                    <textarea name="review" id="your-review" placeholder="Write a review"></textarea>
+                                                </div>
+                                                <div class="col-12">
+                                                    <input value="add review" type="submit">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                </div>
+
+            </div>
+
 {% endblock %}
+
+<!--старт БОКОВАЯ КАТЕГОРИЯ-->
+{% block category %}
+    {% for cat in categories %}
+        <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
+            <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+        </li>
+{% endfor %}
+<!--ВЫПАДАЮЩЕЕ МЕНЮ-->
+         <li><a href="#">Phones & Tablets</a>
+             <ul class="children">
+                <li><a href="#">Samsome</a></li>
+                <li><a href="#">GL Stylus</a></li>
+                <li><a href="#">Uawei</a></li>
+                <li><a href="#">Cherry Berry</a></li>
+             </ul>
+         </li>
+
+{% endblock %}
+<!--конец БОКОВАЯ КАТЕГОРИЯ-->
+
+
+<!--<div class="product-detail">-->
+<!--  <div class="col-sm-4">-->
+<!--    <img src="{% if product.image %}-->
+<!--      {{ product.image.url }}{% else %}{% static " img/no-image.jpg"%}-->
+<!--    {% endif %}" class="img-responsive">-->
+<!--  </div>-->
+<!--  <div class="col-sm-8">-->
+<!--    <h1>{{ product.name }}</h1>-->
+<!--    <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>-->
+<!--    <p class="price">-->
+<!--      {{ product.price }} руб.-->
+<!--    </p>-->
+<!--    <form action="{% url 'cart:cart_add' product.id %}" method="post">-->
+<!--    {{ cart_product_form }}-->
+<!--    {% csrf_token %}-->
+<!--    <input type="submit" value="Add to cart">-->
+<!--    </form>-->
+<!--    <span>-->
+<!--        {{ product.description | linebreaks}}-->
+<!--      </span>-->
+<!--  </div>-->
+<!--</div>-->
