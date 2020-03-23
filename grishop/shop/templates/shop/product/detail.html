@@ -34,52 +34,43 @@
 <!--маленькие фото под большим конец-->
 
                     </div>
+
                     <div class="col-lg-6 col-12 mb-50">
                         <!-- Content -->
                         <div class="single-product-content p-0">
-
                             <!-- Category & Title -->
                             <div class="head-content">
                                 <div class="category-title">
-                                    <a href="#" class="cat">Smartphone</a>
+                                    <a href="#" class="cat">{{ product.category }}</a>
                                     <h5 class="title">{{ product.name }}</h5>
                                 </div>
-
                                 <h5 class="price">{{ product.price }} руб.</h5>
                             </div>
-
                             <div class="single-product-description">
-
                                 <div class="ratting">
                                 </div>
-
                                 <div class="desc">
-                                    <p>{{ product.description | linebreaks}} </p>
+                                    <p>{{ product.description | truncatewords_html:20 }} </p>
                                 </div>
-
-                                <span class="availability">Availability: <span>In Stock</span></span>
-
+                                <span class="availability">Наличие: <span>{{ product.available }}</span></span>
                                 <div class="quantity-colors">
                                   <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                                    <div class="quantity">
-                                        <h5>Количество</h5>
-                                      <div>
-                                        {{ cart_product_form }}
-                                        {% csrf_token %}
+                                      <div class="quantity">
+                                           <h5>Количество</h5>
+                                         <div>
+                                           {{ cart_product_form }}
+                                           {% csrf_token %}
+                                         </div>
+                                         <div class="actions">
+                                             <a href="#" class="add-to-cart">
+                                                <i class="ti-shopping-cart">
 
+                                                </i>
+                                                <input type="submit" value="Add to cart">
+                                                <span>В КОРЗИНУ</span>
+                                             </a>
+                                         </div>
                                       </div>
-                                             <div class="actions">
-                                                <a href="#" class="add-to-cart">
-                                                    <i class="ti-shopping-cart">
-
-                                            {% csrf_token %}
-                                                    </i>
-                                                  <input type="submit" value="Add to cart">
-                                                  <span>В КОРЗИНУ</span>
-
-                                                </a>
-                                              </div>
-                                    </div>
                                   </form>
                                 </div>
                             </div>
@@ -102,12 +93,8 @@
 
                                 <div class="row">
                                     <div class="single-product-description-content col-lg-8 col-12">
-                                        <h4>Introducing Flex 3310</h4>
-                                        <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora in</p>
-                                        <h4>Stylish Design</h4>
-                                        <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p>
-                                        <h4>Digital Camera, FM Radio & many more...</h4>
-                                        <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia res eos qui ratione voluptatem sequi Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci veli</p>
+                                        <h4>{{ product.name }}</h4>
+                                        <p>{{ product.description | linebreaks}}</p>
                                     </div>
                                     <div class="single-product-description-image col-lg-4 col-12">
                                         <img src="/static/images/single-product/description.png" alt="description">
@@ -118,12 +105,7 @@
                             <div class="tab-pane fade" id="product-specifications">
                                 <div class="single-product-specification">
                                     <ul>
-                                        <li>Full HD Camcorder</li>
-                                        <li>Dual Video Recording</li>
-                                        <li>X type battery operation</li>
-                                        <li>Full HD Camcorder</li>
-                                        <li>Dual Video Recording</li>
-                                        <li>X type battery operation</li>
+                                        {{ product.tehnik_harakteristic | linebreaks}}
                                     </ul>
                                 </div>
                             </div>
