@@ -30,7 +30,7 @@
                                 {% endif %}">
                         </a>
                     </td>
-                    <td class="tabl_card">{{ product.name }}</td>
+                    <td class="tabl_card">{{ product.name }}+</td>
                     <td class="tabl_card">{{ item.quantity }}</td>
                     <td class="tabl_card"><a href="{% url 'cart:cart_remove' product.id%}">Удалить</a></td>
                     <td class="num">${{ item.price }}</td>
