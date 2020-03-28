@@ -16,7 +16,7 @@
    
     <!-- Bootstrap CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-
+    <link href="{% static 'css/ima.css' %}" rel="stylesheet" />
     <!-- Icon Font CSS -->
     <link href="{% static 'css/icon-font.min.css' %}" rel="stylesheet" />
 
@@ -374,8 +374,6 @@
     </div>
 </div><!-- Brands Section End -->
 
-
-
 <!-- Footer Section Start -->
 <div class="footer-section section bg-ivory">
    
@@ -506,6 +504,20 @@
 <!-- Main JS -->
 <script src="{% static 'js/main.js' %}"></script>
 
+  <script>
+    thumbs.onclick = function(event) {
+      let thumbnail = event.target.closest('a');
+
+      if (!thumbnail) return;
+      showThumbnail(thumbnail.href, thumbnail.title);
+      event.preventDefault();
+    }
+
+    function showThumbnail(href, title) {
+      largeImg.src = href;
+      largeImg.alt = title;
+    }
+  </script>
 
 </body>
 

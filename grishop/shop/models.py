@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Модель категории
 class Category(models.Model):
@@ -80,3 +81,30 @@ class Product(models.Model):
 
     def get_absolute_url(self):
           return reverse('shop:product_detail', args=[self.id, self.slug])
+
+class Comments(models.Model):
+    title_com = models.CharField(max_length=100)
+    body = models.TextField(max_length=250)
+    comment_email = models.EmailField(blank=True, null=True, default=None)
+
+    class Meta:
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'комментарии'
+
+    def __str__(self):
+        return self.title_com
+
+# Модель контактов
+class Contact(models.Model):
+    title_contact = models.CharField(max_length=200, verbose_name='контакт')
+    body_contact = RichTextUploadingField(blank=True, default='', verbose_name='текст')
+    adress_one_contact = RichTextUploadingField(blank=True, default='', verbose_name='первый адрес')
+    adress_toe_contact = RichTextUploadingField(blank=True, default='', verbose_name='второй адрес')
+    tel = models.CharField(max_length=200, verbose_name='телефон')
+
+    class Meta:
+        verbose_name = 'контакт'
+        verbose_name_plural = 'контакт'
+
+    def __str__(self):
+        return self.title_contact

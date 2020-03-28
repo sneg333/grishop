@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product
+from .models import Category, Product, Contact
 from cart.forms import CartAddProductForm
+
 
 # Страница с товарами
 def product_list(request, category_slug=None):
@@ -23,13 +24,25 @@ def product_list(request, category_slug=None):
         'hit_prodaj': hit_prodaj,
         'new_tovar': new_tovar
     })
+
 # Страница товара
 def product_detail(request, id, slug):
     categories = Category.objects.all()
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()
-    return render(request, 'shop/product/detail.html', {'product': product,
-                                                        'categories': categories,
-                                                        'cart_product_form': cart_product_form
-                                                        }
-                  )
+
+    context = {
+        'product': product,
+        'categories': categories,
+        'cart_product_form': cart_product_form
+    }
+    return render(request, 'shop/product/detail.html',  context)
+
+# Страница контактов
+def contact(request):
+    contact = Contact.objects.all()
+
+    context = {
+        'contact':contact,
+        }
+    return render(request,'shop/product/contact.html', context)
