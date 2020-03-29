@@ -1,24 +1,147 @@
-{% extends "base.html" %}
+{% extends "check.html" %}
 
 {% block title %}Checkout{% endblock %}
 
 {% block content %}
-    <h1>Корзина</h1>
-    <div class="order-info">
-        <h3>Ваш заказ</h3>
-        <ul>
-            {% for item in cart %}
-                <li>
-                    {{ item.quantity }}x {{ item.product.name }}
-                    <span>${{ item.total_price }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-        <p>Всего к оплате: ${{ cart.get_total_price }}</p>
-    </div>
-    <form action="." method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Сазвершить заказ"></p>
-        {% csrf_token %}
-    </form>
+                <form action="." method="post" class="checkout-form">
+                   <div class="row row-40">
+
+                       <div class="col-lg-7 mb-20">
+
+                           <!-- Billing Address -->
+                           <div id="billing-form" class="mb-40">
+                               <h4 class="checkout-title">Ваши данные</h4>
+
+                               <div class="row">
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Имя*</label>
+                                       {{form.first_name}}
+                                   </div>
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Фамилия*</label>
+                                       {{form.last_name}}
+                                   </div>
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Email*</label>
+                                       {{form.email}}
+                                   </div>
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Телефон*</label>
+                                       {{form.postal_code}}
+                                   </div>
+
+                                   <div class="col-12 mb-20">
+                                       <label>Адрес*</label>
+                                       {{form.address}}
+                                   </div>
+                                   <div class="col-12 mb-20">
+                                       <label>Комментарий*</label>
+                                       {{form.city}}
+                                   </div>
+                                         <input type="submit"id="zakaz" value="Сазвершить заказ">
+                                        {% csrf_token %}
+                               </div>
+                           </div>
+
+                           <!-- Shipping Address -->
+                           <div id="shipping-form" class="mb-40">
+                               <h4 class="checkout-title">Shipping Address</h4>
+
+                               <div class="row">
+
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>First Name*</label>
+                                       <input type="text" placeholder="First Name">
+                                   </div>
+
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Last Name*</label>
+                                       <input type="text" placeholder="Last Name">
+                                   </div>
+
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Email Address*</label>
+                                       <input type="email" placeholder="Email Address">
+                                   </div>
+
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Phone no*</label>
+                                       <input type="text" placeholder="Phone number">
+                                   </div>
+
+                                   <div class="col-12 mb-20">
+                                       <label>Company Name</label>
+                                       <input type="text" placeholder="Company Name">
+                                   </div>
+
+                                   <div class="col-12 mb-20">
+                                       <label>Address*</label>
+                                       <input type="text" placeholder="Address line 1">
+                                       <input type="text" placeholder="Address line 2">
+                                   </div>
+
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Country*</label>
+                                       <select class="nice-select">
+                                            <option>Bangladesh</option>
+                                            <option>China</option>
+                                            <option>country</option>
+                                            <option>India</option>
+                                            <option>Japan</option>
+                                       </select>
+                                   </div>
+
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Town/City*</label>
+                                       <input type="text" placeholder="Town/City">
+                                   </div>
+
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>State*</label>
+                                       <input type="text" placeholder="State">
+                                   </div>
+
+                                   <div class="col-md-6 col-12 mb-20">
+                                       <label>Zip Code*</label>
+                                       <input type="text" placeholder="Zip Code">
+                                   </div>
+
+                               </div>
+
+                           </div>
+
+                       </div>
+
+                       <div class="col-lg-5">
+                           <div class="row">
+
+                               <!-- Cart Total -->
+                               <div class="col-12 mb-60">
+
+                                   <h4 class="checkout-title">Ваш заказ</h4>
+
+                                   <div class="checkout-cart-total">
+
+                                       <h4>
+                                           Продукт
+                                           <span>Сумма</span>
+
+                                       </h4>
+
+                                       <ul>
+                                           {% for item in cart %}
+                                           <li>{{ item.product.name }} <span>{{ item.total_price }} руб.</span></li>
+                                           {% endfor %}
+                                       </ul>
+
+                                       <p>Стоимость товара <span>{{ cart.get_total_price }} руб.</span></p>
+                                       <p>Стоимость доставки <span>$00.00</span></p>
+
+                                       <h4>Всего к оплате <span>{{ cart.get_total_price }} руб.</span></h4>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                </form>
 {% endblock %}

@@ -76,41 +76,13 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12 mb-25">
                                         <select class="nice-select">
-                                            <option>Bangladesh</option>
-                                            <option>China</option>
-                                            <option>country</option>
-                                            <option>India</option>
-                                            <option>Japan</option>
+                                            <option>Самовывоз</option>
+                                            <option>Заказать доставку</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 col-12 mb-25">
-                                        <select class="nice-select">
-                                            <option>Dhaka</option>
-                                            <option>Barisal</option>
-                                            <option>Khulna</option>
-                                            <option>Comilla</option>
-                                            <option>Chittagong</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-25">
-                                        <input type="text" placeholder="Postcode / Zip">
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-25">
-                                        <input type="submit" value="Estimate">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Discount Coupon -->
-                        <div class="discount-coupon">
-                            <h4>Discount Coupon Code</h4>
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-md-6 col-12 mb-25">
-                                        <input type="text" placeholder="Coupon Code">
-                                    </div>
-                                    <div class="col-md-6 col-12 mb-25">
-                                        <input type="submit" value="Apply Code">
+                                        <input type="submit" id="zakaz" value="Оформить доставку">
+
                                     </div>
                                 </div>
                             </form>
@@ -129,7 +101,7 @@
                             <div class="cart-summary-button">
                                 <a href="{% url 'shop:product_list' %}" class="btn btn-small btn-circle hover-theme mb-30"> Продолжить покупки </a><br>
                                 <a href="{% url 'orders:order_create' %}">
-                                    <div class="btn btn-small btn-circle hover-theme mb-30">Оформить заказ</div>
+                                    <input type="submit" id="zakaz" value="ОФОРМИТЬ ЗАКАЗ">
                                 </a>
 
 

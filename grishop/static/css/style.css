@@ -13025,3 +13025,19 @@ ul.link-widget li {
       color: #f5d730; }
       .theme-dark .footer-copyright p a:hover {
         text-decoration: underline; }
+
+/***************************мои**/
+
+#zakaz {
+  margin-top: 40px;
+  width: 200px;
+  border-radius: 50px;
+  height: 36px;
+  border: none;
+  line-height: 24px;
+  padding: 6px 20px;
+  float: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #202020;
+  background-color: #f5d730; }
