@@ -42,19 +42,16 @@
                                         <a href="#">{{ product.name }}</a>
                                     </td>
                                     <td class="pro-price">
-                                        <span>{{ item.price }}</span>
+                                        <span>{{ item.price }} руб.</span>
                                     </td>
                                     <td class="pro-quantity">
-
-                                            {{ item.quantity }}
-
-
+                                            {{ item.quantity }} шт.
                                     </td>
                                     <td class="pro-subtotal">
-                                        <span>{{ item.total_price }}</span>
+                                        <span>{{ item.total_price }} руб.</span>
                                     </td>
                                     <td class="pro-remove">
-                                        <a href="#">
+                                        <a href="{% url 'cart:cart_remove' product.id%}">
                                             <i class="fa fa-trash-o"></i>
                                         </a>
                                     </td>
@@ -72,7 +69,9 @@
                     <div class="col-lg-6 col-12 mb-15">
                         <!-- Calculate Shipping -->
                         <div class="calculate-shipping">
-                            <h4>Calculate Shipping</h4>
+                            <h4>
+                                <a href="{% url 'shop:product_list' %}" class="btn btn-circle hover-theme mr-30 mb-30"> Продолжить покупки </a>
+                            </h4>
                             <form action="#">
                                 <div class="row">
                                     <div class="col-md-6 col-12 mb-25">
@@ -128,8 +127,12 @@
                                 <h2>Общая сумма <span>{{ cart.get_total_price }}</span></h2>
                             </div>
                             <div class="cart-summary-button">
-                                <button class="checkout-btn">Checkout</button>
-                                <button class="update-btn">Update Cart</button>
+                                <a href="{% url 'shop:product_list' %}" class="btn btn-small btn-circle hover-theme mb-30"> Продолжить покупки </a><br>
+                                <a href="{% url 'orders:order_create' %}">
+                                    <div class="btn btn-small btn-circle hover-theme mb-30">Оформить заказ</div>
+                                </a>
+
+
                             </div>
                         </div>
                     </div>
@@ -141,53 +144,5 @@
     </div>
 </div>
 <!-- Cart Page End -->
-
-
-
-    <h1>Ваша корзина</h1>
-    <table class="cart">
-        <thead>
-        <tr>
-            <th class="tabl_card">Изображение</th>
-            <th class="tabl_card">Продукт</th>
-            <th class="tabl_card">Количество</th>
-            <th class="tabl_card">Удалить</th>
-            <th class="tabl_card">цена за товар</th>
-            <th class="tabl_card">Цена</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in cart %}
-            {% with product=item.product %}
-                <tr>
-                    <td>
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="
-                                {% if product.image %}
-                                    {{ product.image.url }}
-                                {% else %}
-                                    {% static 'img/no_image.png' %}
-                                {% endif %}">
-                        </a>
-                    </td>
-                    <td class="tabl_card">{{ product.name }}</td>
-                    <td class="tabl_card">{{ item.quantity }}</td>
-                    <td class="tabl_card"><a href="{% url 'cart:cart_remove' product.id%}">Удалить</a></td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
-                </tr>
-            {% endwith %}
-        {% endfor %}
-        <tr class="total">
-            <td class="vsego">Всего</td>
-            <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
-        </tr>
-        </tbody>
-    </table>
-    <p class="text-right">
-        <a href="{% url 'shop:product_list' %}"> <div><button type="button" class="btn btn-info">Продолжить покупки </button></div></a> <br>
-        <a href="{% url 'orders:order_create' %}" class="button">перейти к оформлению заказа</a>
-    </p>
 
 {% endblock %}
