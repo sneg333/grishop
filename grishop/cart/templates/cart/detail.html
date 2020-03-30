@@ -81,7 +81,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6 col-12 mb-25">
-                                        <input type="submit" id="zakaz" value="Оформить доставку">
+                                        <input type="submit" id="zakaz2" value="Оформить доставку">
 
                                     </div>
                                 </div>
@@ -94,23 +94,19 @@
                         <div class="cart-summary">
                             <div class="cart-summary-wrap">
                                 <h4>Сводка по корзине</h4>
-                                <p>Общая стоимость товаров <span>{{ cart.get_total_price }}</span></p>
-                                <p>Стоимость доставки <span>$00.00</span></p>
-                                <h2>Общая сумма <span>{{ cart.get_total_price }}</span></h2>
+                                <p>Общая стоимость товаров <span>{{ cart.get_total_price }} руб.</span></p>
+                                <p>Стоимость доставки <span>00.00 руб.</span></p>
+                                <h2>Общая сумма <span>{{ cart.get_total_price }} руб.</span></h2>
                             </div>
                             <div class="cart-summary-button">
-                                <a href="{% url 'shop:product_list' %}" class="btn btn-small btn-circle hover-theme mb-30"> Продолжить покупки </a><br>
+                                <a href="{% url 'shop:product_list' %}" id="zakaz2"> Продолжить покупки </a><br><br><br>
                                 <a href="{% url 'orders:order_create' %}">
                                     <input type="submit" id="zakaz" value="ОФОРМИТЬ ЗАКАЗ">
                                 </a>
-
-
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

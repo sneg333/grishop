@@ -13029,14 +13029,29 @@ ul.link-widget li {
 /***************************мои**/
 
 #zakaz {
-  margin-top: 40px;
-  width: 200px;
+  margin-top: 0px;
+  width: 240px;
+  border-radius: 50px;
+  height: 66px;
+  border: none;
+  line-height: 24px;
+  padding: 6px 20px;
+  float: left;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #202020;
+  background-color: #f5d730;
+  }
+
+#zakaz2 {
+  margin-top: 0px;
+  width: 225px;
   border-radius: 50px;
   height: 36px;
   border: none;
   line-height: 24px;
   padding: 6px 20px;
-  float: left;
+
   font-weight: 700;
   text-transform: uppercase;
   color: #202020;
