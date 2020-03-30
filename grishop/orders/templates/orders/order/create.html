@@ -3,6 +3,46 @@
 {% block title %}Checkout{% endblock %}
 
 {% block content %}
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="page-banner-wrap row row-0 d-flex align-items-center ">
+
+        <!-- Page Banner -->
+        <div class="col-lg-4 col-12 order-lg-2 d-flex align-items-center justify-content-center">
+            <div class="page-banner">
+                <h1>Оформление заказа</h1>
+
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-15.jpg" alt="Banner"></a></div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-3">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-14.jpg" alt="Banner"></a></div>
+        </div>
+
+    </div>
+</div><!-- Page Banner Section End -->
+
+<!-- Checkout Page Start -->
+<div class="page-section section mt-90 mb-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+
+
                 <form action="." method="post" class="checkout-form">
                    <div class="row row-40">
 
@@ -42,74 +82,6 @@
                                         {% csrf_token %}
                                </div>
                            </div>
-
-                           <!-- Shipping Address -->
-                           <div id="shipping-form" class="mb-40">
-                               <h4 class="checkout-title">Shipping Address</h4>
-
-                               <div class="row">
-
-                                   <div class="col-md-6 col-12 mb-20">
-                                       <label>First Name*</label>
-                                       <input type="text" placeholder="First Name">
-                                   </div>
-
-                                   <div class="col-md-6 col-12 mb-20">
-                                       <label>Last Name*</label>
-                                       <input type="text" placeholder="Last Name">
-                                   </div>
-
-                                   <div class="col-md-6 col-12 mb-20">
-                                       <label>Email Address*</label>
-                                       <input type="email" placeholder="Email Address">
-                                   </div>
-
-                                   <div class="col-md-6 col-12 mb-20">
-                                       <label>Phone no*</label>
-                                       <input type="text" placeholder="Phone number">
-                                   </div>
-
-                                   <div class="col-12 mb-20">
-                                       <label>Company Name</label>
-                                       <input type="text" placeholder="Company Name">
-                                   </div>
-
-                                   <div class="col-12 mb-20">
-                                       <label>Address*</label>
-                                       <input type="text" placeholder="Address line 1">
-                                       <input type="text" placeholder="Address line 2">
-                                   </div>
-
-                                   <div class="col-md-6 col-12 mb-20">
-                                       <label>Country*</label>
-                                       <select class="nice-select">
-                                            <option>Bangladesh</option>
-                                            <option>China</option>
-                                            <option>country</option>
-                                            <option>India</option>
-                                            <option>Japan</option>
-                                       </select>
-                                   </div>
-
-                                   <div class="col-md-6 col-12 mb-20">
-                                       <label>Town/City*</label>
-                                       <input type="text" placeholder="Town/City">
-                                   </div>
-
-                                   <div class="col-md-6 col-12 mb-20">
-                                       <label>State*</label>
-                                       <input type="text" placeholder="State">
-                                   </div>
-
-                                   <div class="col-md-6 col-12 mb-20">
-                                       <label>Zip Code*</label>
-                                       <input type="text" placeholder="Zip Code">
-                                   </div>
-
-                               </div>
-
-                           </div>
-
                        </div>
 
                        <div class="col-lg-5">
@@ -117,26 +89,19 @@
 
                                <!-- Cart Total -->
                                <div class="col-12 mb-60">
-
                                    <h4 class="checkout-title">Ваш заказ</h4>
-
                                    <div class="checkout-cart-total">
-
                                        <h4>
                                            Продукт
                                            <span>Сумма</span>
-
                                        </h4>
-
                                        <ul>
                                            {% for item in cart %}
                                            <li>{{ item.product.name }} <span>{{ item.total_price }} руб.</span></li>
                                            {% endfor %}
                                        </ul>
-
                                        <p>Стоимость товара <span>{{ cart.get_total_price }} руб.</span></p>
                                        <p>Стоимость доставки <span>$00.00</span></p>
-
                                        <h4>Всего к оплате <span>{{ cart.get_total_price }} руб.</span></h4>
                                    </div>
                                </div>
@@ -144,4 +109,9 @@
                        </div>
                    </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Checkout Page End -->
 {% endblock %}
