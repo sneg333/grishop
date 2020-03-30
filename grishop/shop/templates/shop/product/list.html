@@ -178,8 +178,6 @@
                                     </div><!-- Product Slider End -->
                                 </div><!-- Product Slider Wrap End -->
                             </div><!-- Tab Pane End -->
-
-
                         </div>
                     </div><!-- Product Tab Content End -->
 {% endblock %}
@@ -259,43 +257,3 @@
 {% endblock %}
 <!-- new_tovar AND -->
 
-{% block content %}
-  <div id="sidebar" class="col-sm-3">
-    <h3>Категории просто</h3>
-    <ul>
-      <li {% if not category %} class="selected" {% endif %}>
-        <a href="{% url 'shop:product_list' %}"> + Категории + </a>
-      </li>
-      {% for cat in categories %}
-        <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
-          <a href="{{ cat.get_absolute_url }}">{{ cat.name }}99</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div id="main" class="product_list col-sm-9">
-    <h1>{% if category %}
-            {{ category.name }}44
-        {% else %}
-            Товары
-        {% endif %}
-    </h1>
-    <div class="items row">
-      {% for product in products %}
-        <div class="item col-sm-4">
-                <a href="{{ product.get_absolute_url }}">
-                  {% if product.image %}
-                      <img src=" {{ product.image.url }}" />
-                  {%else %}
-                      <p></p>
-                  {% endif %}
-
-                </a>
-          <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-          {{ product.price }} руб.
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-{% endblock %}</code>
-</pre>

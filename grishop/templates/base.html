@@ -209,7 +209,8 @@
                         <!-- Cart -->
                         <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% else %}
-                                Your cart is empty.
+                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"></i> <span class="number">{{ cart.get_total_price }}</span></a>
+                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% endif %}
                         {% endwith %}
                     </div><!-- Header Shop Links End -->
@@ -556,18 +557,14 @@
 
                     </div>
                 </div><!-- Footer Widget End -->
-
             </div>
-
         </div>
     </div><!-- Footer Bottom Section Start -->
-{% block content2 %}
-{% endblock %}
+
     <!-- Footer Bottom Section Start -->
     <div class="footer-bottom-section section">
         <div class="container">
             <div class="row">
-
                 <!-- Footer Copyright -->
                 <div class="col-lg-6 col-12">
                     <div class="footer-copyright"><p>&copy; Copyright, All Rights Reserved by <a href="#">E&E</a></p></div>
@@ -583,6 +580,8 @@
     </div><!-- Footer Bottom Section Start -->
 
 </div><!-- Footer Section End -->
+
+
 
 
 <!-- JS

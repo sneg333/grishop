@@ -51,21 +51,11 @@
                 <div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
                     <!-- Header Advance Search Start -->
                     <div class="header-advance-search">
-                        
                         <form action="#">
                             <div class="input"><input type="text" placeholder="Search your product"></div>
-                            <div class="select">
-                                <select class="nice-select">
-                                    <option>All Categories</option>
-                                    <option>Mobile</option>
-                                    <option>Computer</option>
-                                    <option>Laptop</option>
-                                    <option>Camera</option>
-                                </select>
-                            </div>
                             <div class="submit"><button><i class="icofont icofont-search-alt-1"></i></button></div>
                         </form>
-                        
+
                     </div><!-- Header Advance Search End -->
                 </div>
 
@@ -210,79 +200,34 @@
                         </nav>
                     </div><!-- Main Menu End -->
                 </div>
-
                 <div class="col order-2 order-lg-12 order-xl-12">
                     <!-- Header Shop Links Start -->
                     <div class="header-shop-links">
-                        
+                        <div id="header">
+                            <a href="/" class="logo"> Мой магазин</a>
+                        </div>
                         <!-- Compare -->
-                        <a href="compare.html" class="header-compare"><i class="ti-control-shuffle"></i></a>
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
                         <!-- Wishlist -->
-                        <a href="wishlist.html" class="header-wishlist"><i class="ti-heart"></i> <span class="number">3</span></a>
+                        <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"></i> <span class="number">{{ cart.get_total_price }}</span></a>
                         <!-- Cart -->
-                        <a href="cart.html" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
-                        
+                        <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
+                            {% else %}
+                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"></i> <span class="number">{{ cart.get_total_price }}</span></a>
+                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
+                            {% endif %}
+                        {% endwith %}
                     </div><!-- Header Shop Links End -->
                 </div>
-                
                 <!-- Mobile Menu -->
                 <div class="mobile-menu order-12 d-block d-lg-none col"></div>
-
             </div>
         </div>
     </div><!-- Header Bottom End -->
 
 </div><!-- Header Section End -->
 
-<!-- Mini Cart Wrap Start -->                      
-<div class="mini-cart-wrap">
-
-    <!-- Mini Cart Top -->
-    <div class="mini-cart-top">    
-    
-        <button class="close-cart">Close Cart<i class="icofont icofont-close"></i></button>
-        
-    </div>
-
-    <!-- Mini Cart Products -->
-    <ul class="mini-cart-products">
-        <li>
-            <a class="image"><img src="/static/images/product/product-1.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Waxon Note Book Pro 5</a>
-                <span class="price">Price: $295</span>
-                <span class="qty">Qty: 02</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
-        <li>
-            <a class="image"><img src="/static/images/product/product-2.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Aquet Drone D 420</a>
-                <span class="price">Price: $275</span>
-                <span class="qty">Qty: 01</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
-        <li>
-            <a class="image"><img src="/static/images/product/product-3.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Game Station X 22</a>
-                <span class="price">Price: $295</span>
-                <span class="qty">Qty: 01</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
-    </ul>
-
-    <!-- Mini Cart Bottom -->
-    <div class="mini-cart-bottom">
-        <h4 class="sub-total">Total: <span>$1160</span></h4>
-        <div class="button">
-            <a href="checkout.html">CHECK OUT</a>
-        </div>
-    </div>
-</div><!-- Mini Cart Wrap End --> 
 
 <!-- Cart Overlay -->
 <div class="cart-overlay"></div>
@@ -318,43 +263,24 @@
     <div class="container">
         <div class="row">
 {% block content %}
-
 {% endblock %}
 
-            <div class="shop-sidebar-wrap col-xl-3 col-lg-4 col-12 order-2 order-lg-1 mb-50">
-                <div class="shop-sidebar mb-30">
-                    <h4 class="title">Каталог</h4>
-                    <ul class="sidebar-category">
+
 {% block category %}
-
 {% endblock %}
-                    </ul>
-                </div>
-                <div class="shop-sidebar mb-30">
-                    <h4 class="title">Brand</h4>
-                    <ul class="sidebar-brand">
-                        <li><a href="#">Apple</a></li>
-                        <li><a href="#">Sumsang</a></li>
-                        <li><a href="#">Phillips</a></li>
-                        <li><a href="#">Zeon</a></li>
-                        <li><a href="#">Panasonic</a></li>
-                        <li><a href="#">Uawei</a></li>
-                    </ul>
-                </div>
-                <div class="shop-sidebar mb-30">
-                    <h4 class="title">Цена</h4>
-                    <div class="sidebar-price">
-                        <div id="price-range"></div>
-                        <input type="text" id="price-amount" readonly>
-                    </div>
-                </div>
-                <div class="shop-sidebar mb-30">
-                    <div class="banner"><a href="#"><img src="/static/images/banner/banner-41.jpg" alt="Banner"></a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- Single Product Section End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Brands Section Start -->
 <div class="brands-section section mb-90">
@@ -504,20 +430,6 @@
 <!-- Main JS -->
 <script src="{% static 'js/main.js' %}"></script>
 
-  <script>
-    thumbs.onclick = function(event) {
-      let thumbnail = event.target.closest('a');
-
-      if (!thumbnail) return;
-      showThumbnail(thumbnail.href, thumbnail.title);
-      event.preventDefault();
-    }
-
-    function showThumbnail(href, title) {
-      largeImg.src = href;
-      largeImg.alt = title;
-    }
-  </script>
 
 </body>
 

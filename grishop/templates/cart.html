@@ -43,26 +43,16 @@
                 <div class="col mt-10 mb-10">
                     <!-- Header Links Start -->
                     <div class="header-links">
-                        <a href="track-order.html"><img src="assets/images/icons/car.png" alt="Car Icon"> <span>Track your order</span></a>
-                        <a href="store.html"><img src="assets/images/icons/marker.png" alt="Car Icon"> <span>Locate Store</span></a>
+                        <a href="track-order.html"><img src="/static/images/icons/car.png" alt="Car Icon"> <span>доставка</span></a>
+                        <a href="store.html"><img src="/static/images/icons/marker.png" alt="Car Icon"> <span>контакты</span></a>
                     </div><!-- Header Links End -->
                 </div>
 
                 <div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
                     <!-- Header Advance Search Start -->
                     <div class="header-advance-search">
-
                         <form action="#">
                             <div class="input"><input type="text" placeholder="Search your product"></div>
-                            <div class="select">
-                                <select class="nice-select">
-                                    <option>All Categories</option>
-                                    <option>Mobile</option>
-                                    <option>Computer</option>
-                                    <option>Laptop</option>
-                                    <option>Camera</option>
-                                </select>
-                            </div>
                             <div class="submit"><button><i class="icofont icofont-search-alt-1"></i></button></div>
                         </form>
 
@@ -72,8 +62,8 @@
                 <div class="col order-2 order-xs-2 order-lg-12 mt-10 mb-10">
                     <!-- Header Account Links Start -->
                     <div class="header-account-links">
-                        <a href="register.html"><i class="icofont icofont-user-alt-7"></i> <span>my account</span></a>
-                        <a href="login.html"><i class="icofont icofont-login d-none"></i> <span>Login</span></a>
+                        <a href="register.html"><i class="icofont icofont-login d-none"></i> <span>gfdfg@mail.ru</span></a>
+                        <a href="login.html"><i class="icofont icofont-login d-none"></i> <span>89-45-89</span></a>
                     </div><!-- Header Account Links End -->
                 </div>
 
@@ -90,12 +80,11 @@
                     <!-- Logo Start -->
                     <div class="header-logo">
                         <a href="index.html">
-                            <img src="assets/images/logo.png" alt="E&E - Electronics eCommerce Bootstrap4 HTML Template">
-                            <img class="theme-dark" src="assets/images/logo-light.png" alt="E&E - Electronics eCommerce Bootstrap4 HTML Template">
+                            <img src="/static/images/logo.png" alt="E&E - Electronics eCommerce Bootstrap4 HTML Template">
+                            <img class="theme-dark" src="/static/images/logo-light.png" alt="E&E - Electronics eCommerce Bootstrap4 HTML Template">
                         </a>
                     </div><!-- Logo End -->
                 </div>
-
                 <div class="col order-12 order-lg-2 order-xl-2 d-none d-lg-block">
                     <!-- Main Menu Start -->
                     <div class="main-menu">
@@ -214,20 +203,25 @@
                 <div class="col order-2 order-lg-12 order-xl-12">
                     <!-- Header Shop Links Start -->
                     <div class="header-shop-links">
-
+                        <div id="header">
+                            <a href="/" class="logo"> Мой магазин</a>
+                        </div>
                         <!-- Compare -->
-                        <a href="compare.html" class="header-compare"><i class="ti-control-shuffle"></i></a>
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
                         <!-- Wishlist -->
-                        <a href="wishlist.html" class="header-wishlist"><i class="ti-heart"></i> <span class="number">3</span></a>
+                        <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"></i> <span class="number">{{ cart.get_total_price }}</span></a>
                         <!-- Cart -->
-                        <a href="cart.html" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
-
+                        <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
+                            {% else %}
+                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"></i> <span class="number">{{ cart.get_total_price }}</span></a>
+                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
+                            {% endif %}
+                        {% endwith %}
                     </div><!-- Header Shop Links End -->
                 </div>
-
                 <!-- Mobile Menu -->
                 <div class="mobile-menu order-12 d-block d-lg-none col"></div>
-
             </div>
         </div>
     </div><!-- Header Bottom End -->
