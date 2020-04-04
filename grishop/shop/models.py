@@ -2,41 +2,6 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 
-# Модель категории
-class Category(models.Model):
-    name = models.CharField(max_length=200, db_index=True)
-    slug = models.SlugField(max_length=200, db_index=True, unique=True)
-    recomend = models.BooleanField(default=False, verbose_name="Рекомендуемые")
-
-
-    class Meta:
-        ordering = ['name']
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('shop:product_list_by_category', args=[self.slug])
-
-# Модель подкатегории
-class Pod_Category(models.Model):
-    category = models.ForeignKey(Category, related_name='products_pd', verbose_name="Категория")
-    name_podcategory = models.CharField(max_length=200, db_index=True)
-    slug = models.SlugField(max_length=200, db_index=True, unique=True)
-
-    class Meta:
-        ordering = ['name_podcategory']
-        verbose_name = 'Подкатегория'
-        verbose_name_plural = 'Подкатегории'
-
-    def __str__(self):
-        return self.name_podcategory
-
-    def get_absolute_url(self):
-        return reverse('shop:product_list_by_podcategory', args=[self.slug])
-
 class Gallery(models.Model):
     title_gallery = models.CharField(max_length=400, verbose_name='название фото')
     photo_gallery = models.ImageField(upload_to='gallery', verbose_name='фото', blank=True)
@@ -51,8 +16,6 @@ class Gallery(models.Model):
 
 # Модель продукта
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', verbose_name="Категория")
-    pod_category = models.ForeignKey(Pod_Category, related_name='podcategory', verbose_name="Подкатегория")
     name = models.CharField(max_length=200, db_index=True, verbose_name="Название")
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара")
@@ -82,17 +45,38 @@ class Product(models.Model):
     def get_absolute_url(self):
           return reverse('shop:product_detail', args=[self.id, self.slug])
 
-class Comments(models.Model):
-    title_com = models.CharField(max_length=100)
-    body = models.TextField(max_length=250)
-    comment_email = models.EmailField(blank=True, null=True, default=None)
+# Модель подкатегории
+class Pod_Category(models.Model):
+    name_podcategory = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+    one = models.BooleanField(default=False, verbose_name="первая колонка")
+    product = models.ManyToManyField(Product, verbose_name='товар')
 
     class Meta:
-        verbose_name = 'комментарий'
-        verbose_name_plural = 'комментарии'
+        ordering = ['name_podcategory']
+        verbose_name = 'Подкатегория'
+        verbose_name_plural = 'Подкатегории'
 
     def __str__(self):
-        return self.title_com
+        return self.name_podcategory
+
+    def get_absolute_url(self):
+        return reverse('shop:pod_category_ditail', args=[self.slug])
+
+# Модель категории
+class Category(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+    recomend = models.BooleanField(default=False, verbose_name="Рекомендуемые")
+    pod_categoty = models.ManyToManyField(Pod_Category, verbose_name='подкатегории')
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.name
 
 # Модель контактов
 class Contact(models.Model):

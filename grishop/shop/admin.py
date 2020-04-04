@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Pod_Category, Gallery, Comments, Contact
+from .models import Category, Product, Pod_Category, Gallery, Contact
 # Модель категории
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'recomend', 'id']
@@ -8,7 +8,7 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 # Модель подкаталога
 class Pod_CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name_podcategory', 'slug']
+    list_display = ['name_podcategory', 'slug', 'one']
     prepopulated_fields = {'slug': ('name_podcategory', )}
 
 admin.site.register(Pod_Category, Pod_CategoryAdmin)
@@ -32,5 +32,4 @@ admin.site.register(Product, ProductAdmin)
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ['title_com', 'comment_email']
 
-admin.site.register(Comments, CommentsAdmin)
 admin.site.register(Contact)

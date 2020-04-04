@@ -1,29 +1,28 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product, Contact
+from .models import Category, Product, Contact, Pod_Category
 from cart.forms import CartAddProductForm
 
 
 # Страница с товарами
-def product_list(request, category_slug=None):
-    category = None
+def product_list(request):
     categories = Category.objects.all()
     recomend_categories = Category.objects.filter(recomend=True)
     products = Product.objects.filter(available=True, recomend=True)
     recomend_tovar = Product.objects.filter(available=True, recomend=True)
     hit_prodaj = Product.objects.filter(available=True, hit_prodaj=True)
     new_tovar = Product.objects.filter(available=True, new_tovar=True)
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=category)
-    return render(request, 'shop/product/list.html', {
-        'category': category,
+    pod_category_one = Pod_Category.objects.filter(one=True)
+
+    context = {
         'categories': categories,
         'products': products,
         'recomend_tovar': recomend_tovar,
         'recomend_categories': recomend_categories,
         'hit_prodaj': hit_prodaj,
-        'new_tovar': new_tovar
-    })
+        'new_tovar': new_tovar,
+        'pod_category_one': pod_category_one
+    }
+    return render(request, 'shop/product/list.html', context )
 
 # Страница товара
 def product_detail(request, id, slug):
@@ -38,6 +37,25 @@ def product_detail(request, id, slug):
     }
     return render(request, 'shop/product/detail.html',  context)
 
+# Страница категории
+def catigory_ditail(request, slug):
+    category_one = Category.objects.get(slug=slug)
+    pod_category = Pod_Category.objects.all()
+
+    context = {
+        'category_one': category_one,
+        'pod_category': pod_category,
+    }
+    return render(request, 'shop/product/category_one.html', context)
+
+# Страница подкатегории
+def pod_category_ditail(request, slug):
+    pod_category = get_object_or_404(Pod_Category, slug=slug)
+    context = {
+        'pod_category': pod_category,
+    }
+    return render(request, 'shop/product/pod_category_ditail.html', context)
+
 # Страница контактов
 def contact(request):
     contact = Contact.objects.all()
@@ -46,3 +64,4 @@ def contact(request):
         'contact':contact,
         }
     return render(request,'shop/product/contact.html', context)
+

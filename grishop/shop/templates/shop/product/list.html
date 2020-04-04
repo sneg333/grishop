@@ -11,109 +11,42 @@
 {% block category %}
                   <!-- Header Category -->
                 <div class="hero-side-category">
-
                     <!-- Category Toggle Wrap -->
                     <div class="category-toggle-wrap">
                         <!-- Category Toggle -->
-
                         <button class="category-toggle">Каталог <i class="ti-menu"></i></button>
                     </div>
-
                     <!-- Category Menu -->
                     <nav class="category-menu">
                         <ul>
-                                {% for cat in categories %}
-                                  <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
-                                    <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+                           {% for cat in categories %}
+                                  {% if cat.pod_categoty %}
+<!--                                  если вдруг-->
+                                  <li class="menu-item-has-children">
+                                        <a href="/{{ cat.slug }}">{{ cat.name }}</a>
+                                            <ul class="category-mega-menu">
+                                                <li class="menu-item-has-children">
+                                                    <ul>
+                                                        <li>
+                                                            {% for pod_category in cat.pod_categoty.all %}
+                                                            <a href="{{ pod_category.get_absolute_url }}">
+                                                                {{ pod_category.name_podcategory }}
+                                                            </a>
+                                                        {%endfor%}
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                   </li>
-                                {% endfor %}
+<!--                                  если вдруг конец-->
+                                  {%else %}
+                                  {% endif %}
 
-                            <li class="menu-item-has-children"><a href="category-2.html">Computer & Laptop</a>
-                                <!-- Mega Category Menu Start -->
-                                <ul class="category-mega-menu">
-                                    <li class="menu-item-has-children">
-                                        <a href="category-1.html">Smartphone</a>
-                                        <ul>
-                                            <li><a href="category-1.html">Samsome</a></li>
-                                            <li><a href="category-2.html">GL Stylus</a></li>
-                                            <li><a href="category-3.html">Uawei</a></li>
-                                            <li><a href="category-1.html">Cherry Berry</a></li>
-                                            <li><a href="category-2.html">uPhone</a></li>
-                                            <li><a href="category-3.html">Sany Experia</a></li>
-                                            <li><a href="category-1.html">Syphony</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="category-2.html">headphone</a>
-                                        <ul>
-                                            <li><a href="category-1.html">Desktop Headphone</a></li>
-                                            <li><a href="category-2.html">Mobile Headphone</a></li>
-                                            <li><a href="category-3.html">Wireless Headphone</a></li>
-                                            <li><a href="category-1.html">LED Headphone</a></li>
-                                            <li><a href="category-2.html">Over-ear</a></li>
-                                            <li><a href="category-3.html">Neck-sitting</a></li>
-                                            <li><a href="category-1.html">Biometric</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="category-3.html">accessories</a>
-                                        <ul>
-                                            <li><a href="category-1.html">Power Bank</a></li>
-                                            <li><a href="category-2.html">Data Cable</a></li>
-                                            <li><a href="category-3.html">Power Cable</a></li>
-                                            <li><a href="category-1.html">Battery</a></li>
-                                            <li><a href="category-2.html">OTG Cable</a></li>
-                                            <li><a href="category-3.html">Neck-sitting</a></li>
-                                            <li><a href="category-1.html">Memory Card</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="add"><a href="#"><img src="assets/images/banner/menu-banner.jpg" alt=""></a></li>
-                                </ul><!-- Mega Category Menu End -->
 
-                            </li>
-                            <li class="menu-item-has-children"><a href="category-2.html">Phones & Tablets</a>
 
-                                <!-- Mega Category Menu Start -->
-                                <ul class="category-mega-menu">
-                                    <li class="menu-item-has-children">
-                                        <a href="category-1.html">Smartphone</a>
-                                        <ul>
-                                            <li><a href="category-1.html">Samsome</a></li>
-                                            <li><a href="category-2.html">GL Stylus</a></li>
-                                            <li><a href="category-3.html">Uawei</a></li>
-                                            <li><a href="category-1.html">Cherry Berry</a></li>
-                                            <li><a href="category-2.html">uPhone</a></li>
-                                            <li><a href="category-3.html">Sany Experia</a></li>
-                                            <li><a href="category-1.html">Syphony</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="category-2.html">headphone</a>
-                                        <ul>
-                                            <li><a href="category-1.html">Desktop Headphone</a></li>
-                                            <li><a href="category-2.html">Mobile Headphone</a></li>
-                                            <li><a href="category-3.html">Wireless Headphone</a></li>
-                                            <li><a href="category-1.html">LED Headphone</a></li>
-                                            <li><a href="category-2.html">Over-ear</a></li>
-                                            <li><a href="category-3.html">Neck-sitting</a></li>
-                                            <li><a href="category-1.html">Biometric</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="category-3.html">accessories</a>
-                                        <ul>
-                                            <li><a href="category-1.html">Power Bank</a></li>
-                                            <li><a href="category-2.html">Data Cable</a></li>
-                                            <li><a href="category-3.html">Power Cable</a></li>
-                                            <li><a href="category-1.html">Battery</a></li>
-                                            <li><a href="category-2.html">OTG Cable</a></li>
-                                            <li><a href="category-3.html">Neck-sitting</a></li>
-                                            <li><a href="category-1.html">Memory Card</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="add"><a href="#"><img src="static/images/banner/menu-banner.jpg" alt=""></a></li>
-                                </ul><!-- Mega Category Menu End -->
-                            </li>
+                              </li>
+                           {% endfor %}
                         </ul>
                     </nav>
                 </div><!-- Header Bottom End -->
