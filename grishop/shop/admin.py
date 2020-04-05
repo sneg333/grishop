@@ -8,7 +8,7 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 # Модель подкаталога
 class Pod_CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name_podcategory', 'slug', 'one']
+    list_display = ['name_podcategory', 'slug',]
     prepopulated_fields = {'slug': ('name_podcategory', )}
 
 admin.site.register(Pod_Category, Pod_CategoryAdmin)

@@ -1,5 +1,95 @@
 {% extends "category_ditail.html" %}
 {% load static %}
 
-{% block menu %}
-{% endblock %}
+{% block category_one %}
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="page-banner-wrap row row-0 d-flex align-items-center ">
+        <!-- Page Banner -->
+        <div class="col-lg-4 col-12 order-lg-2 d-flex align-items-center justify-content-center">
+            <div class="page-banner">
+                <h1>{{category_one.name }}</h1>
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="/">HOME</a></li>
+                        <li><a href="/{{ category_one.slug }}">{{category_one.name }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-15.jpg" alt="Banner"></a></div>
+        </div>
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-3">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-14.jpg" alt="Banner"></a></div>
+        </div>
+
+    </div>
+</div><!-- Page Banner Section End -->
+
+<!-- Single Product Section Start -->
+<div class="product-section section mt-90 mb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col mb-50">
+                <div class="category-page-title"><h4>Категория  -  {{category_one.name }}</h4></div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+
+{% for podcat in category_one.pod_categoty.all %}
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
+                <!-- Product Start -->
+                <div class="ee-product">
+                    <!-- Image -->
+                    <div class="image">
+                        <a href="{{ podcat.get_absolute_url }}" class="img">
+                            {% if podcat.image %}
+                                <img src="{{ podcat.image.url }}" alt="Product Image">
+                            {%else %}
+                                <p></p>
+                            {% endif %}
+                        </a>
+                        <div class="wishlist-compare">
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div class="content">
+                        <!-- Category & Title -->
+                        <div class="category-title">
+                            <a href="#" class="cat">{{category_one.name }}</a>
+                            <h5 class="title"><a href="single-product.html">{{ podcat.name_podcategory }}</a></h5>
+                        </div>
+                    </div>
+                </div><!-- Product End -->
+            </div>
+
+{% endfor %}
+
+        </div>
+        <!-- Pagination -->
+        <div class="row mt-30">
+            <div class="col">
+                <ul class="pagination">
+                     <li><a href="#"><i class="fa fa-angle-left"></i>Back</a></li>
+                     <li><a href="#">1</a></li>
+                     <li class="active"><a href="#">2</a></li>
+                     <li><a href="#">3</a></li>
+                     <li> - - - - - </li>
+                     <li><a href="#">18</a></li>
+                     <li><a href="#">18</a></li>
+                     <li><a href="#">20</a></li>
+                     <li><a href="#">Next<i class="fa fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div><!-- Single Product Section End -->
+
+{% endblock category_one %}

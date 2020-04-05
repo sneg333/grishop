@@ -49,7 +49,7 @@ class Product(models.Model):
 class Pod_Category(models.Model):
     name_podcategory = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
-    one = models.BooleanField(default=False, verbose_name="первая колонка")
+    image = models.ImageField(upload_to='podcategory/%Y/%m/%d/', blank=True, verbose_name="Изображение подкатегории")
     product = models.ManyToManyField(Product, verbose_name='товар')
 
     class Meta:

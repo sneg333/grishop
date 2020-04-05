@@ -11,7 +11,7 @@ def product_list(request):
     recomend_tovar = Product.objects.filter(available=True, recomend=True)
     hit_prodaj = Product.objects.filter(available=True, hit_prodaj=True)
     new_tovar = Product.objects.filter(available=True, new_tovar=True)
-    pod_category_one = Pod_Category.objects.filter(one=True)
+    pod_category_one = Pod_Category.objects.all()
 
     context = {
         'categories': categories,
@@ -37,17 +37,6 @@ def product_detail(request, id, slug):
     }
     return render(request, 'shop/product/detail.html',  context)
 
-# Страница категории
-def catigory_ditail(request, slug):
-    category_one = Category.objects.get(slug=slug)
-    pod_category = Pod_Category.objects.all()
-
-    context = {
-        'category_one': category_one,
-        'pod_category': pod_category,
-    }
-    return render(request, 'shop/product/category_one.html', context)
-
 # Страница подкатегории
 def pod_category_ditail(request, slug):
     pod_category = get_object_or_404(Pod_Category, slug=slug)
@@ -55,6 +44,19 @@ def pod_category_ditail(request, slug):
         'pod_category': pod_category,
     }
     return render(request, 'shop/product/pod_category_ditail.html', context)
+
+# Страница категории
+def catigory_ditail(request, slug):
+    category_one = Category.objects.get(slug=slug)
+    pod_category = Pod_Category.objects.all()
+    categories = Category.objects.all()
+
+    context = {
+        'category_one': category_one,
+        'pod_category': pod_category,
+        'categories': categories,
+    }
+    return render(request, 'shop/product/category_one.html', context)
 
 # Страница контактов
 def contact(request):
@@ -64,4 +66,8 @@ def contact(request):
         'contact':contact,
         }
     return render(request,'shop/product/contact.html', context)
+
+
+
+
 

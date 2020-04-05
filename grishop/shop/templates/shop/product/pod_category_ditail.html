@@ -1,5 +1,103 @@
 {% extends "category_ditail.html" %}
 {% load static %}
 
-{% block menu %}
-{% endblock %}
+{% block pod_category_ditail %}
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="page-banner-wrap row row-0 d-flex align-items-center ">
+
+        <!-- Page Banner -->
+        <div class="col-lg-4 col-12 order-lg-2 d-flex align-items-center justify-content-center">
+            <div class="page-banner">
+                <h1>{{pod_category.name_podcategory }}</h1>
+
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="/">КАТЕГОРИЯ</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">{{pod_category.name_podcategory }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-15.jpg" alt="Banner"></a></div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-3">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-14.jpg" alt="Banner"></a></div>
+        </div>
+
+    </div>
+</div><!-- Page Banner Section End -->
+
+<!-- Single Product Section Start -->
+<div class="product-section section mt-90 mb-90">
+    <div class="container">
+
+        <div class="row">
+            <div class="col mb-50">
+                <div class="category-page-title"><h4>{{pod_category.name_podcategory }}</h4></div>
+            </div>
+        </div>
+
+        <div class="row">
+        {% for product in pod_category.product.all %}
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
+                <!-- Product Start -->
+                <div class="ee-product">
+                    <!-- Image -->
+                    <div class="image">
+                        <a href="{{ product.get_absolute_url }}" class="img">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="Product Image">
+                            {%else %}
+                                <p></p>
+                            {% endif %}
+                        </a>
+                        <div class="wishlist-compare">
+
+                        </div>
+                        <a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+                    </div>
+                    <!-- Content -->
+                    <div class="content">
+                        <!-- Category & Title -->
+                        <div class="category-title">
+                            <a href="#" class="cat">{{pod_category.name_podcategory }}</a>
+                            <h5 class="title"><a href="single-product.html">{{ product.name }}</a></h5>
+                        </div>
+                        <!-- Price & Ratting -->
+                        <div class="price-ratting">
+                            <h5 class="price">{{ product.price }}</h5>
+                            <div class="ratting">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Product End -->
+            </div>
+        {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="row mt-30">
+            <div class="col">
+                <ul class="pagination">
+                    <li><a href="#"><i class="fa fa-angle-left"></i>Back</a></li>
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li> - - - - - </li>
+                    <li><a href="#">18</a></li>
+                    <li><a href="#">18</a></li>
+                    <li><a href="#">20</a></li>
+                    <li><a href="#">Next<i class="fa fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div><!-- Single Product Section End -->
+{% endblock pod_category_ditail %}
