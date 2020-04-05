@@ -40,8 +40,10 @@ def product_detail(request, id, slug):
 # Страница подкатегории
 def pod_category_ditail(request, slug):
     pod_category = get_object_or_404(Pod_Category, slug=slug)
+    cart_product_form = CartAddProductForm()
     context = {
         'pod_category': pod_category,
+        'cart_product_form': cart_product_form
     }
     return render(request, 'shop/product/pod_category_ditail.html', context)
 

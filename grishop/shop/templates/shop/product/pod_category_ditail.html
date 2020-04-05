@@ -14,8 +14,8 @@
                 <div class="breadcrumb">
                     <ul>
                         <li><a href="/">КАТЕГОРИЯ</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">{{pod_category.name_podcategory }}</a></li>
+
+                        <li><a href="{{ pod_category.get_absolute_url }}">{{ pod_category.name_podcategory }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -61,20 +61,28 @@
                         <div class="wishlist-compare">
 
                         </div>
-                        <a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+
                     </div>
                     <!-- Content -->
                     <div class="content">
                         <!-- Category & Title -->
                         <div class="category-title">
                             <a href="#" class="cat">{{pod_category.name_podcategory }}</a>
-                            <h5 class="title"><a href="single-product.html">{{ product.name }}</a></h5>
+                            <h5 class="title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
                         </div>
                         <!-- Price & Ratting -->
                         <div class="price-ratting">
-                            <h5 class="price">{{ product.price }}</h5>
-                            <div class="ratting">
-                            </div>
+                            <h5 class="price">{{ product.price }} руб. </h5><br><br>
+                            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                <div class="quantity">
+                                    <h5>Количество</h5>
+                                    {{ cart_product_form }}
+                                    {% csrf_token %}
+                                <div class="actions">
+                                <input type="submit"  class="ti-shopping-cart" id="zakaz2" value="В КОРЗИНУ">
+                                </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div><!-- Product End -->

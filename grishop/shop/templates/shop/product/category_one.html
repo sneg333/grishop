@@ -63,8 +63,9 @@
                     <div class="content">
                         <!-- Category & Title -->
                         <div class="category-title">
-                            <a href="#" class="cat">{{category_one.name }}</a>
-                            <h5 class="title"><a href="single-product.html">{{ podcat.name_podcategory }}</a></h5>
+
+                            <a href="/{{ category_one.slug }}" class="cat">{{category_one.name }}</a>
+                            <h5 class="title"><a href="{{ podcat.get_absolute_url }}">{{ podcat.name_podcategory }}</a></h5>
                         </div>
                     </div>
                 </div><!-- Product End -->
