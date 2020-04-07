@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product, Contact, Pod_Category
 from cart.forms import CartAddProductForm
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Страница с товарами
 def product_list(request):
@@ -53,10 +53,22 @@ def catigory_ditail(request, slug):
     pod_category = Pod_Category.objects.all()
     categories = Category.objects.all()
 
+    paginator = Paginator(pod_category, 3)  # Show 25 contacts per page
+    page = request.GET.get('page')
+    try:
+        pod_category = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        pod_category = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        pod_category = paginator.page(paginator.num_pages)
+
     context = {
         'category_one': category_one,
         'pod_category': pod_category,
         'categories': categories,
+
     }
     return render(request, 'shop/product/category_one.html', context)
 

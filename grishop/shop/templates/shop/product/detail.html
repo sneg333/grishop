@@ -34,9 +34,7 @@
                                 {% endfor %}
                             </div>
 <!--маленькие фото под большим конец-->
-
                     </div>
-
                     <div class="col-lg-6 col-12 mb-50">
                         <!-- Content -->
                         <div class="single-product-content p-0">
@@ -44,9 +42,10 @@
                             <div class="head-content">
                                 <div class="category-title">
                                     <a href="#" class="cat">{{ product.category }}</a>
-                                    <h5 class="title">{{ product.name }}</h5>
+                                    <p><h5 class="title">{{ product.name }}</h5></p>
+                                    <h5 class="price">цена {{ product.price }} руб.</h5>
                                 </div>
-                                <h5 class="price">{{ product.price }} руб.</h5>
+
                             </div>
                             <div class="single-product-description">
                                 <div class="ratting">

@@ -205,11 +205,11 @@
                         {% with total_items=cart|length %}
                             {% if cart|length > 0 %}
                         <!-- Wishlist -->
-                        <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"></i> <span class="number">{{ cart.get_total_price }}</span></a>
+                        <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i><img src="/static/images/icons/koshel.png"></i> <span class="number">{{ cart.get_total_price }}</span></a>
                         <!-- Cart -->
                         <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% else %}
-                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"></i> <span class="number">{{ cart.get_total_price }}</span></a>
+                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i><img src="/static/images/icons/koshel.png"></i> <span class="number">{{ cart.get_total_price }}</span></a>
                                 <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% endif %}
                         {% endwith %}

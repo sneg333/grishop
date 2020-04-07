@@ -13056,3 +13056,8 @@ ul.link-widget li {
   text-transform: uppercase;
   color: #202020;
   background-color: #f5d730; }
+
+.current_pagination {
+color:black;
+padding-top:3px;
+}
