@@ -105,12 +105,10 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="row">
                 </div>
-
             </div>
 
 {% endblock %}
@@ -120,43 +118,15 @@
 {% block category %}
             <div class="shop-sidebar-wrap col-xl-3 col-lg-4 col-12 order-2 order-lg-1 mb-50">
                 <div class="shop-sidebar mb-30">
-                    <h4 class="title">Каталог</h4>
+                    <h4 class="title">Бренды</h4>
                     <ul class="sidebar-category">
     {% for cat in categories %}
         <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
             <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
         </li>
-    {% endfor %}
-<!--ВЫПАДАЮЩЕЕ МЕНЮ-->
-         <li><a href="#">Phones & Tablets</a>
-             <ul class="children">
-                <li><a href="#">Samsome</a></li>
-                <li><a href="#">GL Stylus</a></li>
-                <li><a href="#">Uawei</a></li>
-                <li><a href="#">Cherry Berry</a></li>
-             </ul>
-         </li>
+    {% endfor %}</ul>
+                </div>
 
-                                            </ul>
-                </div>
-                <div class="shop-sidebar mb-30">
-                    <h4 class="title">Brand+</h4>
-                    <ul class="sidebar-brand">
-                        <li><a href="#">Apple</a></li>
-                        <li><a href="#">Sumsang</a></li>
-                        <li><a href="#">Phillips</a></li>
-                        <li><a href="#">Zeon</a></li>
-                        <li><a href="#">Panasonic</a></li>
-                        <li><a href="#">Uawei</a></li>
-                    </ul>
-                </div>
-                <div class="shop-sidebar mb-30">
-                    <h4 class="title">Цена</h4>
-                    <div class="sidebar-price">
-                        <div id="price-range"></div>
-                        <input type="text" id="price-amount" readonly>
-                    </div>
-                </div>
                 <div class="shop-sidebar mb-30">
                     <div class="banner"><a href="#"><img src="/static/images/banner/banner-41.jpg" alt="Banner"></a></div>
                 </div>

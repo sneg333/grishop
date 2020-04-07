@@ -51,25 +51,12 @@ def pod_category_ditail(request, slug):
 
 # Страница категории
 def catigory_ditail(request, slug):
-    category_one = Category.objects.get(slug=slug)
+    category_one = get_object_or_404(Category, slug=slug)
     pod_category = Pod_Category.objects.all()
-    categories = Category.objects.all()
-
-    paginator = Paginator(pod_category, 3)  # Show 25 contacts per page
-    page = request.GET.get('page')
-    try:
-        pod_category = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        pod_category = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        pod_category = paginator.page(paginator.num_pages)
 
     context = {
         'category_one': category_one,
         'pod_category': pod_category,
-        'categories': categories,
 
     }
     return render(request, 'shop/product/category_one.html', context)
@@ -79,7 +66,7 @@ def contact(request):
     contact = Contact.objects.all()
 
     context = {
-        'contact':contact,
+        'contact': contact,
         }
     return render(request,'shop/product/contact.html', context)
 
