@@ -73,32 +73,32 @@
 {% endfor %}
         </div>
 
-                <!-- Pagination -->
-        <div class="row mt-30">
-            <div class="col">
-                <ul class="pagination">
-                    <li>
-                        {% if pod_category.has_previous %}
-                        <a href="?page={{ pod_category.previous_page_number }}">
-                            <i class="fa fa-angle-left"></i>Back
-                        </a>
-                        {% endif %}
-                    </li>
-                    <li>
-                        <div class="current_pagination">
-                            страница {{ pod_category.number }} из {{ pod_category.paginator.num_pages }}.
-                        </div>
-                    </li>
-                    <li>
-                        {% if pod_category.has_next %}
-                        <a href="?page={{ pod_category.next_page_number }}">Next
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
-        </div>
+<!--                &lt;!&ndash; Pagination &ndash;&gt;-->
+<!--        <div class="row mt-30">-->
+<!--            <div class="col">-->
+<!--                <ul class="pagination">-->
+<!--                    <li>-->
+<!--                        {% if pod_category.has_previous %}-->
+<!--                        <a href="?page={{ pod_category.previous_page_number }}">-->
+<!--                            <i class="fa fa-angle-left"></i>Back-->
+<!--                        </a>-->
+<!--                        {% endif %}-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <div class="current_pagination">-->
+<!--                            страница {{ pod_category.number }} из {{ pod_category.paginator.num_pages }}.-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        {% if pod_category.has_next %}-->
+<!--                        <a href="?page={{ pod_category.next_page_number }}">Next-->
+<!--                            <i class="fa fa-angle-right"></i>-->
+<!--                        </a>-->
+<!--                        {% endif %}-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
     </div>

@@ -45,7 +45,7 @@
         </div>
 
         <div class="row">
-        {% for product in product %}
+        {% for product in pod_category.product.all %}
             <div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
                 <!-- Product Start -->
                 <div class="ee-product">
@@ -90,22 +90,22 @@
         {% endfor %}
         </div>
 
-        <!-- Pagination -->
-        <div class="row mt-30">
-            <div class="col">
-                <ul class="pagination">
-                    <li><a href="#"><i class="fa fa-angle-left"></i>Back</a></li>
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li> - - - - - </li>
-                    <li><a href="#">18</a></li>
-                    <li><a href="#">18</a></li>
-                    <li><a href="#">20</a></li>
-                    <li><a href="#">Next<i class="fa fa-angle-right"></i></a></li>
-                </ul>
-            </div>
-        </div>
+<!--        &lt;!&ndash; Pagination &ndash;&gt;-->
+<!--        <div class="row mt-30">-->
+<!--            <div class="col">-->
+<!--                <ul class="pagination">-->
+<!--                    <li><a href="#"><i class="fa fa-angle-left"></i>Back</a></li>-->
+<!--                    <li><a href="#">1</a></li>-->
+<!--                    <li class="active"><a href="#">2</a></li>-->
+<!--                    <li><a href="#">3</a></li>-->
+<!--                    <li> - - - - - </li>-->
+<!--                    <li><a href="#">18</a></li>-->
+<!--                    <li><a href="#">18</a></li>-->
+<!--                    <li><a href="#">20</a></li>-->
+<!--                    <li><a href="#">Next<i class="fa fa-angle-right"></i></a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div><!-- Single Product Section End -->
 {% endblock pod_category_ditail %}
