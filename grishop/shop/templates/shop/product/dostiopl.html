@@ -1,0 +1,76 @@
+{% extends "contact.html" %}
+{% load static %}
+
+{% block menu %}
+                    <div class="main-menu">
+                        <nav>
+                            <ul>
+                                <li><a href="/">ГЛАВНАЯ</a></li>
+                                <li class="menu-item-has-children"><a href="shop-grid.html">КАТАЛОГ</a>
+                                    <ul class="sub-menu">
+                                        {% for katalog in katalog %}
+                                        {% if katalog.pod_categoty %}
+                                        <li class="menu-item-has-children">
+                                            <a href="/{{ katalog.slug }}">{{ katalog.name }}</a>
+                                            <ul class="sub-menu">
+                                                <li>
+                                                    {% for pod_category in katalog.pod_categoty.all %}
+                                                    <a href="{{ pod_category.get_absolute_url }}">{{ pod_category.name_podcategory }}</a>
+                                                    {%endfor%}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        {%else %}
+                                        {% endif %}
+                           {% endfor %}
+                                    </ul>
+                                </li>
+                                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
+                                <li class="active"><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
+                            </ul>
+                        </nav>
+                    </div><!-- Main Menu End -->
+{% endblock menu %}
+
+{% block dostiopl %}
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="page-banner-wrap row row-0 d-flex align-items-center ">
+
+        <!-- Page Banner -->
+        <div class="col-lg-4 col-12 order-lg-2 d-flex align-items-center justify-content-center">
+            <div class="page-banner">
+                <h1>ДОСТАВКА И ОПЛАТА</h1>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-15.jpg" alt="Banner"></a></div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-3">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-14.jpg" alt="Banner"></a></div>
+        </div>
+
+    </div>
+</div><!-- Page Banner Section End -->
+
+<!-- Terms & Conditions Section Start -->
+<div class="terms-conditions-section section mt-90 mb-90">
+    <div class="container">
+        <div class="row">
+            {% for dostiopl in dostiopl %}
+            <div class="terms-conditions-wrap col-lg-11 col-12">
+                <h3>{{dostiopl.zagolovok}}</h3>
+                <p>{{dostiopl.predtekst}}</p>
+                <ul>
+                    <li>{{dostiopl.text|safe}}</li>
+                </ul>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</div><!-- Terms & Conditions Section End -->
+{% endblock dostiopl %}

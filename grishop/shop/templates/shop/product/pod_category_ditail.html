@@ -1,6 +1,39 @@
 {% extends "category_ditail.html" %}
 {% load static %}
 
+{% block menu %}
+    <div class="main-menu">
+        <nav>
+            <ul>
+                <li><a href="/">ГЛАВНАЯ</a></li>
+                    <li class="menu-item-has-children"><a href="shop-grid.html">КАТАЛОГ</a>
+                        <ul class="sub-menu">
+                            {% for katalog in katalog %}
+                                {% if katalog.pod_categoty %}
+                                <li class="menu-item-has-children">
+                                   <a href="/{{ katalog.slug }}">{{ katalog.name }}</a>
+                                      <ul class="sub-menu">
+                                         <li>
+                                            {% for pod_category in katalog.pod_categoty.all %}
+                                                <a href="{{ pod_category.get_absolute_url }}">
+                                                    {{ pod_category.name_podcategory }}
+                                                </a>
+                                            {%endfor%}
+                                         </li>
+                                      </ul>
+                                </li>
+                                {%else %}
+                                {% endif %}
+                           {% endfor %}
+                        </ul>
+                    </li>
+                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
+                <li class="active"><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
+            </ul>
+        </nav>
+    </div><!-- Main Menu End -->
+{% endblock menu %}
+
 {% block pod_category_ditail %}
 <!-- Page Banner Section Start -->
 <div class="page-banner-section section">

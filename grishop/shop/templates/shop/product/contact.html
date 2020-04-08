@@ -1,9 +1,66 @@
 {% extends "contact.html" %}
 {% load static %}
 
-
+{% block menu %}
+    <div class="main-menu">
+        <nav>
+            <ul>
+                <li><a href="/">ГЛАВНАЯ</a></li>
+                    <li class="menu-item-has-children"><a href="shop-grid.html">КАТАЛОГ</a>
+                        <ul class="sub-menu">
+                            {% for katalog in katalog %}
+                                {% if katalog.pod_categoty %}
+                                <li class="menu-item-has-children">
+                                   <a href="/{{ katalog.slug }}">{{ katalog.name }}</a>
+                                      <ul class="sub-menu">
+                                         <li>
+                                            {% for pod_category in katalog.pod_categoty.all %}
+                                                <a href="{{ pod_category.get_absolute_url }}">
+                                                    {{ pod_category.name_podcategory }}
+                                                </a>
+                                            {%endfor%}
+                                         </li>
+                                      </ul>
+                                </li>
+                                {%else %}
+                                {% endif %}
+                           {% endfor %}
+                        </ul>
+                    </li>
+                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
+                <li class="active"><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
+            </ul>
+        </nav>
+    </div><!-- Main Menu End -->
+{% endblock menu %}
 
 {% block contact %}
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="page-banner-wrap row row-0 d-flex align-items-center ">
+
+        <!-- Page Banner -->
+        <div class="col-lg-4 col-12 order-lg-2 d-flex align-items-center justify-content-center">
+            <div class="page-banner">
+                <h1>КОНТАКТЫ</h1>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-15.jpg" alt="Banner"></a></div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-3">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-14.jpg" alt="Banner"></a></div>
+        </div>
+
+    </div>
+</div><!-- Page Banner Section End -->
+<!-- Contact Section Start -->
+<div class="contact-section section mt-90 mb-40">
+    <div class="container">
         <div class="row">
 
             <!-- Contact Tab List -->
@@ -30,14 +87,14 @@
                         <div class="col-lg-4 col-md-6 col-12 mb-50">
                             <div class="contact-information">
                                 <h4>Телефон</h4>
-                                <p><a href="tel:01234567890">{{ contact.tel }}</a></p>
+                                <p>{{ contact.tel }}</p>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 col-12 mb-50">
                             <div class="contact-information">
                                 <h4>Вэб</h4>
-                                <p><a href="mailto:info@example.com">{{ contact.adress_toe_contact|safe }}</a></p>
+                                <p>{{ contact.adress_toe_contact|safe }}</p>
                             </div>
                         </div>
                     </div>
@@ -61,4 +118,12 @@
         </div>
     </div>
 </div><!-- Banner Section End -->
+            </div>
+</div><!-- Contact Section End -->
+
+<!-- Subscribe Section Start -->
+<div class="subscribe-section section">
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aac489a84b2d70296280df8351796549fbfc8302f4b030c8345327522209af625&amp;width=100% &amp;height=398&amp;lang=ru_RU&amp;scroll=true">
+                    </script>
+</div><!-- Subscribe Section End -->
 {% endblock %}

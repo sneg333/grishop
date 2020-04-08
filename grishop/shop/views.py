@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product, Contact, Pod_Category
+from .models import Category, Product, Contact, Pod_Category, Dostiopl
 from cart.forms import CartAddProductForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -41,11 +41,13 @@ def product_detail(request, id, slug):
 def pod_category_ditail(request, slug):
     pod_category = get_object_or_404(Pod_Category, slug=slug)
     product = Product.objects.all()
+    katalog = Category.objects.all()
     cart_product_form = CartAddProductForm()
     context = {
         'pod_category': pod_category,
         'product': product,
-        'cart_product_form': cart_product_form
+        'cart_product_form': cart_product_form,
+        'katalog': katalog,
     }
     return render(request, 'shop/product/pod_category_ditail.html', context)
 
@@ -53,24 +55,36 @@ def pod_category_ditail(request, slug):
 def catigory_ditail(request, slug):
     category_one = get_object_or_404(Category, slug=slug)
     pod_category = Pod_Category.objects.all()
+    katalog = Category.objects.all()
 
     context = {
         'category_one': category_one,
         'pod_category': pod_category,
-
+        'katalog': katalog,
     }
     return render(request, 'shop/product/category_one.html', context)
 
 # Страница контактов
 def contact(request):
     contact = Contact.objects.all()
+    katalog = Category.objects.all()
 
     context = {
         'contact': contact,
+        'katalog': katalog,
         }
     return render(request,'shop/product/contact.html', context)
 
+# Страница доставки и оплаты
+def dostiopl(request):
+    dostiopl = Dostiopl.objects.all()
+    katalog = Category.objects.all()
 
+    context = {
+        'dostiopl': dostiopl,
+        'katalog': katalog,
+        }
+    return render(request,'shop/product/dostiopl.html', context)
 
 
 

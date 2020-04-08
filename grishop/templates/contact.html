@@ -87,8 +87,8 @@
 
                 <div class="col order-12 order-lg-2 order-xl-2 d-none d-lg-block">
                     <!-- Main Menu Start -->
-                    {% block menu %}
-                    {% endblock menu %}
+{% block menu %}
+{% endblock menu%}
                 </div>
 
                 <div class="col order-2 order-lg-12 order-xl-12">
@@ -121,111 +121,22 @@
 
 </div><!-- Header Section End -->
 
-<!-- Mini Cart Wrap Start -->
-<div class="mini-cart-wrap">
-
-    <!-- Mini Cart Top -->
-    <div class="mini-cart-top">
-
-        <button class="close-cart">Close Cart<i class="icofont icofont-close"></i></button>
-
-    </div>
-
-    <!-- Mini Cart Products -->
-    <ul class="mini-cart-products">
-        <li>
-            <a class="image"><img src="/static/images/product/product-1.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Waxon Note Book Pro 5</a>
-                <span class="price">Price: $295</span>
-                <span class="qty">Qty: 02</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
-        <li>
-            <a class="image"><img src="/static/images/product/product-2.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Aquet Drone D 420</a>
-                <span class="price">Price: $275</span>
-                <span class="qty">Qty: 01</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
-        <li>
-            <a class="image"><img src="/static/images/product/product-3.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Game Station X 22</a>
-                <span class="price">Price: $295</span>
-                <span class="qty">Qty: 01</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
-    </ul>
-
-    <!-- Mini Cart Bottom -->
-    <div class="mini-cart-bottom">
-
-        <h4 class="sub-total">Total: <span>$1160</span></h4>
-
-        <div class="button">
-            <a href="checkout.html">CHECK OUT</a>
-        </div>
-
-    </div>
-
-</div><!-- Mini Cart Wrap End -->
-
 <!-- Cart Overlay -->
 <div class="cart-overlay"></div>
 
-<!-- Page Banner Section Start -->
-<div class="page-banner-section section">
-    <div class="page-banner-wrap row row-0 d-flex align-items-center ">
 
-        <!-- Page Banner -->
-        <div class="col-lg-4 col-12 order-lg-2 d-flex align-items-center justify-content-center">
-            <div class="page-banner">
-                <h1>КОНТАКТЫ</h1>
-            </div>
-        </div>
 
-        <!-- Banner -->
-        <div class="col-lg-4 col-md-6 col-12 order-lg-1">
-            <div class="banner"><a href="#"><img src="/static/images/banner/banner-15.jpg" alt="Banner"></a></div>
-        </div>
 
-        <!-- Banner -->
-        <div class="col-lg-4 col-md-6 col-12 order-lg-3">
-            <div class="banner"><a href="#"><img src="/static/images/banner/banner-14.jpg" alt="Banner"></a></div>
-        </div>
-
-    </div>
-</div><!-- Page Banner Section End -->
-
-<!-- Contact Section Start -->
-<div class="contact-section section mt-90 mb-40">
-    <div class="container">
 
 {% block contact %}
-
 {% endblock %}
 
-
-    </div>
-</div><!-- Contact Section End -->
-
-<!-- Subscribe Section Start -->
-<div class="subscribe-section section">
+{% block dostiopl %}
+{% endblock dostiopl %}
 
 
 
-                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aac489a84b2d70296280df8351796549fbfc8302f4b030c8345327522209af625&amp;width=100% &amp;height=398&amp;lang=ru_RU&amp;scroll=true">
 
-                    </script>
-
-
-
-</div><!-- Subscribe Section End -->
 
 <!-- Footer Section Start -->
 <div class="footer-section section bg-ivory">

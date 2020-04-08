@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Pod_Category, Gallery, Contact
+from .models import Category, Product, Pod_Category, Gallery, Contact, Dostiopl
 # Модель категории
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'recomend', 'id']
@@ -33,3 +33,4 @@ class CommentsAdmin(admin.ModelAdmin):
     list_display = ['title_com', 'comment_email']
 
 admin.site.register(Contact)
+admin.site.register(Dostiopl)

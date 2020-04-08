@@ -92,3 +92,18 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.title_contact
+
+# Модель оставка и оплата
+class Dostiopl(models.Model):
+    zagolovok = models.CharField(max_length=200, db_index=True, verbose_name='заголовок')
+    predtekst = models.CharField(max_length=200, db_index=True,verbose_name='предтекст')
+    text = RichTextUploadingField(blank=True, default='', verbose_name='первый адрес')
+
+
+    class Meta:
+        ordering = ['zagolovok']
+        verbose_name = 'Доставка и оплата'
+        verbose_name_plural = 'Доставка и оплата'
+
+    def __str__(self):
+        return self.zagolovok
