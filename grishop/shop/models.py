@@ -27,6 +27,7 @@ class Product(models.Model):
     recomend = models.BooleanField(default=False, verbose_name="Рекомендуемые")
     hit_prodaj = models.BooleanField(default=False, verbose_name="Хит продаж")
     new_tovar = models.BooleanField(default=False, verbose_name="Новый новар")
+    carusel_tovar = models.BooleanField(default=False, verbose_name="карусель")
     product_gallery = models.ManyToManyField(Gallery, blank=True, verbose_name='фото товара')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -99,7 +100,6 @@ class Dostiopl(models.Model):
     predtekst = models.CharField(max_length=200, db_index=True,verbose_name='предтекст')
     text = RichTextUploadingField(blank=True, default='', verbose_name='первый адрес')
 
-
     class Meta:
         ordering = ['zagolovok']
         verbose_name = 'Доставка и оплата'
@@ -107,3 +107,9 @@ class Dostiopl(models.Model):
 
     def __str__(self):
         return self.zagolovok
+
+class Carusel(models.Model):
+    name_carusel = models.CharField(max_length=200, db_index=True, verbose_name='заголовок')
+
+    def __str__(self):
+        return self.name_carusel

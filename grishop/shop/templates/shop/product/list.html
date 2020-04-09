@@ -79,6 +79,28 @@
                     </nav>
                 </div><!-- Header Bottom End -->
 {% endblock category%}
+
+                {% block carusel %}
+                <div class="hero-slider hero-slider-three fix">
+                    <!-- Hero Item Start -->
+                    {% for carusel_tovar in carusel_tovar %}
+                    <div class="hero-item-three" style="background-image: url(/static/images/hero/hero-3-bg-1.jpg)">
+                        <div class="row align-items-center justify-content-between">
+                            <!-- Hero Content -->
+                            <div class="hero-content-three col">
+                                <h2 class="offer">50% <span>Скидка</span></h2>
+                                <h2>{{carusel_tovar.name}} </h2>
+                                <a href="{{ carusel_tovar.get_absolute_url }}">посмотреть</a>
+                            </div>
+                            <!-- Hero Image -->
+                            <div class="hero-image-three col">
+                               <img src="static/images/hero/hero-6.png" alt="Hero Image">
+                            </div>
+                        </div>
+                    </div><!-- Hero Item End -->
+                    {% endfor %}
+                </div><!-- Hero Slider End -->
+                {% endblock %}
                     <!-- Product Tab Content Start -->
 {% block recomend_tovar %}
                     <div class="col-xl-9 col-lg-8 col-12 order-3 mb-30">

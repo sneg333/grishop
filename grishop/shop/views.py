@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product, Contact, Pod_Category, Dostiopl
+from .models import Category, Product, Contact, Pod_Category, Dostiopl, Carusel
 from cart.forms import CartAddProductForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -12,6 +12,8 @@ def product_list(request):
     hit_prodaj = Product.objects.filter(available=True, hit_prodaj=True)
     new_tovar = Product.objects.filter(available=True, new_tovar=True)
     pod_category_one = Pod_Category.objects.all()
+    carusel = Carusel.objects.all()
+    carusel_tovar = Product.objects.filter(available=True, carusel_tovar=True)
 
     context = {
         'categories': categories,
@@ -20,7 +22,9 @@ def product_list(request):
         'recomend_categories': recomend_categories,
         'hit_prodaj': hit_prodaj,
         'new_tovar': new_tovar,
-        'pod_category_one': pod_category_one
+        'pod_category_one': pod_category_one,
+        'carusel': carusel,
+        'carusel_tovar': carusel_tovar,
     }
     return render(request, 'shop/product/list.html', context )
 
