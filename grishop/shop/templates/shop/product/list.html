@@ -13,7 +13,7 @@
                         <nav>
                             <ul>
                                 <li><a href="/">ГЛАВНАЯ</a></li>
-                                <li class="menu-item-has-children"><a href="shop-grid.html">КАТАЛОГ</a>
+                                <li class="menu-item-has-children"><a href="/">КАТАЛОГ</a>
                                     <ul class="sub-menu">
                            {% for cat in categories %}
                                   {% if cat.pod_categoty %}
@@ -74,26 +74,11 @@
 <!--                                  если вдруг конец-->
                                   {%else %}
                                   {% endif %}
-                              </li>
                            {% endfor %}
                         </ul>
                     </nav>
                 </div><!-- Header Bottom End -->
 {% endblock category%}
-
-<!-- Product Tab List -->
-{% block recomend_categories %}
-        <ul class="nav product-tab-list">
-<!--                                <li><a class="active" data-toggle="tab" href="#tab-one">ВСЕ</a></li>-->
-            <li><a href="/{{ base.url }}">ВСЕ</a></li>
-            {% for catig in recomend_categories %}
-                <li>
-                    <a href="{{ catig.get_absolute_url }}">{{ catig.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-{% endblock %}
-
                     <!-- Product Tab Content Start -->
 {% block recomend_tovar %}
                     <div class="col-xl-9 col-lg-8 col-12 order-3 mb-30">

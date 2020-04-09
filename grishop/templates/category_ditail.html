@@ -42,8 +42,8 @@
                 <div class="col mt-10 mb-10">
                     <!-- Header Links Start -->
                     <div class="header-links">
-                        <a href="track-order.html"><img src="/static/images/icons/car.png" alt="Car Icon"> <span>доставка</span></a>
-                        <a href="store.html"><img src="/static/images/icons/marker.png" alt="Car Icon"> <span>контакты</span></a>
+                        <a href="/dostiopl/{{ dostiopl.url }}"><img src="/static/images/icons/car.png" alt="Car Icon"> <span>доставка</span></a>
+                        <a href="/contact/{{ contact.url }}"><img src="/static/images/icons/marker.png" alt="Car Icon"> <span>контакты</span></a>
                     </div><!-- Header Links End -->
                 </div>
                 <div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
@@ -100,7 +100,7 @@
                         {% with total_items=cart|length %}
                             {% if cart|length > 0 %}
                         <!-- Wishlist -->
-                        <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"><img src="/static/images/icons/koshel.png"></i> <span class="number">{{ cart.get_total_price }}</span></a>
+                        <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i><img src="/static/images/icons/koshel.png"></i> <span class="number">{{ cart.get_total_price }}</span></a>
                         <!-- Cart -->
                         <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% else %}
