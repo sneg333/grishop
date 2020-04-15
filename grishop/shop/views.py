@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product, Contact, Pod_Category, Dostiopl, Carusel
+from .models import Category, Product, Contact, Pod_Category, Dostiopl
 from cart.forms import CartAddProductForm
+from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import ListView
 
 # Страница с товарами
 def product_list(request):
@@ -12,7 +14,6 @@ def product_list(request):
     hit_prodaj = Product.objects.filter(available=True, hit_prodaj=True)
     new_tovar = Product.objects.filter(available=True, new_tovar=True)
     pod_category_one = Pod_Category.objects.all()
-    carusel = Carusel.objects.all()
     carusel_tovar = Product.objects.filter(available=True, carusel_tovar=True)
 
     context = {
@@ -23,7 +24,6 @@ def product_list(request):
         'hit_prodaj': hit_prodaj,
         'new_tovar': new_tovar,
         'pod_category_one': pod_category_one,
-        'carusel': carusel,
         'carusel_tovar': carusel_tovar,
     }
     return render(request, 'shop/product/list.html', context )
@@ -43,22 +43,34 @@ def product_detail(request, id, slug):
 
 # Страница подкатегории
 def pod_category_ditail(request, slug):
-    pod_category = get_object_or_404(Pod_Category, slug=slug)
-    product = Product.objects.all()
     katalog = Category.objects.all()
     cart_product_form = CartAddProductForm()
+    pod_category = get_object_or_404(Pod_Category, slug=slug)
+
     context = {
         'pod_category': pod_category,
-        'product': product,
         'cart_product_form': cart_product_form,
         'katalog': katalog,
     }
     return render(request, 'shop/product/pod_category_ditail.html', context)
 
+class PlaceListView(ListView):
+    model = Product
+
+    def get_queryset(self):
+        # Получаем не отфильтрованный кверисет всех моделей
+        queryset = super(FlavorListView, self).get_queryset()
+        q = self.request.GET.get("q")
+        if q:
+        # Если 'q' в GET запросе, фильтруем кверисет по данным из 'q'
+            return queryset.filter(Q(name__icontains=q)|
+                                   Q(keywords__icontains=q))
+        return queryset
+
 # Страница категории
 def catigory_ditail(request, slug):
-    category_one = get_object_or_404(Category, slug=slug)
     pod_category = Pod_Category.objects.all()
+    category_one = get_object_or_404(Category, slug=slug)
     katalog = Category.objects.all()
 
     context = {

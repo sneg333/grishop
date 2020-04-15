@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>E&E - Electronics eCommerce Bootstrap4 HTML Template</title>
+    <title>E&E</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -48,13 +48,8 @@
                 </div>
                 <div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
                     <!-- Header Advance Search Start -->
-                    <div class="header-advance-search">
-                        <form action="#">
-                            <div class="input"><input type="text" placeholder="Search your product"></div>
-                            <div class="submit"><button><i class="icofont icofont-search-alt-1"></i></button></div>
-                        </form>
-
-                    </div><!-- Header Advance Search End -->
+                    {% block poisk %}
+                    {% endblock poisk %}
                 </div>
                 <div class="col order-2 order-xs-2 order-lg-12 mt-10 mb-10">
                     <!-- Header Account Links Start -->

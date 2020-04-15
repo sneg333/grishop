@@ -64,6 +64,16 @@ class Pod_Category(models.Model):
     def get_absolute_url(self):
         return reverse('shop:pod_category_ditail', args=[self.slug])
 
+    def image_img(self):
+        if self.image:
+            from django.utils.safestring import mark_safe
+            return mark_safe(u'<a href="{0}" target="_blank"><img src="{0}" width="100"/></a>'.format(self.image.url))
+        else:
+            return '(Нет изображения)'
+
+    image_img.short_description = 'Картинка'
+    image_img.allow_tags = True
+
 # Модель категории
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
@@ -107,9 +117,3 @@ class Dostiopl(models.Model):
 
     def __str__(self):
         return self.zagolovok
-
-class Carusel(models.Model):
-    name_carusel = models.CharField(max_length=200, db_index=True, verbose_name='заголовок')
-
-    def __str__(self):
-        return self.name_carusel

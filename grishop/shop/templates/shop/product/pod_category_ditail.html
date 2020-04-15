@@ -1,6 +1,17 @@
 {% extends "category_ditail.html" %}
 {% load static %}
 
+                    {% block poisk %}9
+                    <div class="header-advance-search">
+                <form method="get" action="">
+                    <input type="text" placeholder="Search posts"  name="search"  />
+                    <input type="submit" value="Search" />
+                </form>
+
+
+                    </div><!-- Header Advance Search End -->
+                    {% endblock poisk %}
+
 {% block menu %}
     <div class="main-menu">
         <nav>

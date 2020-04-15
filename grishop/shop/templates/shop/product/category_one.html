@@ -1,6 +1,16 @@
 {% extends "category_ditail.html" %}
 {% load static %}
 
+                    {% block poisk %}9
+                    <div class="header-advance-search">
+                <form method="GET" action="">
+                    <input name="q" placeholder="Search posts"/>
+                    <input type="submit"/>
+                </form>
+
+                    </div><!-- Header Advance Search End -->
+                    {% endblock poisk %}
+
 {% block menu %}
     <div class="main-menu">
         <nav>
@@ -58,7 +68,6 @@
         <div class="col-lg-4 col-md-6 col-12 order-lg-3">
             <div class="banner"><a href="#"><img src="/static/images/banner/banner-14.jpg" alt="Banner"></a></div>
         </div>
-
     </div>
 </div><!-- Page Banner Section End -->
 
@@ -70,9 +79,6 @@
                 <div class="category-page-title"><h4>Категория  -  {{category_one.name }}</h4></div>
             </div>
         </div>
-
-
-
         <div class="row">
 
 {% for podcat in category_one.pod_categoty.all %}

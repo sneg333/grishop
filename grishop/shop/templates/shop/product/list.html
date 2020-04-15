@@ -8,6 +8,24 @@
   {% endif %}
 {% endblock %}
 
+                    {% block poisk %}
+                    <div class="header-advance-search">
+                        <form action="get" action="">
+                            <div class="input">
+                                <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
+                                <input type="submit" value="Search"/>
+                            </div>
+                            <div class="submit">
+                                <button type="submit" value="Search">
+                                    <i class="icofont icofont-search-alt-1"></i>
+                                </button>
+                            </div>
+                        </form>
+
+
+                    </div><!-- Header Advance Search End -->
+                    {% endblock poisk %}
+
 {% block menu %}
                     <div class="main-menu">
                         <nav>
@@ -94,7 +112,7 @@
                             </div>
                             <!-- Hero Image -->
                             <div class="hero-image-three col">
-                               <img src="static/images/hero/hero-6.png" alt="Hero Image">
+                               <img src="" alt="Hero Image">
                             </div>
                         </div>
                     </div><!-- Hero Item End -->
