@@ -1,6 +1,21 @@
 {% extends "contact.html" %}
 {% load static %}
 
+{% block poisk %}
+    <div class="header-advance-search">
+        <form method="GET" action="">
+            <div class="input">
+                <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
+            </div>
+            <div class="submit">
+                <button type="submit" value="Search">
+                    <a href="/prodall/{{ prodall.url }}" class="icofont icofont-search-alt-1"></a>
+                </button>
+            </div>
+        </form>
+    </div><!-- Header Advance Search End -->
+{% endblock poisk %}
+
 {% block menu %}
                     <div class="main-menu">
                         <nav>
@@ -71,6 +86,10 @@
             </div>
             {%endfor%}
         </div>
+        {% for product in product %}
+<br><br><br><br>
+
+{% endfor %}
     </div>
 </div><!-- Terms & Conditions Section End -->
 {% endblock dostiopl %}

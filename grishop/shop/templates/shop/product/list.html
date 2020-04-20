@@ -10,10 +10,10 @@
 
                     {% block poisk %}
                     <div class="header-advance-search">
-                        <form action="get" action="">
+                        <form method="GET" action="">
                             <div class="input">
                                 <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
-                                <input type="submit" value="Search"/>
+<input type="submit" value="Search" />
                             </div>
                             <div class="submit">
                                 <button type="submit" value="Search">

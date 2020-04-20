@@ -1,0 +1,183 @@
+{% extends "prodall.html" %}
+{% load static %}
+
+
+{% block poisk %}
+    <div class="header-advance-search">
+        <form method="GET" action="">
+            <div class="input">
+                <input type="text" name="q" placeholder="Поиск товара" value="{{request.GET.q}}"/>
+            </div>
+            <div class="submit">
+                <button type="submit" value="Search">
+                    <i class="icofont icofont-search-alt-1"></i>
+                </button>
+            </div>
+        </form>
+    </div><!-- Header Advance Search End -->
+{% endblock poisk %}
+
+{% block menu %}
+    <div class="main-menu">
+        <nav>
+            <ul>
+                <li><a href="/">ГЛАВНАЯ</a></li>
+                    <li class="menu-item-has-children"><a href="/">КАТАЛОГ</a>
+                        <ul class="sub-menu">
+                            {% for katalog in katalog %}
+                                {% if katalog.pod_categoty %}
+                                <li class="menu-item-has-children">
+                                   <a href="/{{ katalog.slug }}">{{ katalog.name }}</a>
+                                      <ul class="sub-menu">
+                                         <li>
+                                            {% for pod_category in katalog.pod_categoty.all %}
+                                                <a href="{{ pod_category.get_absolute_url }}">
+                                                    {{ pod_category.name_podcategory }}
+                                                </a>
+                                            {%endfor%}
+                                         </li>
+                                      </ul>
+                                </li>
+                                {%else %}
+                                {% endif %}
+                           {% endfor %}
+                        </ul>
+                    </li>
+                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
+                <li class="active"><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
+            </ul>
+        </nav>
+    </div><!-- Main Menu End -->
+{% endblock menu %}
+
+{% block prodall %}
+<div class="product-section section mt-90 mb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row mb-50">
+                    <div class="col">
+                        <!-- Shop Top Bar Start -->
+                        <div class="shop-top-bar">
+                            <!-- Product View Mode -->
+                            <div class="product-view-mode">
+                                <a href="#" data-target="grid"><i class="fa fa-th"></i></a>
+                                <a class="active" href="#" data-target="list"><i class="fa fa-list"></i></a>
+                            </div>
+                            <!-- Product Pages -->
+                            <div class="product-pages">
+                                <p>Pages 1 of 25</p>
+                            </div>
+                        </div><!-- Shop Top Bar End -->
+                    </div>
+                </div>
+                {% for productall in prodall %}
+                <!-- Shop Product Wrap Start -->
+                <div class="shop-product-wrap list row">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
+                        <!-- Product Start -->
+                        <div class="ee-product">
+                            <!-- Image -->
+                            <div class="image">
+                                <a href="single-product.html" class="img"><img src="/static/images/product/product-12.png" alt="Product Image"></a>
+                                <div class="wishlist-compare">
+                                    <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
+                                    <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
+                                </div>
+                                <a href="#" class="add-to-cart">
+                                    <i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+                            </div>
+                            <!-- Content -->
+                            <div class="content">
+                                <!-- Category & Title -->
+                                <div class="category-title">
+                                    <a href="#" class="cat">Audio</a>
+                                    <h5 class="title"><a href="single-product.html">{{productall.name}}</a></h5>
+                                </div>
+                                <!-- Price & Ratting -->
+                                <div class="price-ratting">
+                                    <h5 class="price">$21.00</h5>
+                                    <div class="ratting">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Product End -->
+                        <!-- Product List Start -->
+                        <div class="ee-product-list">
+                            <!-- Image -->
+                            <div class="image">
+                                <a href="single-product.html" class="img">
+                                    <img src="{{ productall.image.url }}" alt="Product Image">
+                                </a>
+                            </div>
+                            <!-- Content -->
+                            <div class="content">
+                                <!-- Category & Title -->
+                                <div class="head-content">
+                                    <div class="category-title">
+                                        <a href="#" class="cat">Audio</a>
+                                        <h5 class="title"><a href="single-product.html">{{ productall.name }}</a></h5>
+                                    </div>
+                                    <h5 class="price">{{ productall.price }} руб.</h5>
+                                </div>
+                                <div class="left-content">
+                                    <div class="ratting">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="desc">
+                                        <p>{{ productall.description }}</p>
+                                    </div>
+
+                                 <form action="{% url 'cart:cart_add' productall.id %}" method="post">
+                                    <div class="quantity">
+                                        <h5>Количество</h5>
+                                        {{ cart_product_form }}
+                                        {% csrf_token %}
+                                        <div class="actions">
+                                        <input type="submit"  class="ti-shopping-cart" id="zakaz2" value="В КОРЗИНУ">
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                                <div class="right-content">
+                                    <div class="specification">
+                                        <h5>Описание</h5>
+                                            <p>{{productall.description}}</p>
+                                    </div>
+                                    <span class="availability">Наличие: <span>In Stock</span></span>
+                                </div>
+                            </div>
+                        </div><!-- Product List End -->
+                    </div>
+                </div><!-- Shop Product Wrap End -->
+                {% endfor %}
+
+                <div class="row mt-30">
+                    <div class="col">
+                        <ul class="pagination">
+                            <li><a href="#"><i class="fa fa-angle-left"></i>Back</a></li>
+                            <li><a href="#">1</a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li> - - - - - </li>
+                            <li><a href="#">18</a></li>
+                            <li><a href="#">18</a></li>
+                            <li><a href="#">20</a></li>
+                            <li><a href="#">Next<i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Feature Product Section End -->
+{% endblock prodall %}

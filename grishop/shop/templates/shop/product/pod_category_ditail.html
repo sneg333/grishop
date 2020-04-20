@@ -1,11 +1,11 @@
 {% extends "category_ditail.html" %}
 {% load static %}
 
-                    {% block poisk %}9
+                    {% block poisk %}9+
                     <div class="header-advance-search">
-                <form method="get" action="">
-                    <input type="text" placeholder="Search posts"  name="search"  />
-                    <input type="submit" value="Search" />
+                <form  action="{% url 'shop:search' %}" method="get">
+                    <input type="search" placeholder="Search posts"  name="q"  />
+                    <input type="submit">
                 </form>
 
 
@@ -103,9 +103,7 @@
                             {% endif %}
                         </a>
                         <div class="wishlist-compare">
-
                         </div>
-
                     </div>
                     <!-- Content -->
                     <div class="content">

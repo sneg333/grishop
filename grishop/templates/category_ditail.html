@@ -47,9 +47,21 @@
                     </div><!-- Header Links End -->
                 </div>
                 <div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
+
                     <!-- Header Advance Search Start -->
-                    {% block poisk %}
-                    {% endblock poisk %}
+                    <div class="header-advance-search">
+                        <form action="{% url 'shop:search' %}" method="get">
+                            <div class="input">
+                                <input type="search" name="q" placeholder="Search your product">
+                            </div>
+                            <div class="submit">
+                                <button type="submit" value="Search">
+                                    <i class="icofont icofont-search-alt-1"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div><!-- Header Advance Search End -->
+
                 </div>
                 <div class="col order-2 order-xs-2 order-lg-12 mt-10 mb-10">
                     <!-- Header Account Links Start -->

@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Category, Product, Contact, Pod_Category, Dostiopl
-from cart.forms import CartAddProductForm
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic.base import View
+from .models import Category, Product, Contact, Pod_Category, Dostiopl
+from cart.forms import CartAddProductForm
 
 # Страница с товарами
 def product_list(request):
@@ -16,7 +17,29 @@ def product_list(request):
     pod_category_one = Pod_Category.objects.all()
     carusel_tovar = Product.objects.filter(available=True, carusel_tovar=True)
 
+
+    queryset_list = Product.objects.all()
+    if request.user.is_staff or request.user.is_superuser:
+        queryset_list = Product.objects.all()
+
+    query = request.GET.get('q')
+    if query:
+        queryset_list = queryset_list.filter(name__icontains=query)
+
+    paginator = Paginator(queryset_list, 10)
+    page_request_var = "page"
+    page = request.GET.get(page_request_var)
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
+
     context = {
+        'product': queryset,
+        'title': "List",
+        'page_request_var': page_request_var,
         'categories': categories,
         'products': products,
         'recomend_tovar': recomend_tovar,
@@ -41,6 +64,37 @@ def product_detail(request, id, slug):
     }
     return render(request, 'shop/product/detail.html',  context)
 
+'''все товары и поиск по ним'''
+def prodall(request):
+    katalog = Category.objects.all()
+    cart_product_form = CartAddProductForm()
+    prodall = Product.objects.all()
+    if request.user.is_staff or request.user.is_superuser:
+        prodall = Product.objects.all()
+
+    query = request.GET.get("q")
+    if query:
+        prodall = prodall.filter(name__icontains=query)
+
+    paginator = Paginator(prodall, 10)
+    page_request_var = "page"
+    page = request.GET.get(page_request_var)
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
+
+    context = {
+        'prodall': queryset,
+        'title': "List",
+        'page_request_var': page_request_var,
+        'katalog': katalog,
+        'cart_product_form': cart_product_form,
+    }
+    return render(request, 'shop/product/prodall.html', context)
+
 # Страница подкатегории
 def pod_category_ditail(request, slug):
     katalog = Category.objects.all()
@@ -53,19 +107,6 @@ def pod_category_ditail(request, slug):
         'katalog': katalog,
     }
     return render(request, 'shop/product/pod_category_ditail.html', context)
-
-class PlaceListView(ListView):
-    model = Product
-
-    def get_queryset(self):
-        # Получаем не отфильтрованный кверисет всех моделей
-        queryset = super(FlavorListView, self).get_queryset()
-        q = self.request.GET.get("q")
-        if q:
-        # Если 'q' в GET запросе, фильтруем кверисет по данным из 'q'
-            return queryset.filter(Q(name__icontains=q)|
-                                   Q(keywords__icontains=q))
-        return queryset
 
 # Страница категории
 def catigory_ditail(request, slug):
@@ -96,11 +137,32 @@ def dostiopl(request):
     dostiopl = Dostiopl.objects.all()
     katalog = Category.objects.all()
 
+    queryset_list = Product.objects.all()
+    if request.user.is_staff or request.user.is_superuser:
+        queryset_list = Product.objects.all()
+
+    query = request.GET.get("q")
+    if query:
+        queryset_list = queryset_list.filter(name__icontains=query)
+
+    paginator = Paginator(queryset_list, 10)
+    page_request_var = "page"
+    page = request.GET.get(page_request_var)
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
+
     context = {
+        'product': queryset,
+        'title': "List",
+        'page_request_var': page_request_var,
+
         'dostiopl': dostiopl,
         'katalog': katalog,
         }
     return render(request,'shop/product/dostiopl.html', context)
-
 
 

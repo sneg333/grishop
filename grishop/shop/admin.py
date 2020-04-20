@@ -7,6 +7,9 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', )}
 
 admin.site.register(Category, CategoryAdmin)
+
+
+
 # Модель подкаталога
 class Pod_CategoryAdmin(admin.ModelAdmin):
     list_display = ['name_podcategory', 'slug', 'image_img']
@@ -29,9 +32,11 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 
-# Модель комментариев
-class CommentsAdmin(admin.ModelAdmin):
-    list_display = ['title_com', 'comment_email']
+
 
 admin.site.register(Contact)
 admin.site.register(Dostiopl)
+
+"""изменение названия админка django в самом верху в админке"""
+admin.site.site_title = "Администрирование магазина"
+admin.site.site_header = "Администрирование магазина"
