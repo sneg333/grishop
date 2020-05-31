@@ -1,0 +1,78 @@
+
+
+<!-- Footer Section Start -->
+<div class="footer-section section bg-ivory">
+
+    <!-- Footer Top Section Start -->
+    <div class="footer-top-section section pt-90 pb-50">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Widget Start -->
+                <div class="col-lg-3 col-md-6 col-12 mb-40">
+                    <div class="footer-widget">
+                        <h4 class="widget-title">Контактная <br>информация</h4>
+                        {% for adres in contact %}
+                        <p class="contact-info">
+                            <span>Адрес</span>
+                            {{ adres.adress_toe_contact|safe }}
+                        </p><br>
+                        <p class="contact-info">
+                            <span>Телефон</span>
+                            {{ adres.tel }}
+                        </p>
+                        <p class="contact-info">
+                            <span>Web</span>
+                            {{ adres.web|safe }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div><!-- Footer Widget End -->
+
+                <!-- Footer Widget Start -->
+                <div class="col-lg-3 col-md-6 col-12 mb-40">
+                    <div class="footer-widget">
+                        <h4 class="widget-title">Разделы</h4>
+                        <ul class="link-widget">
+                            <li><a href="/">ГЛАВНАЯ</a></li>
+                            <li><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a></li>
+                            <li><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
+                            <li><a href="{% url 'cart:cart_detail' %}">КОРЗИНА</a></li>
+                            <li><a href="{% url 'orders:order_create' %}">ОФОРМЛЕНИЕ</a></li>
+                            <li><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
+                        </ul>
+                    </div>
+                </div><!-- Footer Widget End -->
+
+                <!-- Footer Widget Start -->
+                <div class="col-lg-3 col-md-6 col-12 mb-40">
+                    <div class="footer-widget">
+                        <h4 class="widget-title">ИНФОРМАЦИЯ</h4>
+                        <ul class="link-widget">
+                            <li><a href="/prodall/{{ prodall.url }}">ПОИСК</a></li>
+
+                        </ul>
+                    </div>
+                </div><!-- Footer Widget End -->
+            </div>
+        </div>
+    </div><!-- Footer Bottom Section Start -->
+
+    <!-- Footer Bottom Section Start -->
+    <div class="footer-bottom-section section">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Copyright -->
+                <div class="col-lg-6 col-12">
+                    <div class="footer-copyright"><p>&copy; Copyright, All Rights Reserved by <a href="#">E&E</a></p></div>
+                </div>
+
+                <!-- Footer Payment Support -->
+                <div class="col-lg-6 col-12">
+                    <div class="footer-payments-image"><img src="/static/images/payment-support.png" alt="Payment Support Image"></div>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- Footer Bottom Section Start -->
+
+</div><!-- Footer Section End -->

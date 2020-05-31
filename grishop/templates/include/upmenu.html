@@ -1,40 +1,5 @@
-{% load staticfiles %}
-<!doctype html>
-<html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>E&E</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
-
-    <!-- CSS
-	============================================ -->
-
-    <!-- Bootstrap CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-
-    <!-- Icon Font CSS -->
-    <link href="{% static 'css/icon-font.min.css' %}" rel="stylesheet" />
-
-    <!-- Plugins CSS -->
-    <link href="{% static 'css/plugins.css' %}" rel="stylesheet" />
-
-    <!-- Main Style CSS -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-
-    <!-- Modernizer JS -->
-    <script src="{% static 'js/modernizr-2.8.3.min.js' %}"></script>
-</head>
-
-<body>
-
 <!-- Header Section Start -->
 <div class="header-section section">
-
     <!-- Header Top Start -->
     <div class="header-top header-top-one header-top-border pt-10 pb-10">
         <div class="container">
@@ -47,8 +12,20 @@
                     </div><!-- Header Links End -->
                 </div>
                 <div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
-{% block poisk %}
-{% endblock poisk %}
+                    <!-- Header Advance Search Start -->
+        <div class="header-advance-search">
+            <form method="GET" action="">
+                <div class="input">
+                    <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
+                </div>
+                <div class="submit">
+                    <button type="submit" value="Search" >
+                        <a href="/prodall/{{ prodall.url }}" class="icofont icofont-search-alt-1"> ПОИСК
+                        </a>
+                    </button>
+                </div>
+            </form>
+        </div><!-- Header Advance Search End -->
                 </div>
                 <div class="col order-2 order-xs-2 order-lg-12 mt-10 mb-10">
                     <!-- Header Account Links Start -->
@@ -57,16 +34,16 @@
                         <a href="login.html"><i class="icofont icofont-login d-none"></i> <span>89-45-89+</span></a>
                     </div><!-- Header Account Links End -->
                 </div>
-
             </div>
         </div>
     </div><!-- Header Top End -->
 
+<!-- Header Section Start -->
+<div class="header-section section">
     <!-- Header Bottom Start -->
     <div class="header-bottom header-bottom-one header-sticky">
         <div class="container">
             <div class="row align-items-center justify-content-between">
-
                 <div class="col mt-15 mb-15">
                     <!-- Logo Start -->
                     <div class="header-logo">
@@ -78,8 +55,36 @@
                 </div>
                 <div class="col order-12 order-lg-2 order-xl-2 d-none d-lg-block">
                     <!-- Main Menu Start -->
-{% block menu %}
-{% endblock menu%}
+                    <div class="main-menu">
+        <nav>
+            <ul>
+               <li><a href="/">ГЛАВНАЯ</a></li>
+                  <li class="menu-item-has-children"><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a>
+                     <ul class="sub-menu">
+                         {% for cat in categories %}
+                            {% if cat.pod_categoty %}
+                               <li class="menu-item-has-children">
+                                  <a href="/{{ cat.slug }}">{{ cat.name }}</a>
+                                     <ul class="sub-menu">
+                                        <li>
+                                            {% for pod_category in cat.pod_categoty.all %}
+                                              <a href="{{ pod_category.get_absolute_url }}">
+                                                 {{ pod_category.name_podcategory }}
+                                              </a>
+                                            {%endfor%}
+                                        </li>
+                                     </ul>
+                               </li>
+                            {%else %}
+                            {% endif %}
+                         {% endfor %}
+                     </ul>
+                  </li>
+                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
+                <li class="active"><a href="/contact{{ contact.url }}">КОНТАКТЫ</a></li>
+            </ul>
+        </nav>
+    </div><!-- Main Menu End -->
 
                 </div>
                 <div class="col order-2 order-lg-12 order-xl-12">
@@ -96,63 +101,15 @@
                         <!-- Cart -->
                         <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% else %}
-                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"><img src="/static/images/icons/koshel.png"></i> <span class="number">{{ cart.get_total_price }}</span></a>
+                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i><img src="/static/images/icons/koshel.png"></i> <span class="number">{{ cart.get_total_price }}</span></a>
                                 <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% endif %}
                         {% endwith %}
                     </div><!-- Header Shop Links End -->
                 </div>
-
                 <!-- Mobile Menu -->
                 <div class="mobile-menu order-12 d-block d-lg-none col"></div>
-
             </div>
         </div>
     </div><!-- Header Bottom End -->
-
 </div><!-- Header Section End -->
-
-
-<!-- Cart Overlay -->
-<div class="cart-overlay"></div>
-
-
-{% block category_one %}
-{% endblock category_one %}
-
-{% block pod_category_ditail %}
-{% endblock pod_category_ditail %}
-
-<!-- Brands Section Start -->
-<div class="brands-section section mb-90">
-    <div class="container">
-        <div class="row">
-        </div>
-    </div>
-</div><!-- Brands Section End -->
-
-<!-- Footer Section Start -->
-    {% include 'include/footer.html' %}
-<!-- Footer Section End -->
-
-
-<!-- JS
-============================================ -->
-
-<!-- jQuery JS -->
-<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
-<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-<!-- Popper JS -->
-<script src="{% static 'js/popper.min.js' %}"></script>
-<!-- Bootstrap JS -->
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<!-- Plugins JS -->
-<script src="{% static 'js/plugins.js' %}"></script>
-<!-- Ajax Mail -->
-<script src="{% static 'js/ajax-mail.js' %}"></script>
-<!-- Main JS -->
-<script src="{% static 'js/main.js' %}"></script>
-
-</body>
-
-</html>

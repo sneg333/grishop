@@ -1,12 +1,28 @@
 {% extends "contact.html" %}
 {% load static %}
 
+{% block poisk %}
+        <div class="header-advance-search">
+            <form method="GET" action="">
+                <div class="input">
+                    <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
+                </div>
+                <div class="submit">
+                    <button type="submit" value="Search" >
+                        <a href="/prodall/{{ prodall.url }}" class="icofont icofont-search-alt-1"> ПОИСК
+                        </a>
+                    </button>
+                </div>
+            </form>
+        </div><!-- Header Advance Search End -->
+{% endblock poisk %}
+
 {% block menu %}
     <div class="main-menu">
         <nav>
             <ul>
                 <li><a href="/">ГЛАВНАЯ</a></li>
-                    <li class="menu-item-has-children"><a href="/">КАТАЛОГ</a>
+                    <li class="menu-item-has-children"><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a>
                         <ul class="sub-menu">
                             {% for katalog in katalog %}
                                 {% if katalog.pod_categoty %}
@@ -93,8 +109,8 @@
 
                         <div class="col-lg-4 col-md-6 col-12 mb-50">
                             <div class="contact-information">
-                                <h4>Вэб</h4>
-                                <p>{{ contact.adress_toe_contact|safe }}</p>
+                                <h4>E-mail</h4>
+                                <p>{{ contact.web|safe }}</p>
                             </div>
                         </div>
                     </div>

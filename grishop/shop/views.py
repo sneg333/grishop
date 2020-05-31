@@ -17,6 +17,7 @@ def product_list(request):
     pod_category_one = Pod_Category.objects.all()
     carusel_tovar = Product.objects.filter(available=True, carusel_tovar=True)
 
+    contact = Contact.objects.all()
 
     queryset_list = Product.objects.all()
     if request.user.is_staff or request.user.is_superuser:
@@ -48,6 +49,7 @@ def product_list(request):
         'new_tovar': new_tovar,
         'pod_category_one': pod_category_one,
         'carusel_tovar': carusel_tovar,
+        'contact': contact,
     }
     return render(request, 'shop/product/list.html', context )
 
@@ -56,17 +58,20 @@ def product_detail(request, id, slug):
     categories = Category.objects.all()
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()
+    contact = Contact.objects.all()
 
     context = {
         'product': product,
         'categories': categories,
-        'cart_product_form': cart_product_form
+        'cart_product_form': cart_product_form,
+        'contact': contact,
     }
     return render(request, 'shop/product/detail.html',  context)
 
 '''все товары и поиск по ним'''
 def prodall(request):
     katalog = Category.objects.all()
+    contact = Contact.objects.all()
     cart_product_form = CartAddProductForm()
     prodall = Product.objects.all()
     if request.user.is_staff or request.user.is_superuser:
@@ -92,6 +97,7 @@ def prodall(request):
         'page_request_var': page_request_var,
         'katalog': katalog,
         'cart_product_form': cart_product_form,
+        'contact': contact,
     }
     return render(request, 'shop/product/prodall.html', context)
 
@@ -100,11 +106,13 @@ def pod_category_ditail(request, slug):
     katalog = Category.objects.all()
     cart_product_form = CartAddProductForm()
     pod_category = get_object_or_404(Pod_Category, slug=slug)
+    contact = Contact.objects.all()
 
     context = {
         'pod_category': pod_category,
         'cart_product_form': cart_product_form,
         'katalog': katalog,
+        'contact': contact,
     }
     return render(request, 'shop/product/pod_category_ditail.html', context)
 
@@ -113,11 +121,13 @@ def catigory_ditail(request, slug):
     pod_category = Pod_Category.objects.all()
     category_one = get_object_or_404(Category, slug=slug)
     katalog = Category.objects.all()
+    contact = Contact.objects.all()
 
     context = {
         'category_one': category_one,
         'pod_category': pod_category,
         'katalog': katalog,
+        'contact': contact,
     }
     return render(request, 'shop/product/category_one.html', context)
 
@@ -136,6 +146,7 @@ def contact(request):
 def dostiopl(request):
     dostiopl = Dostiopl.objects.all()
     katalog = Category.objects.all()
+    contact = Contact.objects.all()
 
     queryset_list = Product.objects.all()
     if request.user.is_staff or request.user.is_superuser:
@@ -162,6 +173,7 @@ def dostiopl(request):
 
         'dostiopl': dostiopl,
         'katalog': katalog,
+        'contact': contact,
         }
     return render(request,'shop/product/dostiopl.html', context)
 

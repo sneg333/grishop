@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from shop.models import Product, Category
+from shop.models import Product, Category, Contact
 from .cart import Cart
 from .forms import CartAddProductForm
 
-
 @require_POST
 def cart_add(request, product_id):
+
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
 
@@ -30,7 +30,7 @@ def cart_remove(request, product_id):
 # корзина
 def cart_detail(request):
     katalog = Category.objects.all()
+    contact = Contact.objects.all()
     cart = Cart(request)
 
-
-    return render(request, 'cart/detail.html', {'cart': cart,'katalog': katalog})
+    return render(request, 'cart/detail.html', {'cart': cart,'katalog': katalog, 'contact': contact,})

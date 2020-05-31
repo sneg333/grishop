@@ -8,30 +8,27 @@
   {% endif %}
 {% endblock %}
 
-                    {% block poisk %}
-                    <div class="header-advance-search">
-                        <form method="GET" action="">
-                            <div class="input">
-                                <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
-<input type="submit" value="Search" />
-                            </div>
-                            <div class="submit">
-                                <button type="submit" value="Search">
-                                    <i class="icofont icofont-search-alt-1"></i>
-                                </button>
-                            </div>
-                        </form>
-
-
-                    </div><!-- Header Advance Search End -->
-                    {% endblock poisk %}
-
+{% block poisk %}
+        <div class="header-advance-search">
+            <form method="GET" action="">
+                <div class="input">
+                    <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
+                </div>
+                <div class="submit">
+                    <button type="submit" value="Search" >
+                        <a href="/prodall/{{ prodall.url }}" class="icofont icofont-search-alt-1"> ПОИСК
+                        </a>
+                    </button>
+                </div>
+            </form>
+        </div><!-- Header Advance Search End -->
+{% endblock poisk %}
 {% block menu %}
                     <div class="main-menu">
                         <nav>
                             <ul>
                                 <li><a href="/">ГЛАВНАЯ</a></li>
-                                <li class="menu-item-has-children"><a href="/">КАТАЛОГ</a>
+                                <li class="menu-item-has-children"><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a>
                                     <ul class="sub-menu">
                            {% for cat in categories %}
                                   {% if cat.pod_categoty %}
@@ -59,46 +56,7 @@
                     </div><!-- Main Menu End -->
 {% endblock menu %}
 
-{% block category %}
-                  <!-- Header Category -->
-                <div class="hero-side-category">
-                    <!-- Category Toggle Wrap -->
-                    <div class="category-toggle-wrap">
-                        <!-- Category Toggle -->
-                        <button class="category-toggle">Каталог <i class="ti-menu"></i></button>
-                    </div>
-                    <!-- Category Menu -->
-                    <nav class="category-menu">
-                        <ul>
-                           {% for cat in categories %}
-                                  {% if cat.pod_categoty %}
-<!--                                  если вдруг-->
-                                  <li class="menu-item-has-children">
-                                        <a href="/{{ cat.slug }}">{{ cat.name }}</a>
-                                            <ul class="category-mega-menu">
-                                                <li class="menu-item-has-children">
-                                                    <ul>
-                                                        <li>
-                                                            {% for pod_category in cat.pod_categoty.all %}
-                                                            <a href="{{ pod_category.get_absolute_url }}">
-                                                                {{ pod_category.name_podcategory }}
-                                                            </a>
-                                                        {%endfor%}
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                  </li>
-<!--                                  если вдруг конец-->
-                                  {%else %}
-                                  {% endif %}
-                           {% endfor %}
-                        </ul>
-                    </nav>
-                </div><!-- Header Bottom End -->
-{% endblock category%}
-
-                {% block carusel %}
+{% block carusel %}
                 <div class="hero-slider hero-slider-three fix">
                     <!-- Hero Item Start -->
                     {% for carusel_tovar in carusel_tovar %}
@@ -241,6 +199,12 @@
                                 </div><!-- Product End -->
                             </div>
 {% endfor %}
+
+{% block foot1 %}
+
+
+{% endblock %}
+
 {% endblock %}
 <!-- new_tovar AND -->
 

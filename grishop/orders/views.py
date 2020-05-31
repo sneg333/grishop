@@ -2,10 +2,11 @@ from django.shortcuts import render
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
-from shop.models import Category
+from shop.models import Category, Contact
 
 def order_create(request):
     katalog = Category.objects.all()
+    contact = Contact.objects.all()
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
@@ -21,11 +22,15 @@ def order_create(request):
             katalog = Category.objects.all()
             return render(request, 'orders/order/created.html',
                           {'order': order,
-                           'katalog': katalog})
+                           'katalog': katalog,
+                           'contact': contact,
+                           })
     else:
         form = OrderCreateForm
     return render(request, 'orders/order/create.html',
                   {'cart': cart,
                    'form': form,
-                   'katalog': katalog})
+                   'katalog': katalog,
+                   'contact': contact,
+                   })
 

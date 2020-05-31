@@ -1,20 +1,19 @@
 {% extends "prodall.html" %}
 {% load static %}
 
-
 {% block poisk %}
-    <div class="header-advance-search">
-        <form method="GET" action="">
-            <div class="input">
-                <input type="text" name="q" placeholder="Поиск товара" value="{{request.GET.q}}"/>
-            </div>
-            <div class="submit">
-                <button type="submit" value="Search">
-                    <i class="icofont icofont-search-alt-1"></i>
-                </button>
-            </div>
-        </form>
-    </div><!-- Header Advance Search End -->
+        <div class="header-advance-search">
+            <form method="GET" action="">
+                <div class="input">
+                    <input type="text" name="q" placeholder="Поиск товара" value="{{request.GET.q}}"/>
+                </div>
+                <div class="submit">
+                    <button type="submit" value="Search" class="icofont icofont-search-alt-1">
+                         ПОИСК
+                    </button>
+                </div>
+            </form>
+        </div><!-- Header Advance Search End -->
 {% endblock poisk %}
 
 {% block menu %}
@@ -22,7 +21,7 @@
         <nav>
             <ul>
                 <li><a href="/">ГЛАВНАЯ</a></li>
-                    <li class="menu-item-has-children"><a href="/">КАТАЛОГ</a>
+                    <li class="menu-item-has-children"><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a>
                         <ul class="sub-menu">
                             {% for katalog in katalog %}
                                 {% if katalog.pod_categoty %}
@@ -71,32 +70,40 @@
                         </div><!-- Shop Top Bar End -->
                     </div>
                 </div>
-                {% for productall in prodall %}
+
                 <!-- Shop Product Wrap Start -->
                 <div class="shop-product-wrap list row">
+                     {% for productall in prodall %}
                     <div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
                         <!-- Product Start -->
                         <div class="ee-product">
                             <!-- Image -->
                             <div class="image">
-                                <a href="single-product.html" class="img"><img src="/static/images/product/product-12.png" alt="Product Image"></a>
+                                <a href="{{ productall.get_absolute_url }}" class="img"><img src="{{ productall.image.url }}" alt="Product Image"></a>
                                 <div class="wishlist-compare">
-                                    <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
-                                    <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
+
                                 </div>
-                                <a href="#" class="add-to-cart">
-                                    <i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+                                 <form action="{% url 'cart:cart_add' productall.id %}" method="post">
+                                    <div class="quantity">
+                                        <h5>Количество</h5>
+                                        {{ cart_product_form }}
+                                        {% csrf_token %}
+                                        <div class="actions">
+                                        <input type="submit"  class="ti-shopping-cart" id="zakaz2" value="В КОРЗИНУ">
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <!-- Content -->
                             <div class="content">
                                 <!-- Category & Title -->
                                 <div class="category-title">
                                     <a href="#" class="cat">Audio</a>
-                                    <h5 class="title"><a href="single-product.html">{{productall.name}}</a></h5>
+                                    <h5 class="title"><a href="{{ productall.get_absolute_url }}">{{productall.name}}</a></h5>
                                 </div>
                                 <!-- Price & Ratting -->
                                 <div class="price-ratting">
-                                    <h5 class="price">$21.00</h5>
+                                    <h5 class="price">{{ productall.price }} руб.</h5>
                                     <div class="ratting">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -111,7 +118,7 @@
                         <div class="ee-product-list">
                             <!-- Image -->
                             <div class="image">
-                                <a href="single-product.html" class="img">
+                                <a href="{{ productall.get_absolute_url }}" class="img">
                                     <img src="{{ productall.image.url }}" alt="Product Image">
                                 </a>
                             </div>
@@ -121,7 +128,7 @@
                                 <div class="head-content">
                                     <div class="category-title">
                                         <a href="#" class="cat">Audio</a>
-                                        <h5 class="title"><a href="single-product.html">{{ productall.name }}</a></h5>
+                                        <h5 class="title"><a href="{{ productall.get_absolute_url }}">{{ productall.name }}</a></h5>
                                     </div>
                                     <h5 class="price">{{ productall.price }} руб.</h5>
                                 </div>
@@ -158,8 +165,9 @@
                             </div>
                         </div><!-- Product List End -->
                     </div>
+                    {% endfor %}
                 </div><!-- Shop Product Wrap End -->
-                {% endfor %}
+
 
                 <div class="row mt-30">
                     <div class="col">

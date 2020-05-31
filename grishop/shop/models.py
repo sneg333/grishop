@@ -96,6 +96,7 @@ class Contact(models.Model):
     adress_one_contact = RichTextUploadingField(blank=True, default='', verbose_name='первый адрес')
     adress_toe_contact = RichTextUploadingField(blank=True, default='', verbose_name='второй адрес')
     tel = models.CharField(max_length=200, verbose_name='телефон')
+    web = RichTextUploadingField(blank=True, default='', verbose_name='email')
 
     class Meta:
         verbose_name = 'контакт'
