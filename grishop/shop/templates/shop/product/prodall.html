@@ -169,21 +169,40 @@
                 </div><!-- Shop Product Wrap End -->
 
 
+
+
                 <div class="row mt-30">
                     <div class="col">
                         <ul class="pagination">
-                            <li><a href="#"><i class="fa fa-angle-left"></i>Back</a></li>
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li> - - - - - </li>
-                            <li><a href="#">18</a></li>
-                            <li><a href="#">18</a></li>
-                            <li><a href="#">20</a></li>
-                            <li><a href="#">Next<i class="fa fa-angle-right"></i></a></li>
+                            {% if prodall.has_previous %}
+                            <li><a href="?page=1"> Первая</a>
+                                <a href="?page={{ prodall.previous_page_number }}">Назад</a>
+                            </li>
+                            {% endif %}
+
+                            <li class="active">
+                                <a href="#">{{ prodall.number }} </a>
+                            </li>
+
+
+
+                            <li> из <a href="#">{{ prodall.paginator.num_pages }}</a>
+                            {% if prodall.has_next %}
+                                <a href="?page={{ prodall.next_page_number }}">Вперёд</a>
+                                <a href="?page={{ prodall.paginator.num_pages }}">Последняя </a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>

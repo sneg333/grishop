@@ -2399,7 +2399,7 @@ img.mfp-img {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
   .pagination li {
-    margin: 5px;
+    margin: 25px;
     color: #a3a3a3; }
     .pagination li a {
       font-size: 14px;
@@ -2420,21 +2420,21 @@ img.mfp-img {
       color: #202020;
       font-weight: 700; }
     .pagination li:first-child {
-      margin-right: 20px; }
+      margin-right: 5px; }
       .pagination li:first-child a {
         color: #202020;
-        width: 50px; }
+        width: 65px; }
         .pagination li:first-child a i {
           float: left;
           margin-right: 10px; }
     .pagination li:last-child {
-      margin-left: 20px; }
+      margin-left: 5px; }
       .pagination li:last-child a {
-        width: 50px;
+        width: 80px;
         color: #202020; }
         .pagination li:last-child a i {
           float: right;
-          margin-left: 10px; }
+          margin-left: 5px; }
 
 /*--
     - Page Banner Section
