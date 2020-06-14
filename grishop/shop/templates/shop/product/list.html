@@ -23,38 +23,7 @@
             </form>
         </div><!-- Header Advance Search End -->
 {% endblock poisk %}
-{% block menu %}
-                    <div class="main-menu">
-                        <nav>
-                            <ul>
-                                <li><a href="/">ГЛАВНАЯ</a></li>
-                                <li class="menu-item-has-children"><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a>
-                                    <ul class="sub-menu">
-                           {% for cat in categories %}
-                                  {% if cat.pod_categoty %}
-                                        <li class="menu-item-has-children">
-                                            <a href="/{{ cat.slug }}">{{ cat.name }}</a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    {% for pod_category in cat.pod_categoty.all %}
-                                                       <a href="{{ pod_category.get_absolute_url }}">
-                                                          {{ pod_category.name_podcategory }}
-                                                       </a>
-                                                    {%endfor%}
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        {%else %}
-                                        {% endif %}
-                           {% endfor %}
-                                    </ul>
-                                </li>
-                                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
-                                <li class="active"><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
-                            </ul>
-                        </nav>
-                    </div><!-- Main Menu End -->
-{% endblock menu %}
+
 
 {% block carusel %}
                 <div class="hero-slider hero-slider-three fix">

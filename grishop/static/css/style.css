@@ -13061,3 +13061,33 @@ ul.link-widget li {
 color:black;
 padding-top:3px;
 }
+
+.raiting{
+    overflow: hidden;
+    vertical-align: bottom;
+    display: inline-block;
+    width: 155px;
+    height: 30px;
+}
+
+.raiting > input {
+    opacity: 0;
+    margin-right: -100%;
+}
+
+.raiting > label {
+    position: relative;
+    display: block;
+    float: right;
+    background: url('../images/staroff.jpg');
+    background-size: 30px 300px;
+}
+
+.raiting > label:before{
+    display: block;
+    opacity: 0;
+    content: '';
+    width: 30px;
+    height: 30px;
+    background: url('../images/staron.jpg');
+}

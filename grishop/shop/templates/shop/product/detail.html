@@ -4,54 +4,9 @@
     {% if category %}{{ category.title }}{% else %}Products{% endif %}
 {% endblock %}
 
-{% block poisk %}
-        <div class="header-advance-search">
-            <form method="GET" action="">
-                <div class="input">
-                    <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
-                </div>
-                <div class="submit">
-                    <button type="submit" value="Search" >
-                        <a href="/prodall/{{ prodall.url }}" class="icofont icofont-search-alt-1"> ПОИСК
-                        </a>
-                    </button>
-                </div>
-            </form>
-        </div><!-- Header Advance Search End -->
-{% endblock poisk %}
 
-{% block menu %}
-    <div class="main-menu">
-        <nav>
-            <ul>
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                    <li class="menu-item-has-children"><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a>
-                        <ul class="sub-menu">
-                            {% for katalog in categories %}
-                                {% if katalog.pod_categoty %}
-                                <li class="menu-item-has-children">
-                                   <a href="/{{ katalog.slug }}">{{ katalog.name }}</a>
-                                      <ul class="sub-menu">
-                                         <li>
-                                            {% for pod_category in katalog.pod_categoty.all %}
-                                                <a href="{{ pod_category.get_absolute_url }}">
-                                                    {{ pod_category.name_podcategory }}
-                                                </a>
-                                            {%endfor%}
-                                         </li>
-                                      </ul>
-                                </li>
-                                {%else %}
-                                {% endif %}
-                           {% endfor %}
-                        </ul>
-                    </li>
-                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
-                <li class="active"><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
-            </ul>
-        </nav>
-    </div><!-- Main Menu End -->
-{% endblock menu %}
+
+
 
 {% block content %}
             <div class="col-xl-9 col-lg-8 col-12 order-1 order-lg-2 mb-60">
@@ -61,26 +16,69 @@
                         <div class="single-product-image">
                             <div class="tab-content">
                                 <div id="single-image-1" class="tab-pane fade show active big-image-slider">
-                                    <img src="{{ product.image.url }}" alt="Big Image">
-                                    {% for photo in product.product_gallery.filter %}
+<!--главное фото выводится для увеличения отдельно-->
                                     <div class="big-image">
-
-                                        <img src="{{ photo.photo_gallery.url }}" alt="Big Image">
-                                        <a href="{{ photo.photo_gallery.url }}" class="big-image-popup">
+                                        {% if product.image1 %}
+                                            <img src="{{ product.image1.url }}" alt="Big Image">
+                                        <a href="{{ product.image1.url }}" class="big-image-popup">
                                             <i class="fa fa-search-plus"></i>
                                         </a>
+                                        {%else %}
+                                            <p></p>
+                                        {% endif %}
                                     </div>
-                                    {% endfor %}
                                 </div>
+                                <div id="single-image-2" class="tab-pane fade big-image-slider">
+                                    <div class="big-image">
+                                        {% if product.image2 %}
+                                            <img src="{{ product.image2.url }}" alt="Big Image">
+                                        <a href="{{ product.image2.url }}" class="big-image-popup">
+                                            <i class="fa fa-search-plus"></i>
+                                        </a>
+                                        {%else %}
+                                            <p></p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div id="single-image-3" class="tab-pane fade big-image-slider">
+                                    <div class="big-image">
+                                        {% if product.image3 %}
+                                            <img src="{{ product.image3.url }}" alt="Big Image">
+                                        <a href="{{ product.image3.url }}" class="big-image-popup">
+                                            <i class="fa fa-search-plus"></i>
+                                        </a>
+                                        {%else %}
+                                            <p></p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+<!--                                    конец главного фото-->
+<!--                                конец блока фото -->
                             </div>
                         </div>
 <!--маленькие фото под большим старт-->
                             <div class="thumb-image-slider nav">
-                                {% for photo in product.product_gallery.filter %}
-                                  <p class="thumb-image active" data-toggle="tab" href="{{ photo.photo_gallery.url }}">
-                                      <img src="{{ photo.photo_gallery.url }}" alt="Thumbnail Image">
-                                  </p>
-                                {% endfor %}
+                                <a class="thumb-image active" data-toggle="tab" href="#single-image-1">
+                                   {% if product.image1 %}
+                                      <img src="{{ product.image1.url }}" class="thumb-image active" data-toggle="tab" alt="Thumbnail Image">
+                                   {% else %}
+                                      <p></p>
+                                   {% endif %}
+                                </a>
+                                <a class="thumb-image" data-toggle="tab" href="#single-image-2">
+                                    {% if product.image2 %}
+                                      <img src="{{ product.image2.url }}" alt="Thumbnail Image">
+                                    {% else %}
+                                      <p></p>
+                                    {% endif %}
+                                </a>
+                                <a class="thumb-image" data-toggle="tab" href="#single-image-3">
+                                    {% if product.image3 %}
+                                      <img src="{{ product.image3.url }}" alt="Thumbnail Image">
+                                    {% else %}
+                                      <p></p>
+                                    {% endif %}
+                                </a>
                             </div>
 <!--маленькие фото под большим конец-->
                     </div>
@@ -90,11 +88,9 @@
                             <!-- Category & Title -->
                             <div class="head-content">
                                 <div class="category-title">
-                                    <a href="#" class="cat">{{ product.category }}</a>
                                     <p><h5 class="title">{{ product.name }}</h5></p>
-                                    <h5 class="price">цена {{ product.price }} руб.</h5>
+                                    <p><h5 class="price">цена {{ product.price }} руб.</h5></p><br>
                                 </div>
-
                             </div>
                             <div class="single-product-description">
                                 <div class="ratting">
@@ -121,20 +117,13 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
-
                     <div class="col-12 mb-90">
-
                         <ul class="single-product-tab-list nav">
-
                             <li><a href="#product-specifications" data-toggle="tab" >Характеристики</a></li>
-
                         </ul>
-
                         <div class="single-product-tab-content tab-content">
                             <div class="tab-pane fade show active" id="product-description">
-
                                 <div class="row">
                                     <div class="single-product-description-content col-lg-8 col-12">
                                         <h4>{{ product.name }}</h4>
@@ -144,7 +133,6 @@
                                         <img src="/static/images/single-product/description.png" alt="description">
                                     </div>
                                 </div>
-
                             </div>
                             <div class="tab-pane fade" id="product-specifications">
                                 <div class="single-product-specification">
@@ -175,7 +163,6 @@
         </li>
     {% endfor %}</ul>
                 </div>
-
                 <div class="shop-sidebar mb-30">
                     <div class="banner"><a href="#"><img src="/static/images/banner/banner-41.jpg" alt="Banner"></a></div>
                 </div>

@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.views.generic.base import View
 from .models import Category, Product, Contact, Pod_Category, Dostiopl
 from cart.forms import CartAddProductForm
+from .forms import RatingForms
 
 # Страница с товарами
 def product_list(request):
@@ -59,6 +60,11 @@ def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()
     contact = Contact.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["star_form"] = RatingForms()
+        return context
 
     context = {
         'product': product,

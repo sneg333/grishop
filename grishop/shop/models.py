@@ -28,7 +28,9 @@ class Product(models.Model):
     hit_prodaj = models.BooleanField(default=False, verbose_name="Хит продаж")
     new_tovar = models.BooleanField(default=False, verbose_name="Новый новар")
     carusel_tovar = models.BooleanField(default=False, verbose_name="карусель")
-    product_gallery = models.ManyToManyField(Gallery, blank=True, verbose_name='фото товара')
+    image1 = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара1")
+    image2 = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара2")
+    image3 = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара3")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -118,3 +120,26 @@ class Dostiopl(models.Model):
 
     def __str__(self):
         return self.zagolovok
+
+class RaitingStar(models.Model):
+    value = models.SmallIntegerField("значение", default=0)
+    def __str__(self):
+        return f'{self.value}'
+
+    class Meta:
+        verbose_name = 'звезда рейтинга'
+        verbose_name_plural = 'звёзды рейтинга'
+        ordering = ["-value"]
+
+'''модель рейтинга звёзды'''
+class Raiting(models.Model):
+    ip = models.CharField("IP адрес", max_length=15)
+    star = models.ForeignKey(RaitingStar, on_delete=models.CASCADE, verbose_name="звезда")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="товар")
+
+    def __str__(self):
+        return f"{self.star} - {self.product}"
+
+    class Meta:
+        verbose_name = 'Рейтинг'
+        verbose_name_plural = 'Рейтинги'
