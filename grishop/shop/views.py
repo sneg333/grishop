@@ -87,7 +87,7 @@ def prodall(request):
     if query:
         prodall = prodall.filter(name__icontains=query)
 
-    paginator = Paginator(prodall, 2)
+    paginator = Paginator(prodall, 3)
     page_request_var = "page"
     page = request.GET.get(page_request_var)
     try:

@@ -2399,11 +2399,11 @@ img.mfp-img {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
   .pagination li {
-    margin: 25px;
+    margin: 5px;
     color: #a3a3a3; }
     .pagination li a {
       font-size: 14px;
-      line-height: 24px;
+      line-height: 2px;
       font-weight: 600;
       color: #444444;
       width: 30px;

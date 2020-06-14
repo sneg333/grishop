@@ -167,42 +167,37 @@
                     </div>
                     {% endfor %}
                 </div><!-- Shop Product Wrap End -->
-
-
-
-
+<!--                pagination start-->
                 <div class="row mt-30">
                     <div class="col">
+                        {% if prodall.has_other_pages %}
                         <ul class="pagination">
                             {% if prodall.has_previous %}
-                            <li><a href="?page=1"> Первая</a>
+                            <li>
                                 <a href="?page={{ prodall.previous_page_number }}">Назад</a>
                             </li>
                             {% endif %}
-
+                            {% for i in prodall.paginator.page_range %}
+                            {% if prodall.number == i %}
                             <li class="active">
-                                <a href="#">{{ prodall.number }} </a>
+                                <a href="#">
+                                <span>{{ i }} <span class="sr-only">(current)</span></span>
+                                </a>
                             </li>
-
-
-
-                            <li> из <a href="#">{{ prodall.paginator.num_pages }}</a>
+                            {% else %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            <li>
                             {% if prodall.has_next %}
                                 <a href="?page={{ prodall.next_page_number }}">Вперёд</a>
-                                <a href="?page={{ prodall.paginator.num_pages }}">Последняя </a>
                             </li>
                             {% endif %}
                         </ul>
+                        {% endif %}
                     </div>
                 </div>
-
-
-
-
-
-
-
-
+<!--pagination end-->
             </div>
         </div>
     </div>
