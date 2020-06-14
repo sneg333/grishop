@@ -160,7 +160,11 @@
                                         <h5>Описание</h5>
                                             <p>{{productall.description}}</p>
                                     </div>
-                                    <span class="availability">Наличие: <span>In Stock</span></span>
+                                    {% if productall.available %}
+                                    <span class="availability"> <span>Есть в наличии <img src="/static/images/icons/green.png" alt="Banner"></span></span>
+                                    {% else %}
+                                    <span class="availability">Товар <span>отсутствует <img src="/static/images/icons/red.png" alt="Banner"></span></span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div><!-- Product List End -->
