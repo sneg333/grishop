@@ -65,7 +65,6 @@
                             </div>
                             <!-- Product Pages -->
                             <div class="product-pages">
-                                <p>Pages 1 of 25</p>
                             </div>
                         </div><!-- Shop Top Bar End -->
                     </div>
@@ -98,7 +97,11 @@
                             <div class="content">
                                 <!-- Category & Title -->
                                 <div class="category-title">
-                                    <a href="#" class="cat">Audio</a>
+                                    {% if productall.available %}
+                                    <span class="availability"> <span>Есть в наличии <img src="/static/images/icons/green.png" alt="Banner"></span></span>
+                                    {% else %}
+                                    <span class="availability">Товар <span>отсутствует <img src="/static/images/icons/red.png" alt="Banner"></span></span>
+                                    {% endif %}
                                     <h5 class="title"><a href="{{ productall.get_absolute_url }}">{{productall.name}}</a></h5>
                                 </div>
                                 <!-- Price & Ratting -->
