@@ -1,15 +1,15 @@
 
-from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from django.urls import path, include
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^cart/', include('cart.urls', namespace='cart')),
-    url(r'^orders/', include('orders.urls', namespace='orders')),
-    url(r'^', include('shop.urls', namespace='shop')),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('shop.urls', namespace='')),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

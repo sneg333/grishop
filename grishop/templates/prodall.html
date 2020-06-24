@@ -1,5 +1,5 @@
 <!doctype html>
-{% load staticfiles %}
+{% load static %}
 <html class="no-js" lang="en">
 
 <head>
@@ -100,8 +100,8 @@
                         <!-- Cart -->
                         <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% else %}
-                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-heart"><img src="/static/images/icons/koshel.png"></i> <span class="number">{{ cart.get_total_price }}</span></a>
-                                <a href="{% url 'cart:cart_detail' %}" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
+                                <a href="#" class="header-wishlist"><i class="ti-heart"><img src="/static/images/icons/koshel.png"></i> <span class="number">{{ cart.get_total_price }}</span></a>
+                                <a href="#" class="header-wishlist"><i class="ti-shopping-cart"></i> <span class="number">{{ total_items }}</span></a>
                             {% endif %}
                         {% endwith %}
                     </div><!-- Header Shop Links End -->

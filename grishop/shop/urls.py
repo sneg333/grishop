@@ -1,14 +1,14 @@
-
-from django.conf.urls import url
+from django.urls import path
 from . import views
+
+app_name = 'shop'
 urlpatterns = [
-    url(r'^$', views.product_list, name='product_list'),
-    url(r'^contact/$', views.contact, name='contact'),
-    url(r'^prodall/$', views.prodall, name='prodall'),
-    url(r'^dostiopl/$', views.dostiopl, name='dostiopl'),
-    url(r'^(?P<slug>[-\w]+)/$', views.catigory_ditail, name='catigory_ditail'),
-    url(r'^$', views.catigory_ditail, name='catigory_ditail'),
-    url(r'^rf/(?P<slug>[-\w]+)/$', views.pod_category_ditail, name='pod_category_ditail'),
-    url(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$', views.product_detail, name='product_detail'),
+    path('', views.product_list, name='product_list'),
+    path('contact/', views.contact, name='contact'),
+    path('prodall/', views.prodall, name='prodall'),
+    path('dostiopl/', views.dostiopl, name='dostiopl'),
+    path('<slug:slug>/', views.catigory_ditail, name='catigory_ditail'),
+    path('prodall/<slug:slug>/', views.pod_category_ditail, name='pod_category_ditail'),
+    path('<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
 
 ]

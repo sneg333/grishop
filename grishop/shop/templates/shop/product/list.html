@@ -8,23 +8,6 @@
   {% endif %}
 {% endblock %}
 
-{% block poisk %}
-        <div class="header-advance-search">
-            <form method="GET" action="">
-                <div class="input">
-                    <input type="text" name="q" placeholder="Search your product" value="{{request.GET.q}}"/>
-                </div>
-                <div class="submit">
-                    <button type="submit" value="Search" >
-                        <a href="/prodall/{{ prodall.url }}" class="icofont icofont-search-alt-1"> ПОИСК
-                        </a>
-                    </button>
-                </div>
-            </form>
-        </div><!-- Header Advance Search End -->
-{% endblock poisk %}
-
-
 {% block carusel %}
                 <div class="hero-slider hero-slider-three fix">
                     <!-- Hero Item Start -->
@@ -45,7 +28,7 @@
                     </div><!-- Hero Item End -->
                     {% endfor %}
                 </div><!-- Hero Slider End -->
-                {% endblock %}
+{% endblock %}
                     <!-- Product Tab Content Start -->
 {% block recomend_tovar %}
                     <div class="col-xl-9 col-lg-8 col-12 order-3 mb-30">
@@ -170,7 +153,6 @@
 {% endfor %}
 
 {% block foot1 %}
-
 
 {% endblock %}
 

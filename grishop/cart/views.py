@@ -33,4 +33,4 @@ def cart_detail(request):
     contact = Contact.objects.all()
     cart = Cart(request)
 
-    return render(request, 'cart/detail.html', {'cart': cart,'katalog': katalog, 'contact': contact,})
+    return render(request, 'cart/detail.html', {'cart': cart, 'katalog': katalog, 'contact': contact,})

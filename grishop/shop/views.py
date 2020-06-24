@@ -61,10 +61,7 @@ def product_detail(request, id, slug):
     cart_product_form = CartAddProductForm()
     contact = Contact.objects.all()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["star_form"] = RatingForms()
-        return context
+
 
     context = {
         'product': product,
