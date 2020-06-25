@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.decorators.http import require_POST
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import View
 from .models import Category, Product, Contact, Pod_Category, Dostiopl
 from cart.forms import CartAddProductForm
+from .cart import Cart
 from .forms import RatingForms
 
 # Страница с товарами
@@ -173,11 +175,9 @@ def dostiopl(request):
         'product': queryset,
         'title': "List",
         'page_request_var': page_request_var,
-
         'dostiopl': dostiopl,
         'katalog': katalog,
         'contact': contact,
         }
     return render(request,'shop/product/dostiopl.html', context)
-
 
