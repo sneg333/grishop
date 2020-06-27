@@ -7,7 +7,7 @@ from django.views.generic.base import View
 from .models import Category, Product, Contact, Pod_Category, Dostiopl
 from cart.forms import CartAddProductForm
 from .cart import Cart
-from .forms import RatingForms
+from .forms import RatingForm
 
 # Страница с товарами
 def product_list(request):
@@ -63,8 +63,6 @@ def product_detail(request, id, slug):
     cart_product_form = CartAddProductForm()
     contact = Contact.objects.all()
 
-
-
     context = {
         'product': product,
         'categories': categories,
@@ -76,6 +74,7 @@ def product_detail(request, id, slug):
 '''все товары и поиск по ним'''
 def prodall(request):
     katalog = Category.objects.all()
+    categories = Category.objects.all()
     contact = Contact.objects.all()
     cart_product_form = CartAddProductForm()
     prodall = Product.objects.all()
@@ -103,6 +102,7 @@ def prodall(request):
         'katalog': katalog,
         'cart_product_form': cart_product_form,
         'contact': contact,
+        'categories': categories,
     }
     return render(request, 'shop/product/prodall.html', context)
 
@@ -112,12 +112,14 @@ def pod_category_ditail(request, slug):
     cart_product_form = CartAddProductForm()
     pod_category = get_object_or_404(Pod_Category, slug=slug)
     contact = Contact.objects.all()
+    categories = Category.objects.all()
 
     context = {
         'pod_category': pod_category,
         'cart_product_form': cart_product_form,
         'katalog': katalog,
         'contact': contact,
+        'categories': categories,
     }
     return render(request, 'shop/product/pod_category_ditail.html', context)
 
@@ -127,12 +129,14 @@ def catigory_ditail(request, slug):
     category_one = get_object_or_404(Category, slug=slug)
     katalog = Category.objects.all()
     contact = Contact.objects.all()
+    categories = Category.objects.all()
 
     context = {
         'category_one': category_one,
         'pod_category': pod_category,
         'katalog': katalog,
         'contact': contact,
+        'categories': categories,
     }
     return render(request, 'shop/product/category_one.html', context)
 
@@ -140,10 +144,12 @@ def catigory_ditail(request, slug):
 def contact(request):
     contact = Contact.objects.all()
     katalog = Category.objects.all()
+    categories = Category.objects.all()
 
     context = {
         'contact': contact,
         'katalog': katalog,
+        'categories': categories,
         }
     return render(request,'shop/product/contact.html', context)
 
@@ -152,6 +158,7 @@ def dostiopl(request):
     dostiopl = Dostiopl.objects.all()
     katalog = Category.objects.all()
     contact = Contact.objects.all()
+    categories = Category.objects.all()
 
     queryset_list = Product.objects.all()
     if request.user.is_staff or request.user.is_superuser:
@@ -178,6 +185,7 @@ def dostiopl(request):
         'dostiopl': dostiopl,
         'katalog': katalog,
         'contact': contact,
+        'categories': categories,
         }
     return render(request,'shop/product/dostiopl.html', context)
 

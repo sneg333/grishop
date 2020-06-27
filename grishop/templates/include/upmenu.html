@@ -20,7 +20,7 @@
                 </div>
                 <div class="submit">
                     <button type="submit" value="Search" >
-                        <a href="/prodall/{{ prodall.url }}" class="icofont icofont-search-alt-1"> ПОИСК
+                        <a href="/shop/prodall/{{ prodall.url }}" class="icofont icofont-search-alt-1"> ПОИСК
                         </a>
                     </button>
                 </div>
@@ -58,13 +58,13 @@
                     <div class="main-menu">
         <nav>
             <ul>
-               <li><a href="/">ГЛАВНАЯ</a></li>
-                  <li class="menu-item-has-children"><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a>
+               <li><a href="/shop/{{ prodall.url }}">ГЛАВНАЯ+</a></li>
+                  <li class="menu-item-has-children"><a href="/shop/prodall/{{ prodall.url }}">КАТАЛОГ</a>
                      <ul class="sub-menu">
                          {% for cat in categories %}
                             {% if cat.pod_categoty %}
                                <li class="menu-item-has-children">
-                                  <a href="/{{ cat.slug }}">{{ cat.name }}</a>
+                                  <a href="/shop/{{ cat.slug }}">{{ cat.name }}</a>
                                      <ul class="sub-menu">
                                         <li>
                                             {% for pod_category in cat.pod_categoty.all %}
@@ -80,8 +80,8 @@
                          {% endfor %}
                      </ul>
                   </li>
-                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
-                <li class="active"><a href="/contact{{ contact.url }}">КОНТАКТЫ</a></li>
+                <li class="active"><a href="/shop/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
+                <li class="active"><a href="/shop/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
             </ul>
         </nav>
     </div><!-- Main Menu End -->

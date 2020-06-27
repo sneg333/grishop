@@ -30,7 +30,12 @@ def cart_remove(request, product_id):
 # корзина
 def cart_detail(request):
     katalog = Category.objects.all()
+    categories = Category.objects.all()
     contact = Contact.objects.all()
     cart = Cart(request)
 
-    return render(request, 'cart/detail.html', {'cart': cart, 'katalog': katalog, 'contact': contact,})
+    return render(request, 'cart/detail.html', {'cart': cart,
+                                                'katalog': katalog,
+                                                'contact': contact,
+                                                'categories': categories,
+                                                })

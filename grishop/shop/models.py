@@ -121,6 +121,7 @@ class Dostiopl(models.Model):
     def __str__(self):
         return self.zagolovok
 
+'''модель рейтинга звёзды'''
 class RaitingStar(models.Model):
     value = models.SmallIntegerField("значение", default=0)
     def __str__(self):
@@ -131,7 +132,7 @@ class RaitingStar(models.Model):
         verbose_name_plural = 'звёзды рейтинга'
         ordering = ["-value"]
 
-'''модель рейтинга звёзды'''
+'''модель рейтинга'''
 class Raiting(models.Model):
     ip = models.CharField("IP адрес", max_length=15)
     star = models.ForeignKey(RaitingStar, on_delete=models.CASCADE, verbose_name="звезда")

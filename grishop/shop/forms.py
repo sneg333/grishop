@@ -7,7 +7,7 @@ from django import forms
 #         model = Comments
 #         fields = ['title_com', 'comment_email', 'body']
 
-class RatingForms(forms.ModelForm):
+class RatingForm(forms.ModelForm):
     """форма добавления рейтинга"""
     star = forms.ModelChoiceField(
         queryset=RaitingStar.objects.all(), widget=forms.RadioSelect(), empty_label=None

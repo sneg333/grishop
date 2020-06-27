@@ -4,40 +4,41 @@
     Your shopping cart
 {% endblock %}
 
-{% block menu %}
-    <div class="main-menu">
-        <nav>
-            <ul>
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                    <li class="menu-item-has-children"><a href="/">КАТАЛОГ</a>
-                        <ul class="sub-menu">
-                            {% for katalog in katalog %}
-                                {% if katalog.pod_categoty %}
-                                <li class="menu-item-has-children">
-                                   <a href="/{{ katalog.slug }}">{{ katalog.name }}</a>
-                                      <ul class="sub-menu">
-                                         <li>
-                                            {% for pod_category in katalog.pod_categoty.all %}
-                                                <a href="{{ pod_category.get_absolute_url }}">
-                                                    {{ pod_category.name_podcategory }}
-                                                </a>
-                                            {%endfor%}
-                                         </li>
-                                      </ul>
-                                </li>
-                                {%else %}
-                                {% endif %}
-                           {% endfor %}
-                        </ul>
-                    </li>
-                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
-                <li class="active"><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
-            </ul>
-        </nav>
-    </div><!-- Main Menu End -->
-{% endblock menu %}
+
 
 {% block content %}
+
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+    <div class="page-banner-wrap row row-0 d-flex align-items-center ">
+
+        <!-- Page Banner -->
+        <div class="col-lg-4 col-12 order-lg-2 d-flex align-items-center justify-content-center">
+            <div class="page-banner">
+                <h1>Ваша корзина</h1>
+
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-15.jpg" alt="Banner"></a></div>
+        </div>
+
+        <!-- Banner -->
+        <div class="col-lg-4 col-md-6 col-12 order-lg-3">
+            <div class="banner"><a href="#"><img src="/static/images/banner/banner-14.jpg" alt="Banner"></a></div>
+        </div>
+
+    </div>
+</div><!-- Page Banner Section End -->
+
 
 <!-- Cart Page Start -->
 <div class="page-section section pt-90 pb-50">
@@ -95,11 +96,8 @@
                             </tbody>
                         </table>
                     </div>
-
                 </form>
-
                 <div class="row">
-
                     <div class="col-lg-6 col-12 mb-15">
                         <!-- Calculate Shipping -->
                         <div class="calculate-shipping">

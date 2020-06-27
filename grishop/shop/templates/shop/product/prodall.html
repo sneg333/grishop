@@ -1,53 +1,7 @@
 {% extends "prodall.html" %}
 {% load static %}
 
-{% block poisk %}
-        <div class="header-advance-search">
-            <form method="GET" action="">
-                <div class="input">
-                    <input type="text" name="q" placeholder="Поиск товара" value="{{request.GET.q}}"/>
-                </div>
-                <div class="submit">
-                    <button type="submit" value="Search" class="icofont icofont-search-alt-1">
-                         ПОИСК
-                    </button>
-                </div>
-            </form>
-        </div><!-- Header Advance Search End -->
-{% endblock poisk %}
 
-{% block menu %}
-    <div class="main-menu">
-        <nav>
-            <ul>
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                    <li class="menu-item-has-children"><a href="/prodall/{{ prodall.url }}">КАТАЛОГ</a>
-                        <ul class="sub-menu">
-                            {% for katalog in katalog %}
-                                {% if katalog.pod_categoty %}
-                                <li class="menu-item-has-children">
-                                   <a href="/{{ katalog.slug }}">{{ katalog.name }}</a>
-                                      <ul class="sub-menu">
-                                         <li>
-                                            {% for pod_category in katalog.pod_categoty.all %}
-                                                <a href="{{ pod_category.get_absolute_url }}">
-                                                    {{ pod_category.name_podcategory }}
-                                                </a>
-                                            {%endfor%}
-                                         </li>
-                                      </ul>
-                                </li>
-                                {%else %}
-                                {% endif %}
-                           {% endfor %}
-                        </ul>
-                    </li>
-                <li class="active"><a href="/dostiopl/{{ dostiopl.url }}">ДОСТАВКА И ОПЛАТА</a></li>
-                <li class="active"><a href="/contact/{{ contact.url }}">КОНТАКТЫ</a></li>
-            </ul>
-        </nav>
-    </div><!-- Main Menu End -->
-{% endblock menu %}
 
 {% block prodall %}
 <div class="product-section section mt-90 mb-90">
@@ -146,8 +100,6 @@
                                     <div class="desc">
                                         <p>{{ productall.description }}</p>
                                     </div>
-
-
                                     <div class="quantity">
                                         <h5>Количество</h5>
                                         {{ cart_product_form }}
