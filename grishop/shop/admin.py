@@ -25,9 +25,11 @@ admin.site.register(Gallery, GalleryAdmin)
 
 # Модель товара
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'price', 'stock', 'available', 'created', 'updated', 'recomend', 'hit_prodaj', 'new_tovar']
+    list_display = ['name', 'slug', 'price', 'stock', 'available', 'created', 'updated', 'recomend',
+                    'hit_prodaj', 'hit_prodaj2', 'new_tovar']
     list_filter = ['available', 'created', 'updated']
     list_editable = ['price', 'stock', 'available']
+    search_fields = ['name', 'slug']
     prepopulated_fields = {'slug': ('name', )}
 
 admin.site.register(Product, ProductAdmin)

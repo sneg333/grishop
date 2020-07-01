@@ -26,6 +26,7 @@ class Product(models.Model):
     available = models.BooleanField(default=True, verbose_name="Доступен")
     recomend = models.BooleanField(default=False, verbose_name="Рекомендуемые")
     hit_prodaj = models.BooleanField(default=False, verbose_name="Хит продаж")
+    hit_prodaj2 = models.BooleanField(default=False, verbose_name="Хит продаж2 (270*40)")
     new_tovar = models.BooleanField(default=False, verbose_name="Новый новар")
     carusel_tovar = models.BooleanField(default=False, verbose_name="карусель")
     image1 = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара1")

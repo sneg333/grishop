@@ -16,6 +16,7 @@ def product_list(request):
     products = Product.objects.filter(available=True, recomend=True)
     recomend_tovar = Product.objects.filter(available=True, recomend=True)
     hit_prodaj = Product.objects.filter(available=True, hit_prodaj=True)
+    hit_prodaj2 = Product.objects.filter(available=True, hit_prodaj2=True)
     new_tovar = Product.objects.filter(available=True, new_tovar=True)
     pod_category_one = Pod_Category.objects.all()
     carusel_tovar = Product.objects.filter(available=True, carusel_tovar=True)
@@ -49,6 +50,7 @@ def product_list(request):
         'recomend_tovar': recomend_tovar,
         'recomend_categories': recomend_categories,
         'hit_prodaj': hit_prodaj,
+        'hit_prodaj2': hit_prodaj2,
         'new_tovar': new_tovar,
         'pod_category_one': pod_category_one,
         'carusel_tovar': carusel_tovar,

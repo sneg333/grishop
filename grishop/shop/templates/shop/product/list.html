@@ -79,40 +79,65 @@
                     </div><!-- Product Tab Content End -->
 {% endblock %}
 
-<!-- hit_prodaj Start -->
+<!-- hit_prodaj2 Start -->
 {% block hit_prodaj %}
-    {% for hit_prodajs in hit_prodaj %}
-                            <div class="col-xl-4 col-md-6 col-12 pb-30 pt-10">
-                                <!-- Product Start -->
-                                <div class="ee-product">
-                                    <!-- Image -->
-                                    <div class="image">
 
-                                        <a href="{{ hit_prodajs.get_absolute_url }}" class="img">
-                                            {% if hit_prodajs.image %}
-                                                <img src=" {{ hit_prodajs.image.url }}" alt="Product Image">
-                                            {%else %}
-                                                <p></p>
-                                            {% endif %}
-                                        </a>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="content">
-                                        <!-- Category & Title -->
-                                        <div class="category-title">
-                                            <a href="#" class="cat">{{ hit_prodajs.category }}</a>
-                                            <h5 class="title"><a href="{{ hit_prodajs.get_absolute_url }}">{{ hit_prodajs.name }}</a></h5>
-                                        </div>
-                                        <!-- Price & Ratting -->
-                                        <div class="price-ratting">
-                                            <h5 class="price">{{ hit_prodajs.price }} руб.</h5>
-                                            <div class="ratting">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- Product End -->
-                            </div>
+      <div class="col-xl-3 col-lg-4 col-12 order-lg-1 order-2 mb-25 mt-5">
+         <div class="row">
+                 {% for hit_prodajs2 in hit_prodaj2 %}
+             <div class="col-lg-12 col-md-4 col-12 mt-5">
+                 <div class="banner">
+                     <a href="{{ hit_prodajs2.get_absolute_url }}" class="img">
+                     {% if hit_prodajs2.image %}
+                        <img src="{{ hit_prodajs2.image.url }}" alt="Product Image">
+                     {%else %}
+                        <p></p>
+                     {% endif %}
+                     </a>
+                 </div>
+             </div>
+                 {% endfor %}
+         </div>
+      </div>
+      <div class="col-xl-9 col-lg-8 col-12 order-lg-2 order-1">
+         <div class="row">
+<!-- hit_prodaj2 AND -->
+<!-- hit_prodaj Start -->
+    {% for hit_prodajs in hit_prodaj %}
+             <div class="col-xl-4 col-md-6 col-12 pb-30 pt-10">
+                 <!-- Product Start -->
+                 <div class="ee-product">
+                     <!-- Image -->
+                     <div class="image">
+                         <a href="{{ hit_prodajs.get_absolute_url }}" class="img">
+                           {% if hit_prodajs.image %}
+                             <img src="{{ hit_prodajs.image.url }}" alt="Product Image">
+                           {%else %}
+                             <p></p>
+                           {% endif %}
+                         </a>
+                     </div>
+                     <!-- Content -->
+                     <div class="content">
+                        <!-- Category & Title -->
+                        <div class="category-title">
+                           <a href="#" class="cat">{{ hit_prodajs.category }}</a>
+                              <h5 class="title"><a href="{{ hit_prodajs.get_absolute_url }}">{{ hit_prodajs.name }}</a></h5>
+                        </div>
+                        <!-- Price & Ratting -->
+                        <div class="price-ratting">
+                           <h5 class="price">{{ hit_prodajs.price }} руб.</h5>
+                              <div class="ratting">
+                              </div>
+                        </div>
+                     </div>
+                 </div><!-- Product End -->
+             </div>
     {% endfor %}
+
+        </div>
+           </div>
+
 {% endblock %}
 <!-- hit_prodaj AND -->
 
