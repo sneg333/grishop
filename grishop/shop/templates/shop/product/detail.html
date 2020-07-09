@@ -153,12 +153,13 @@
                                 <div class="ratting-author">
                                     <h3>{{ comment.title_com }}</h3>
                                     <div class="ratting-star">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(5)</span>
+                                        <i class="fa fa-star{% if comment.rate < 1  %}-o {% endif %}"></i>
+                                        <i class="fa fa-star{% if comment.rate < 2  %}-o {% endif %}"></i>
+                                        <i class="fa fa-star{% if comment.rate < 3  %}-o {% endif %}"></i>
+                                        <i class="fa fa-star{% if comment.rate < 4  %}-o {% endif %}"></i>
+                                        <i class="fa fa-star{% if comment.rate < 5  %}-o {% endif %}"></i>
+
+
                                     </div>
                                 </div>
                                 {{ comment.body_com | linebreaks }}
@@ -177,11 +178,11 @@
                                     <div class="col-12 mb-15">
                                         <h5>Баллы:</h5>
                                         <div class="ratting-star fix">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star {% if comment.rate < 1  %}  {% endif %}"></i>
+                                            <i class="fa fa-star {% if comment.rate < 2  %}  {% endif %}"></i>
+                                            <i class="fa fa-star {% if comment.rate < 3  %}  {% endif %}"></i>
+                                            <i class="fa fa-star {% if comment.rate < 4  %}  {% endif %}"></i>
+                                            <i class="fa fa-star {% if comment.rate < 5  %}  {% endif %}"></i>
                                         </div>
                                     </div>
                                        <div class="col-md-6 col-12 mb-15">
