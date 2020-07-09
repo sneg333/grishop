@@ -4,10 +4,11 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import View
-from .models import Category, Product, Contact, Pod_Category, Dostiopl
+from .models import Category, Product, Contact, Pod_Category, Dostiopl, Comment
 from cart.forms import CartAddProductForm
 from .cart import Cart
-from .forms import RatingForm
+from .forms import RatingForm, CommentForm
+from django.http import HttpResponseRedirect, HttpResponse
 
 # Страница с товарами
 def product_list(request):
@@ -64,12 +65,27 @@ def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm()
     contact = Contact.objects.all()
+    comments = product.comments.filter(active=True)
+    new_comment = None
+
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.product_com = product
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
 
     context = {
         'product': product,
         'categories': categories,
         'cart_product_form': cart_product_form,
         'contact': contact,
+        'comments': comments,
+        'new_comment': new_comment,
+        'comment_form': comment_form,
+
     }
     return render(request, 'shop/product/detail.html',  context)
 
@@ -190,4 +206,3 @@ def dostiopl(request):
         'categories': categories,
         }
     return render(request,'shop/product/dostiopl.html', context)
-

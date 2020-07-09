@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Pod_Category, Gallery, Contact, Dostiopl, RaitingStar, Raiting
+from .models import Category, Product, Pod_Category, Gallery, Contact, Dostiopl, RaitingStar, Raiting, Comment
 from django.utils.safestring import mark_safe
 # Модель категории
 class CategoryAdmin(admin.ModelAdmin):
@@ -7,8 +7,6 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', )}
 
 admin.site.register(Category, CategoryAdmin)
-
-
 
 # Модель подкаталога
 class Pod_CategoryAdmin(admin.ModelAdmin):
@@ -35,6 +33,17 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
+'''Комментарии'''
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('title_com', 'active', 'product_com')
+    search_fields = ('title_com', 'body_com')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(active=True)
+
+
+admin.site.register(Comment, CommentAdmin)
 
 admin.site.register(Contact)
 admin.site.register(Dostiopl)

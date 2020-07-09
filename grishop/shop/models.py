@@ -122,6 +122,29 @@ class Dostiopl(models.Model):
     def __str__(self):
         return self.zagolovok
 
+'''Модель комментария'''
+class Comment(models.Model):
+    STATUS = (
+        ('New', 'Yeni'),
+        ('True', 'Evet'),
+        ('False', 'Hayir'),
+    )
+    product_com = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
+    title_com = models.CharField(max_length=100)
+    body_com = models.TextField(max_length=250)
+    rate = models.IntegerField(blank=True)
+    ip_com = models.CharField(blank=True, max_length=20)
+    create_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'комментарии'
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body_com, self.title_com)
+
 '''модель рейтинга звёзды'''
 class RaitingStar(models.Model):
     value = models.SmallIntegerField("значение", default=0)
