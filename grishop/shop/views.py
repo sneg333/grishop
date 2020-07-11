@@ -7,7 +7,7 @@ from django.views.generic.base import View
 from .models import Category, Product, Contact, Pod_Category, Dostiopl, Comment
 from cart.forms import CartAddProductForm
 from .cart import Cart
-from .forms import RatingForm, CommentForm
+from .forms import CommentForm
 from django.http import HttpResponseRedirect, HttpResponse
 
 # Страница с товарами

@@ -145,26 +145,3 @@ class Comment(models.Model):
     def __str__(self):
         return 'Comment {} by {}'.format(self.body_com, self.title_com)
 
-'''модель рейтинга звёзды'''
-class RaitingStar(models.Model):
-    value = models.SmallIntegerField("значение", default=0)
-    def __str__(self):
-        return f'{self.value}'
-
-    class Meta:
-        verbose_name = 'звезда рейтинга'
-        verbose_name_plural = 'звёзды рейтинга'
-        ordering = ["-value"]
-
-'''модель рейтинга'''
-class Raiting(models.Model):
-    ip = models.CharField("IP адрес", max_length=15)
-    star = models.ForeignKey(RaitingStar, on_delete=models.CASCADE, verbose_name="звезда")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="товар")
-
-    def __str__(self):
-        return f"{self.star} - {self.product}"
-
-    class Meta:
-        verbose_name = 'Рейтинг'
-        verbose_name_plural = 'Рейтинги'

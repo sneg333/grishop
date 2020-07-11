@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Pod_Category, Gallery, Contact, Dostiopl, RaitingStar, Raiting, Comment
+from .models import Category, Product, Pod_Category, Gallery, Contact, Dostiopl, Comment
 from django.utils.safestring import mark_safe
 # Модель категории
 class CategoryAdmin(admin.ModelAdmin):
@@ -47,8 +47,6 @@ admin.site.register(Comment, CommentAdmin)
 
 admin.site.register(Contact)
 admin.site.register(Dostiopl)
-admin.site.register(RaitingStar)
-admin.site.register(Raiting)
 
 """изменение названия админка django в самом верху в админке"""
 admin.site.site_title = "Администрирование магазина"
