@@ -12,10 +12,10 @@ def cart_add(request, product_id):
 
     form = CartAddProductForm(request.POST)
     if form.is_valid():
-        cd = form.cleaned_data
+        form = form.cleaned_data
         cart.add(product=product,
-                 quantity=cd['quantity'],
-                 update_quantity=cd['update'])
+                 quantity=form['quantity'],
+                 update_quantity=form['update'])
     return redirect('cart:cart_detail')
 
 # удаление товаров из корзины
@@ -24,8 +24,6 @@ def cart_remove(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
     return redirect('cart:cart_detail')
-
-
 
 # корзина
 def cart_detail(request):

@@ -99,9 +99,12 @@
                         <form action="{% url 'cart:cart_add' product.id %}" method="post">
                             <div class="quantity">
                                 <h5>Количество</h5>
-                                <div>
+                                <div class="col-md-6 col-12 mb-15">
                                     {{ cart_product_form }}
                                     {% csrf_token %}
+                                    <div class="col-12 mb-15">
+                                    {{ form.quantity }}
+                                    </div>
                                 </div>
                                 <div class="actions">
                                     <input type="submit"  class="ti-shopping-cart" id="zakaz2" value="В КОРЗИНУ">
@@ -158,8 +161,6 @@
                                         <i class="fa fa-star{% if comment.rate < 3  %}-o {% endif %}"></i>
                                         <i class="fa fa-star{% if comment.rate < 4  %}-o {% endif %}"></i>
                                         <i class="fa fa-star{% if comment.rate < 5  %}-o {% endif %}"></i>
-
-
                                     </div>
                                 </div>
                                 {{ comment.body_com | linebreaks }}
@@ -196,7 +197,7 @@
                                        <div class="col-12 mb-15">
                                             <label>Ваш отзыв:</label>
                                                 {{ comment_form.body_com }}
-										</div>
+									   </div>
                                     {% csrf_token %}
                                     <div class="col-12">
                                         <input value="отправить" type="submit">

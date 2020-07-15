@@ -17,7 +17,7 @@ class Gallery(models.Model):
 # Модель продукта
 class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True, verbose_name="Название")
-    slug = models.SlugField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, unique=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара")
     description = models.TextField(blank=True, verbose_name="Описание")
     tehnik_harakteristic = models.TextField(blank=True, verbose_name="Технические характеристики")

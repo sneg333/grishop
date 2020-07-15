@@ -7,11 +7,11 @@
 <div class="product-section section mt-90 mb-90">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-xl-9 col-lg-8 col-12 order-lg-2 mb-50">
                 <div class="row mb-50">
                     <div class="col">
                         <!-- Shop Top Bar Start -->
-                        <div class="shop-top-bar">
+                        <div class="shop-top-bar with-sidebar">
                             <!-- Product View Mode -->
                             <div class="product-view-mode">
                                 <a href="#" data-target="grid"><i class="fa fa-th"></i></a>
@@ -34,9 +34,7 @@
                             <div class="image">
                                 <a href="{{ productall.get_absolute_url }}" class="img"><img src="{{ productall.image.url }}" alt="Product Image"></a>
                                 <div class="wishlist-compare">
-
                                 </div>
-
                                     <div class="quantity">
                                         <h5>Количество</h5>
                                         {{ cart_product_form }}
@@ -158,8 +156,71 @@
                     </div>
                 </div>
 <!--pagination end-->
+            </div>
+
+      <!--CENA-LEFT start-->
+            <div class="shop-sidebar-wrap col-xl-3 col-lg-4 col-12 order-lg-1 mb-15">
+
+                <div class="shop-sidebar mb-35">
+                    <h4 class="title">Brand</h4>
+                    <ul class="sidebar-brand">
+                        <li><a href="#">Apple</a></li>
+                        <li><a href="#">Sumsang</a></li>
+                        <li><a href="#">Phillips</a></li>
+                        <li><a href="#">Zeon</a></li>
+                        <li><a href="#">Panasonic</a></li>
+                        <li><a href="#">Uawei</a></li>
+                    </ul>
+                </div>
+{% block filter %}
+
+                <div class="shop-sidebar mb-35">
+                    <h4 class="title">Цена до</h4>
+                    <div class="sidebar-price">
+                      <form method="get">
+                        {{ filter.form.as_p }}
+                        <button type="submit">Поиск</button>
+                      </form>
+                    {% for user in filter.qs %}
+                        <li>{% if user.price > 5  %} {{ user.price }} {% endif %}</li>
+                    {% endfor %}
+                    </div>
+                </div>
+
+{% endblock filter %}
+                <div class="shop-sidebar mb-35">
+                    <div class="banner">
+                        <a href="#"><img src="assets/images/banner/banner-41.jpg" alt="Banner"></a>
+                    </div>
+                </div>
+
+                <div class="shop-sidebar mb-35">
+                    <h4 class="title">Color</h4>
+                    <ul class="sidebar-brand">
+                        <li><a href="#">White</a></li>
+                        <li><a href="#">Black</a></li>
+                        <li><a href="#">Cosmic Black</a></li>
+                        <li><a href="#">Rose Gold</a></li>
+                        <li><a href="#">Spacegrey</a></li>
+                    </ul>
+                </div>
+
+                <div class="shop-sidebar mb-35">
+                    <h4 class="title">Tags</h4>
+                    <div class="sidebar-tags">
+                        <a href="#">smartphone</a>
+                        <a href="#">Iron</a>
+                        <a href="#">Trimer</a>
+                        <a href="#">Smart Watch</a>
+                        <a href="#">Play Station</a>
+                        <a href="#">Oven</a>
+                    </div>
+                </div>
 
             </div>
+
+      <!--CENA-LEFT end-->
+
         </div>
     </div>
 </div><!-- Feature Product Section End -->

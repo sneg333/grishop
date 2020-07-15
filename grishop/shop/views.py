@@ -8,6 +8,7 @@ from .models import Category, Product, Contact, Pod_Category, Dostiopl, Comment
 from cart.forms import CartAddProductForm
 from .cart import Cart
 from .forms import CommentForm
+from .filters import ProductFilter
 from django.http import HttpResponseRedirect, HttpResponse
 
 # Страница с товарами
@@ -113,6 +114,9 @@ def prodall(request):
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
 
+
+    prodall_filter = ProductFilter(request.GET, queryset=prodall)
+
     context = {
         'prodall': queryset,
         'title': "List",
@@ -121,6 +125,7 @@ def prodall(request):
         'cart_product_form': cart_product_form,
         'contact': contact,
         'categories': categories,
+        'filter': prodall_filter,
     }
     return render(request, 'shop/product/prodall.html', context)
 
