@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from shop.models import Product, Category, Contact
 from .cart import Cart
 from .forms import CartAddProductForm
+from django.http import HttpResponseRedirect, HttpResponse
 
 @require_POST
 def cart_add(request, product_id):
@@ -37,3 +38,4 @@ def cart_detail(request):
                                                 'contact': contact,
                                                 'categories': categories,
                                                 })
+

@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.base import View
-from .models import Category, Product, Contact, Pod_Category, Dostiopl, Comment
+from .models import Category, Product, Contact, Pod_Category, Dostiopl, Comment, Brend
 from cart.forms import CartAddProductForm
 from .cart import Cart
 from .forms import CommentForm
@@ -96,6 +96,7 @@ def prodall(request):
     categories = Category.objects.all()
     contact = Contact.objects.all()
     cart_product_form = CartAddProductForm()
+    brend = Brend.objects.all()
     prodall = Product.objects.all()
     if request.user.is_staff or request.user.is_superuser:
         prodall = Product.objects.all()
@@ -115,7 +116,7 @@ def prodall(request):
         queryset = paginator.page(paginator.num_pages)
 
 
-    prodall_filter = ProductFilter(request.GET, queryset=prodall)
+    brend = ProductFilter(request.GET, queryset=brend)
 
     context = {
         'prodall': queryset,
@@ -125,7 +126,7 @@ def prodall(request):
         'cart_product_form': cart_product_form,
         'contact': contact,
         'categories': categories,
-        'filter': prodall_filter,
+        'filter': brend,
     }
     return render(request, 'shop/product/prodall.html', context)
 

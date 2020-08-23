@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Pod_Category, Gallery, Contact, Dostiopl, Comment
+from .models import Category, Product, Pod_Category, Gallery, Contact, Dostiopl, Comment, Brend
 from django.utils.safestring import mark_safe
 # Модель категории
 class CategoryAdmin(admin.ModelAdmin):
@@ -45,6 +45,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 admin.site.register(Comment, CommentAdmin)
 
+admin.site.register(Brend)
 admin.site.register(Contact)
 admin.site.register(Dostiopl)
 

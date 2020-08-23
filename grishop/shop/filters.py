@@ -1,7 +1,7 @@
-from .models import Product
+from .models import Product, Brend
 import django_filters
 
 class ProductFilter(django_filters.FilterSet):
     class Meta:
-        model = Product
-        fields = ['price']
+        model = Brend
+        fields = ['title_brend']

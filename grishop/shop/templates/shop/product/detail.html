@@ -192,7 +192,8 @@
 									   </div>
                                     	<div class="col-md-6 col-12 mb-15">
                                             <label>Баллы:</label>
-                                            {{ comment_form.rate }}
+                                            <input type="number" max="5" min="1" value="{{ comment_form.rate }}">
+
 										</div>
                                        <div class="col-12 mb-15">
                                             <label>Ваш отзыв:</label>

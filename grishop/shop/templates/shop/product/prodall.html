@@ -177,13 +177,20 @@
                 <div class="shop-sidebar mb-35">
                     <h4 class="title">Цена до</h4>
                     <div class="sidebar-price">
-                      <form method="get">
+
+
+
+                    {% for user in filter.qs %}
+                        <input type="checkbox" id="c1" name="cc" />
+                          <label for="c1"><span></span>{{ user.title_brend }}</label>
+
+                    {% endfor %}
+
+                    <form method="get">
                         {{ filter.form.as_p }}
                         <button type="submit">Поиск</button>
-                      </form>
-                    {% for user in filter.qs %}
-                        <li>{% if user.price > 5  %} {{ user.price }} {% endif %}</li>
-                    {% endfor %}
+                    </form>
+
                     </div>
                 </div>
 

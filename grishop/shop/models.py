@@ -14,6 +14,17 @@ class Gallery(models.Model):
     def __str__(self):
         return "%s, %s" % (self.title_gallery, self.is_active)
 
+class Brend(models.Model):
+    title_brend = models.CharField(max_length=80, verbose_name='бренд')
+
+    def __str__(self):
+        return self.title_brend
+
+    class Meta:
+        verbose_name = 'Бренд'
+        verbose_name_plural = 'Бренд'
+
+
 # Модель продукта
 class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True, verbose_name="Название")
@@ -32,6 +43,8 @@ class Product(models.Model):
     image1 = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара1")
     image2 = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара2")
     image3 = models.ImageField(upload_to='products/%Y/%m/%d/', blank=True, verbose_name="Изображение товара3")
+    brend = models.ForeignKey(Brend, blank=True, on_delete=models.CASCADE, verbose_name='бренд')
+    action = models.BooleanField(default=False, verbose_name="акция")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
