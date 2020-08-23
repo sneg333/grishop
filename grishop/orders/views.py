@@ -1,8 +1,14 @@
 from django.shortcuts import render
-from .models import OrderItem
+from .models import OrderItem, Item, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
 from shop.models import Category, Contact
+
+def item_list(request):
+    context = {
+        'items': Item.objects.all()
+    }
+    return  render(request, 'orders/order/item_list.html', context)
 
 def order_create(request):
     katalog = Category.objects.all()

@@ -1,8 +1,36 @@
 from django.db import models
 from shop.models import Product
+from django.conf import settings
+
+class Item(models.Model):
+    title_item = models.CharField(max_length=100)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.title_item
+
+    class Meta:
+        verbose_name = 'элемент'
+        verbose_name_plural = 'элементы'
+
+
+class OrderItem(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return '{}'.format(self.id)
+
+    class Meta:
+        verbose_name = 'детали заказа'
+        verbose_name_plural = 'детали заказов'
 
 
 class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderItem)
+    ordered = models.BooleanField(default=False)
     first_name = models.CharField(max_length=50, verbose_name="имя")
     last_name = models.CharField(max_length=50, verbose_name="фамилия")
     email = models.EmailField()
@@ -25,14 +53,4 @@ class Order(models.Model):
         return sum(item.get_cost() for item in self.items.all())
 
 
-class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.PositiveIntegerField(default=1)
 
-    def __str__(self):
-        return '{}'.format(self.id)
-
-    def get_cost(self):
-        return self.price * self.quantity

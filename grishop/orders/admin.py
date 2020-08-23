@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Item
 
 
 class OrderItemInline(admin.TabularInline):
-    model = OrderItem
+
     raw_id_fields = ['product']
 
 
@@ -12,6 +12,8 @@ class OrderAdmin(admin.ModelAdmin):
                     'address', 'postal_code', 'city', 'paid',
                     'created', 'updated']
     list_filter = ['paid', 'created', 'updated']
-    inlines = [OrderItemInline]
 
-admin.site.register(Order, OrderAdmin)
+
+admin.site.register(Order)
+admin.site.register(Item)
+admin.site.register(OrderItem)
